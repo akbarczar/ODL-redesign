@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- 
+ /**
+ * Ksolves
+ *
+ * @category  Ksolves
+ * @package   Ksolves_LayeredNavigation
+ * @author    Ksolves Team
+ * @copyright Copyright (c) Ksolves India Limited (https://www.ksolves.com/)
+ * @license   https://store.ksolves.com/magento-license
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="sidebar.main">
+            <block class="Magento\LayeredNavigation\Block\Navigation\Category" name="catalog.leftnav" template="Ksolves_LayeredNavigation::layer/view.phtml">
+            	<block class="Magento\LayeredNavigation\Block\Navigation\State" name="catalog.navigation.state" as="state" />
+            	<block class="Ksolves\LayeredNavigation\Block\Navigation\FilterRenderer" name="catalog.navigation.renderer" as="renderer" template="Ksolves_LayeredNavigation::layer/filter.phtml"/>
+            </block>
+        </referenceContainer>
+		 <!-- <move element="category.view.container" destination="content" after="catalog.leftnav" /> -->
+		<!-- <move element="catalog.leftnav" destination="category.view.container" after="-"/> -->
+    </body>
+</page>

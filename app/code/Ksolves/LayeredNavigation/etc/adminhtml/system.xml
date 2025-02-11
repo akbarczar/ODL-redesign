@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+* Ksolves
+*
+* @category  Ksolves
+* @package   Ksolves_LayeredNavigation
+* @author    Ksolves Team
+* @copyright Copyright (c) Ksolves India Limited (https://www.ksolves.com/)
+* @license   https://store.ksolves.com/magento-license
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="ksolves_extensions" translate="label" sortOrder="20" class="ks-tab-image">
+            <label>KSOLVES EXTENSIONS</label>
+        </tab>
+        <section id="ks_layeredNavigation" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Layered Navigation</label>
+            <tab>ksolves_extensions</tab>
+            <resource>Ksolves_LayeredNavigation::layeredNavigation_config</resource>
+            <!-- General Section Management -->
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                <field id="ks_enable_ajax" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Ajax</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="ks_use_slider" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Price slider</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field> 
+            </group>
+             <!-- General Section Management -->
+        </section>
+    </system>
+</config>

@@ -1,0 +1,161 @@
+<?php
+/**
+ * Ksolves
+ *
+ * @category  Ksolves
+ * @package   Ksolves_LayeredNavigation
+ * @author    Ksolves Team
+ * @copyright Copyright (c) Ksolves India Limited (https://www.ksolves.com/)
+ * @license   https://store.ksolves.com/magento-license
+ */
+?>
+<?php
+/**
+ * Template for filter items block
+ *
+ * @var $block \Ksolves\LayeredNavigation\Block\Navigation\FilterRenderer
+ */
+?>
+ <!-- create object of helper class -->
+<?php $ksHelper = $this->helper('Ksolves\LayeredNavigation\Helper\Data');?>
+
+<?php if($filter instanceof Magento\CatalogSearch\Model\Layer\Filter\Price ): ?>
+    <?php if ($ksHelper->getPriceSlider()) : ?>
+        <?php $getPriceFilterValue  = $block->getRequest()->getParam($filter->getRequestVar()); ?>
+        <?php $ksPriceRange  =  $this->getCategoryProductsPriceRange($filter);?>
+        <?php $ksPriceUrl = $this->getProductsFilterUrl($filter); ?>
+        <?php $ksRate =  $block->getKsCurrencyRate();?>
+
+        <?php list($kspriceFrom, $kspriceTo) = $getPriceFilterValue ? explode('-', $getPriceFilterValue) : [$ksPriceRange['min'], $ksPriceRange['max']]; ?>
+
+        <script>
+            var ksPriceUrl = "<?=$ksPriceUrl;?>";
+            var ksIsAjax = <?= $ksHelper->isAjaxEnabled();?>;
+            require([
+                'jquery',
+                'priceUtils',
+                "jquery/ui",
+                'jquery/ui-modules/widgets/slider',
+                'domReady!'
+            ], function($,priceUtils){
+                /* price slider */
+                $( "#ks-price-slider" ).slider({
+                    range: true,
+                    min: <?=$ksPriceRange['min']?> ,
+                    max: <?=$ksPriceRange['max']?>,
+                    values: [ <?= $kspriceFrom ?>, <?= $kspriceTo?> ],
+                    slide: function( event, ui ) {
+                        var ksPriceFormat = {
+                            decimalSymbol: '.',
+                            groupLength: 3,
+                            groupSymbol: ",",
+                            integerRequired: false,
+                            pattern: "<?= $block->getKsCurrencySymbol();?>".concat("%s"),
+                            precision: 2,
+                            requiredPrecision: 2
+                        };
+
+                        var ksSlideTo = priceUtils.formatPrice(<?= $ksRate;?> * ui.values[0],ksPriceFormat);
+                        var ksSlideFrom = priceUtils.formatPrice(<?= $ksRate;?> * ui.values[1],ksPriceFormat);
+                        
+                        //$("#amount-from").html(ksSlideTo+" - "+ksSlideFrom);
+                        $("#amount-from").html(ksSlideTo);
+                        $("#amount-to").html(ksSlideFrom);
+                    },
+                    change: function( event, ui ) {
+                        var filterUrl = ksPriceUrl.replace("price=","price="+ui.values[0]+"-"+ui.values[1]);
+						var styleAttribute = $('div#ks-price-slider span:first-of-type').attr('style');
+						var leftAttribute = $('div#ks-price-slider span:first-of-type').css("left");
+						console.log("leftattrbeforeajax"+leftAttribute);
+                        /* ajax call to get products */
+						$('body').trigger('processStart');
+                        if(ksIsAjax){
+                            $.ajax({
+                                url: filterUrl,
+                                type: 'POST',
+                                dataType: 'json',
+                                data: {},
+                                showloader : true,
+                                success: function(response) 
+                                { 
+                                    /* replace url */
+                                    history.replaceState(null, null, filterUrl);
+					
+                                    /* update layered navigation content */
+                                    $('#layered-filter-block').html(response.sidebar_main).trigger('contentUpdated'); 
+                                    /* update the products*/     
+                                    $('.column.main').html(response.products).trigger('contentUpdated');
+									$('body').trigger('processStop');
+									/* setTimeout(function () {
+										console.log("leftattrafterajax"+leftAttribute);
+										console.log($('div#ks-price-slider').find('.ui-slider-handle:first-of-type'));
+										$('div#ks-price-slider').find('.ui-slider-handle:first-of-type').css('left', leftAttribute);
+									 }, 1500); */
+									jQuery(window).resize(); 
+									/* window.location = document.URL; */
+                                },
+                                error: function (xhr, status, errorThrown) {
+                                    alert('Error happens. Try again.');
+                                }
+                            });
+                        }else{
+                            location.href = filterUrl;
+                        }
+                    }
+					
+                });
+
+                /* update the amount */
+                $("#amount-from").html('<?= $block->getKsConvertAndFormat($kspriceFrom)?>');
+				$("#amount-to").html('<?= $block->getKsConvertAndFormat($kspriceTo) ?>');
+            });
+        </script>
+       <!-- <p class="ks-product-count">(<//?= $block->getTotalProducts($filter);?>) products</p>-->
+        <span id="amount-from" style="border:0; color:#183e0c; font-weight:bold;" readonly="true"></span><div id="ks-price-slider"> </div><span id="amount-to" style="border:0; color:#183e0c; font-weight:bold;" readonly="true">
+    <?php else : ?>
+        <ol class="items">
+            <?php foreach ($filterItems as $filterItem): ?>
+			<a href="<?php echo $block->escapeUrl($filterItem->getUrl()) ?>">
+                <li class="my item">
+                    <?php if ($filterItem->getCount() > 0): ?>
+                            <?php /* @escapeNotVerified */ echo $filterItem->getLabel() ?>
+                            <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                                <span class="count"><?php /* @escapeNotVerified */ echo $filterItem->getCount()?><span class="filter-count-label">
+                                    <?php if ($filterItem->getCount() == 1):?> <?php /* @escapeNotVerified */ echo __('item')?><?php else:?> <?php /* @escapeNotVerified */ echo __('items') ?><?php endif;?></span></span>
+                            <?php endif; ?>
+                    <?php else:?>
+                        <?php /* @escapeNotVerified */ echo $filterItem->getLabel() ?>
+                        <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                            <span class="count"><?php /* @escapeNotVerified */ echo $filterItem->getCount()?><span class="filter-count-label">
+                                <?php if ($filterItem->getCount() == 1):?><?php /* @escapeNotVerified */ echo __('item')?><?php else:?><?php /* @escapeNotVerified */ echo __('items') ?><?php endif;?></span></span>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </li>
+				</a>
+            <?php endforeach ?>
+        </ol>
+    <?php endif; ?>
+
+<?php else:?>
+    <ol class="items">
+        <?php foreach ($filterItems as $filterItem): ?>
+			<a href="<?php echo $block->escapeUrl($filterItem->getUrl()) ?>">
+            <li class="my item">
+                <?php if ($filterItem->getCount() > 0): ?>
+                        <?php /* @escapeNotVerified */ echo $filterItem->getLabel() ?>
+                        <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                            <span class="count"><?php /* @escapeNotVerified */ echo $filterItem->getCount()?><span class="filter-count-label">
+                                <?php if ($filterItem->getCount() == 1):?> <?php /* @escapeNotVerified */ echo __('item')?><?php else:?> <?php /* @escapeNotVerified */ echo __('items') ?><?php endif;?></span></span>
+                        <?php endif; ?>
+                <?php else:?>
+                    <?php /* @escapeNotVerified */ echo $filterItem->getLabel() ?>
+                    <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                        <span class="count"><?php /* @escapeNotVerified */ echo $filterItem->getCount()?><span class="filter-count-label">
+                            <?php if ($filterItem->getCount() == 1):?><?php /* @escapeNotVerified */ echo __('item')?><?php else:?><?php /* @escapeNotVerified */ echo __('items') ?><?php endif;?></span></span>
+                    <?php endif; ?>
+                <?php endif; ?>
+            </li>
+			</a>
+        <?php endforeach ?>
+    </ol>
+<?php endif;?>

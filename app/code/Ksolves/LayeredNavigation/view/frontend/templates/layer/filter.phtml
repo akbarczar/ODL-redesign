@@ -1,0 +1,147 @@
+<?php
+/**
+ * Ksolves
+ *
+ * @category  Ksolves
+ * @package   Ksolves_LayeredNavigation
+ * @author    Ksolves Team
+ * @copyright Copyright (c) Ksolves India Limited (https://www.ksolves.com/)
+ * @license   https://store.ksolves.com/magento-license
+ */
+?>
+<?php
+/**
+ * Template for filter items block
+ *
+ * @var $block \Ksolves\LayeredNavigation\Block\Navigation\FilterRenderer
+ */
+?>
+ <!-- create object of helper class -->
+<?php $ksHelper = $this->helper('Ksolves\LayeredNavigation\Helper\Data');?>
+
+<?php if($filter instanceof Magento\CatalogSearch\Model\Layer\Filter\Price ): ?>
+    <?php if ($ksHelper->getPriceSlider()) : ?>
+        <?php $getPriceFilterValue  = $block->getRequest()->getParam($filter->getRequestVar()); ?>
+        <?php $ksPriceRange  =  $this->getCategoryProductsPriceRange($filter);?>
+        <?php $ksPriceUrl = $this->getProductsFilterUrl($filter); ?>
+        <?php $ksRate =  $block->getKsCurrencyRate();?>
+
+        <?php list($kspriceFrom, $kspriceTo) = $getPriceFilterValue ? explode('-', $getPriceFilterValue) : [$ksPriceRange['min'], $ksPriceRange['max']]; ?>
+
+        <script>
+            var ksPriceUrl = "<?=$ksPriceUrl;?>";
+            var ksIsAjax = <?= $ksHelper->isAjaxEnabled();?>;
+            require([
+                'jquery',
+                'priceUtils',
+                "jquery/ui",
+                'jquery/ui-modules/widgets/slider',
+                'domReady!'
+            ], function($,priceUtils){
+                /* price slider */
+                $( "#ks-price-slider" ).slider({
+                    range: true,
+                    min: <?=$ksPriceRange['min']?> ,
+                    max: <?=$ksPriceRange['max']?>,
+                    values: [ <?= $kspriceFrom ?>, <?= $kspriceTo?> ],
+                    slide: function( event, ui ) {
+                        var ksPriceFormat = {
+                            decimalSymbol: '.',
+                            groupLength: 3,
+                            groupSymbol: ",",
+                            integerRequired: false,
+                            pattern: "<?= $block->getKsCurrencySymbol();?>".concat("%s"),
+                            precision: 2,
+                            requiredPrecision: 2
+                        };
+
+                        var ksSlideTo = priceUtils.formatPrice(<?= $ksRate;?> * ui.values[0],ksPriceFormat);
+                        var ksSlideFrom = priceUtils.formatPrice(<?= $ksRate;?> * ui.values[1],ksPriceFormat);
+                        
+                        $("#amount").html(ksSlideTo+" - "+ksSlideFrom);
+                    },
+                    change: function( event, ui ) {
+                        var filterUrl = ksPriceUrl.replace("price=","price="+ui.values[0]+"-"+ui.values[1]);
+                        /* ajax call to get products */
+                        if(ksIsAjax){
+                            $.ajax({
+                                url: filterUrl,
+                                type: 'POST',
+                                dataType: 'json',
+                                data: {},
+                                showloader : true,
+                                success: function(response) 
+                                { 
+                                    /* replace url */
+                                    history.replaceState(null, null, filterUrl);
+
+                                    /* update layered navigation content */
+                                    $('.sidebar-main').html(response.sidebar_main).trigger('contentUpdated'); 
+                                    /* update the products*/     
+                                    $('.column.main').html(response.products).trigger('contentUpdated'); 
+                                },
+                                error: function (xhr, status, errorThrown) {
+                                    alert('Error happens. Try again.');
+                                }
+                            });
+                        }else{
+                            location.href = filterUrl;
+                        }
+                    }
+                });
+
+                /* update the amount */
+                $("#amount").html('<?= $block->getKsConvertAndFormat($kspriceFrom)." - ".$block->getKsConvertAndFormat($kspriceTo) ?>');
+            });
+        </script>
+        <label for="amount"><?php echo __('Price range')?>:</label>
+        <span id="amount" style="border:0; color:#f6931f; font-weight:bold;" readonly="true"></span>
+        <p class="ks-product-count">(<?= $block->getTotalProducts($filter);?>) products</p>
+        <div id="ks-price-slider"></div>
+    <?php else : ?>
+        <ol class="items">
+            <?php foreach ($filterItems as $filterItem): ?>
+                <li class="my item">
+                    <?php if ($filterItem->getCount() > 0): ?>
+                        <a href="<?php echo $block->escapeUrl($filterItem->getUrl()) ?>">
+                            <?php /* @escapeNotVerified */ echo $filterItem->getLabel() ?>
+                            <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                                <span class="count"><?php /* @escapeNotVerified */ echo $filterItem->getCount()?><span class="filter-count-label">
+                                    <?php if ($filterItem->getCount() == 1):?> <?php /* @escapeNotVerified */ echo __('item')?><?php else:?> <?php /* @escapeNotVerified */ echo __('items') ?><?php endif;?></span></span>
+                            <?php endif; ?>
+                        </a>
+                    <?php else:?>
+                        <?php /* @escapeNotVerified */ echo $filterItem->getLabel() ?>
+                        <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                            <span class="count"><?php /* @escapeNotVerified */ echo $filterItem->getCount()?><span class="filter-count-label">
+                                <?php if ($filterItem->getCount() == 1):?><?php /* @escapeNotVerified */ echo __('item')?><?php else:?><?php /* @escapeNotVerified */ echo __('items') ?><?php endif;?></span></span>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </li>
+            <?php endforeach ?>
+        </ol>
+    <?php endif; ?>
+
+<?php else:?>
+    <ol class="items">
+        <?php foreach ($filterItems as $filterItem): ?>
+            <li class="my item">
+                <?php if ($filterItem->getCount() > 0): ?>
+                    <a href="<?php echo $block->escapeUrl($filterItem->getUrl()) ?>">
+                        <?php /* @escapeNotVerified */ echo $filterItem->getLabel() ?>
+                        <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                            <span class="count"><?php /* @escapeNotVerified */ echo $filterItem->getCount()?><span class="filter-count-label">
+                                <?php if ($filterItem->getCount() == 1):?> <?php /* @escapeNotVerified */ echo __('item')?><?php else:?> <?php /* @escapeNotVerified */ echo __('items') ?><?php endif;?></span></span>
+                        <?php endif; ?>
+                    </a>
+                <?php else:?>
+                    <?php /* @escapeNotVerified */ echo $filterItem->getLabel() ?>
+                    <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                        <span class="count"><?php /* @escapeNotVerified */ echo $filterItem->getCount()?><span class="filter-count-label">
+                            <?php if ($filterItem->getCount() == 1):?><?php /* @escapeNotVerified */ echo __('item')?><?php else:?><?php /* @escapeNotVerified */ echo __('items') ?><?php endif;?></span></span>
+                    <?php endif; ?>
+                <?php endif; ?>
+            </li>
+        <?php endforeach ?>
+    </ol>
+<?php endif;?>

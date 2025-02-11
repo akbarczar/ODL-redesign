@@ -1,0 +1,59 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+   $currentCategory = $objectManager->get('Magento\Framework\Registry')->registry('current_category');
+   $currentCategory = $this->helper('Magento\Catalog\Helper\Data')->getCategory();
+$currentCategoryId = $currentCategory->getId();
+$_categories = $currentCategory->getChildrenCategories();
+?>
+<!-- ******************Content section*******************-->
+<section class="visible-xs">
+    <div class="mobile-top-border">
+    </div>
+</section>
+<section>
+    <div class="">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="">
+                    <div class="row">                        
+                        <?php foreach ($_categories as $_category) { ?>
+                            <?php $_category = $objectManager->create('Magento\Catalog\Model\Category')->load($_category->getId()); ?> 
+							<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 items-categry-width">
+								<div class="list-product categry-listproduct categry-listproduct-new">
+									<a class="list-product-imgk" href="<?= $_category->getUrl(); ?>"><img class="img-responsive" src="<?= $_category->getImageUrl() ?>"></a>
+									<div class="list-product-detaikl">
+										<a href="<?= $_category->getUrl(); ?>">
+											<p class="list-product-name"><?= $_category->getName(); ?></p>
+										</a>
+									</div>
+									<a class="list-product-linkk" href="<?= $_category->getUrl(); ?>"><button class="add-list-basket">VIEW MORE</button></a>
+								</div>
+							</div>
+						<?php } ?>
+                    </div>
+                </div>
+                <div class="list-last">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <?= $currentCategory->getDescription() ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<!-- ******************eof Content section*******************-->
+<style>
+	.list-product.categry-listproduct.categry-listproduct-new {text-align: center;}
+	.items-categry-width {margin-bottom: 40px;}
+    .category-title, .category-description {display: none !important;}
+	.list-product-imgk {min-height: 200px;width: 100%;float: left;}
+	.list-product-imgk > img{margin:0 auto;}
+	.list-product-detaikl{float:left;width:100%;text-align:center;margin-bottom:10px;}
+	.list-product-detaikl p{margin-bottom:0;color:#000000;font-weight:bold;}
+	.list-product-detaikl a:hover p{text-decoration:underline;}
+	.list-product-linkk > button{background-color: #a6c722;color: #fff;border: 0 none;}
+	.list-product-linkk > button:hover{background-color: #000000;}
+</style>

@@ -1,0 +1,57 @@
+<?php
+/**
+ * Ksolves
+ *
+ * @category  Ksolves
+ * @package   Ksolves_LayeredNavigation
+ * @author    Ksolves Team
+ * @copyright Copyright (c) Ksolves India Limited (https://www.ksolves.com/)
+ * @license   https://store.ksolves.com/magento-license
+ */
+?>
+<?php
+/**
+ * Category layered navigation state
+ *
+ * @var $block \Magento\LayeredNavigation\Block\Navigation\State
+ */
+?>
+<?php $ksfilters = $block->getActiveFilters() ?>
+
+<?php if (!empty($ksfilters)): ?>
+<div class="filter-current" data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false }}'>
+    <strong class="block-subtitle filter-current-subtitle"
+            role="heading"
+            aria-level="2"
+            data-role="title"
+            data-count="<?= /* @noEscape */ count($ksfilters) ?>"><?= $block->escapeHtml(__('Now Shopping by')) ?></strong>
+    <ol class="items">
+        <?php foreach ($ksfilters as $ksfilter): ?>
+            <li class="item">
+                <span class="filter-label"><?= $block->escapeHtml(__($ksfilter->getName())) ?></span>
+                <span class="filter-value"><?= $block->escapeHtml($block->stripTags($ksfilter->getLabel())) ?></span>
+                <?php
+                $ksLinkUrl = $ksfilter->getksLinkUrl();
+                $ksFilterName = $block->escapeHtmlAttr(__($ksfilter->getName()) . " " . $block->stripTags($ksfilter->getLabel()));
+                if ($ksLinkUrl):
+                    ?>
+                    <a class="action previous" href="<?= $block->escapeUrl($ksfilter->getRemoveUrl()) ?>"
+                       title="<?= $block->escapeHtmlAttr(__('Previous')) ?>">
+                        <span><?= $block->escapeHtml(__('Previous')) ?></span>
+                    </a>
+                    <a class="action remove"
+                       title="<?= $block->escapeHtmlAttr($ksfilter->getFilter()->getClearLinkText()) ?>"
+                       href="<?= $block->escapeUrl($ksLinkUrl) ?>">
+                        <span><?= $block->escapeHtml($ksfilter->getFilter()->getClearLinkText()) ?></span>
+                    </a>
+                <?php else: ?>
+                    <a class="action remove" href="<?= $block->escapeUrl($ksfilter->getRemoveUrl()) ?>"
+                       title="<?= /* @noEscape */ $block->escapeHtmlAttr(__('Remove')) . " " . $ksFilterName ?>">
+                        <span><?= $block->escapeHtml(__('Remove This Item')) ?></span>
+                    </a>
+                <?php endif; ?>
+            </li>
+        <?php endforeach; ?>
+    </ol>
+</div>
+<?php endif; ?>

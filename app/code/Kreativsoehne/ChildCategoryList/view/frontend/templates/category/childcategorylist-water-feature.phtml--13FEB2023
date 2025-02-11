@@ -1,0 +1,190 @@
+<?php
+/**
+ * @var $block \Kreativsoehne\ChildCategoryList\Block\Category\ChildCategoryList
+ */
+
+$childCategories    = $this->getChildCategoryCollection();
+$objectManager      = \Magento\Framework\App\ObjectManager::getInstance();
+?>
+
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$currentCategory = $objectManager->get('Magento\Framework\Registry')->registry('current_category');
+$currentCategoryId = $currentCategory->getId();
+$_categories = $currentCategory->getChildrenCategories();
+$_imgUrl = $currentCategory->getImageUrl();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$url = $storeManager->getStore()->getBaseUrl();
+?>
+<!-- ******************Content section*******************-->
+<div class="list-top">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="first-div">
+
+		<?php $inquireurl =  $url."contacts";?>
+		<div style="">
+			<h1>Water Feature Accessories</h1><span class="cat-disc">At Outdoorlivinguk we have a wide range of Water Feature accessories, from pumps to transformers and other spare pump adaptors, sumps, spare lights and chargers we have the most comprehensive range in the UK
+			</span>
+		</div>
+			<a href="https://www.outdoorlivinguk.co.uk//catalogsearch/result/?q=solar+water+features">
+			<button type="button" title="Browse Products" class="button-browse">
+			<span><i class="fas" id="browse">&#xf109;</i>Browse Products</span>
+			</button>
+			</a>
+			<!--<button type="button" title="Call Us" class="button-call">
+			<span><i class="fas" id="browse">&#xf098;</i>Call Us</span>
+			</button>
+			<a href="<?php //echo $inquireurl;?>">
+			<button type="button" title="Enquire" class="button-inquire">
+			<span><i class="fas" id="browse">&#xf086;</i>Enquire</span>
+			</button>
+			</a>-->
+		</div>
+	</div>
+</div>
+<?php if (count($childCategories) > 0): ?>
+    <div class="row">
+        
+            <?php foreach($childCategories as $category):?>
+                <?php $_category = $objectManager->create('Magento\Catalog\Model\Category')->load($category->getId()); ?>
+                <div class="category item col-xs-6 col-sm-6 col-md-3 col-lg-3 items-categry-width">
+                    <div class="list-product categry-listproduct categry-listproduct-new">
+                        <a class="list-product-imgk" href="<?php echo $block->escapeUrl($category->getUrl()) ?>" title="<?php echo $block->escapeHtml($category->getName()) ?>">
+                            <?php if($_category->getImageUrl()):?>
+                                <img class="img-responsive" src="<?php echo $block->escapeUrl($_category->getImageUrl()) ?>" alt="<?php echo $block->escapeHtml($category->getName()) ?>" />
+                            <?php endif;?>
+						</a>
+						<a class="list-product-linkk" href="<?php echo $block->escapeUrl($category->getUrl()) ?>" title="<?php echo $block->escapeHtml($category->getName()) ?>">
+                            <button class="cat-title"><?php echo $block->escapeHtml($category->getName()) ?></button>
+                        </a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        
+    </div>
+<?php endif; ?>
+<div class="pop-categories">
+	<h1 class="top-head">Best Selling Categories</h1>
+	<?= $block->getLayout()->createBlock('Mageplaza\BannerSlider\Block\Widget')->setSliderId(8)->toHtml();?>
+	
+	
+</div>
+<h1 class="top-head">Brands</h1>
+<div class="brands for category">
+<?= $block->getLayout()->createBlock('Mageplaza\BannerSlider\Block\Widget')->setSliderId(4)->toHtml();?>	
+</div>
+  <div class="fifth">
+			<h2 class="top-head" style="margin-top: 20px;">Placing a solar water feature in your garden</h2>
+			<span class="cat-disc">One factor to consider when ordering your solar water feature is where you will place this in your garden and what area of your garden gets the most sunlight.
+			With a solar water feature, placement and positioning is very important. As this product is powered by the sun, you will need an area of your garden or an outdoor spot that regularly receives sunlight. This is to ensure that either the water, light, both, features work as they should do. 
+			All our solar water features have an on/off facility, meaning you can choose when this feature is in operation. If you are also using the facility to power the lights of your water feature with solar, please note that these will only work at night time. Once fully charged, the solar batteries will run for up to 5 hours on average. Providing plenty of time for you to enjoy the trickling water and lights of your water feature well into the evening.</span><br><br>
+			<h2>Order a solar water feature from Outdoorlivinguk </h2>
+			<span class="cat-disc">With our years of experience in the industry and expert product knowledge, we’re become the go-to place for customers looking for unique water features of all sizes and designs. If you are in the market for a quality solar water feature to add to your garden, whether you want this to be a focal point or a smaller addition to your outdoor space, look no further. Simply browse our wide catalogue of products across our site to find a design you love. 
+			If you do have any questions about our products, particularly about the solar feature and how this works, do not hesitate to <a href="<?php echo $url."contacts";?>">get in touch.</a> Our expert customer service team is available to give you all the information you need to make an informed decision. </span><br><br><br><br>
+			<div class="col-md-12" style="font-weight: bold; text-align: center; font-size: 24px; color: #000000; background-color: #efefef; padding: 10px;">
+				
+				<iframe src="https://www.youtube.com/embed/yyO1a_96ubY" width="auto" height="auto" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+				
+				<?php //$block->getLayout()->createBlock("Ves\Testimonial\Block\Widget\CustomWidget")->setDisplayType("new_products")->setProductsCount("5")->toHtml(); ?>
+			<div id = "boxes">
+				<div id = "leftbox">
+					<h2>MARCH 2023</h2>				
+					<li>Ideal Home Show</li>
+					<li>17th March – 2nd April </li>
+					<li>Location : Olympia London</li>
+					<li>Website : https://www.idealhomeshow.co.uk</li>
+				</div>			 
+				<div id = "middlebox">
+					<h2>APRIL 2023</h2>
+					<li>Harrogate Spring Flower Show</li>
+					<li>20th April – 23rd April </li>
+					<li>Location : Great Yorkshire Showground</li>
+					<li>Website : https://www.flowershow.org.uk/spring-show</li><br>
+					<h2>APRIL 2023</h2>
+					<li>BBC Gardens World - Beaulieu</li>
+					<li>28th April – 30th April </li>
+					<li>Location : Beaulieu, Hampshire</li>
+					<li>Website : https://www.beaulieu.co.uk/events/bbc-gardeners-world-fair-spring</li><br>
+					<h2>APRIL 2023</h2>
+					<li>The Herts Garden Show</li>
+					<li>29th April – 1st May</li>
+					<li>Location : Knebworth House , Stevenage</li>
+					<li>Website : https://www.hertsgardenshow.com/</li>
+				</div>		 
+				<div id = "rightbox">
+					<h2>MAY 2023</h2>
+					<li>RHS Malvern Spring</li>
+					<li>11th May – 14th May</li>
+					<li>Location : Malvern, Worcestershire</li>
+					<li>Website : https://www.rhs.org.uk/shows-events/malvern-spring-festival</li><br>
+					<h2>MAY 2023</h2>
+					<li>National Flower Show</li>
+					<li>19th May – 21st May</li>
+					<li>Location : Chelmsford, Essex</li>
+					<li>Website : https://www.nationalflowershow.co.uk/visitor-info/tickets</li><br>
+					<h2>MAY 2023</h2>
+					<li>Kent Garden Show</li>
+					<li>27th May – 29th May</li>
+					<li>Location : Detling, Kent Showground</li>
+					<li>Website : https://www.kentgardenshow.com</li>
+				</div>
+        </div>
+	</div>
+</div>
+			
+			
+			
+<style>
+.category-view .category-image {
+  display: block !important;
+}
+.category-view .category-image img {
+  margin: 0px auto;
+  display: block;
+  width: 100%;
+}
+.catalog-category-view button.button-browse{
+	margin-top: 50px;
+}
+p strong {
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+    display: block;
+}
+	div#boxes {
+		display: flex;
+		width: 100%;
+	}
+	div#boxes li {
+    list-style: none;
+}
+	div#boxes div {
+		flex-basis: 100%;
+		font-size: 14px;
+		font-weight: normal;
+		height: 150px;
+		overflow-y: auto;
+	}
+	
+	div#boxes ,div#boxes h2{
+		color: white;
+	}
+	#leftbox {
+		background-color:#9fbe22;
+	}
+	#middlebox{
+		background-color:black;
+	}
+	#rightbox{
+		background-color:#9fbe22;
+	} 
+	.tmls-item.last {
+    display: none;
+}
+.fifth span.cat-disc {
+    width: 80% !important;
+    display: block;
+    margin: 0px auto;
+}
+</style>

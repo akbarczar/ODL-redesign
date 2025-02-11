@@ -1,0 +1,57 @@
+<link rel="stylesheet" type="text/css" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+<link href="https://db.onlinewebfonts.com/c/702d8433e65d57e2612d01f1db078242?family=Candara+Bold" rel="stylesheet" style="font-display:swap">
+<link href="https://db.onlinewebfonts.com/c/e662339992c4abf5b43f537391bd3169?family=Candara" rel="stylesheet" style="font-display:swap">
+<link href="https://db.onlinewebfonts.com/c/5c452fb7a0f5751f4e94e9d84eb01154?family=Segoe+Script" rel="stylesheet">
+<link href="https://db.onlinewebfonts.com/c/3e7c392e6314d3043afade17def0975c?family=Segoe+Print" rel="stylesheet">
+<?php
+/** @var Czargroup\ThemeConfig\Block\Header $block */
+?>
+
+<div class="custom-header">
+    <!-- Search Bar -->
+   <div class="header-item search">
+   <?php //echo $this->getLayout()
+       //->createBlock("Magento\Framework\View\Element\Template")
+       //->setTemplate("Magento_Search::form.mini.phtml")
+      // ->toHtml(); ?>
+    <div class="header_rating_image_new">
+        <span class="text">Customer Satisfaction</span>
+        <img width="115" height="24" src="<?php echo $this->getViewFileUrl(
+            "images/Star_rating_4.5_of_5.png"
+        ); ?>" alt="Customer Satisfaction" />
+        </div>
+        <div class="search-wrapper" id="second-div">
+            <img class="header-delevery-icon"height="40" width="150"src="<?php echo $this->getViewFileUrl(
+                "images/free-del.png"
+            ); ?>" alt="Free Delivery" />
+
+            <img class="header-experience-icon" height="40" width="100" src="<?php echo $this->getViewFileUrl(
+                "images/25-years-a.png"
+            ); ?>" alt="25 years" />
+    </div>
+    </div> 
+
+    <!-- Account Links -->
+    <div class="header-item account-links">
+        <ul>
+        <span class="icon"><i class="fa fa-user"></i></span>
+            <li class="my-account"><a href="<?= $block->escapeUrl(
+                $block->getAccountUrl()
+            ) ?>">My Account</a></li>
+  
+            <!-- <?php
+//if ($block->isLoggedIn()):
+?>
+                <li><a href="<//?= $block->escapeUrl($block->getLogoutUrl()); ?>">Logout</a></li>
+            <?php
+// else:
+?>
+                <li><a href="<?//= $block->escapeUrl($block->getLoginUrl()); ?>">Login</a></li>
+            <?php
+//endif;
+?> -->
+            <!-- <li><a href="<?//= $block->escapeUrl($block->getWishlistUrl()); ?>">Wishlist</a></li>
+            <li><a href="<?//= $block->escapeUrl($block->getCompareUrl()); ?>">Compare</a></li> -->
+        </ul>
+    </div>
+</div>

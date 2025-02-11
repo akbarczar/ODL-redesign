@@ -1,0 +1,207 @@
+.page-main .page-title-wrapper .page-title {
+    margin-bottom: 40px;
+}
+
+.page-main .login-container {
+    display: flex;
+    column-gap: 25px;
+}
+
+.page-main>.page-title-wrapper .page-title {
+    font-weight: 400;
+    color: rgba(0, 0, 0, .8);
+    letter-spacing: -1.1px;
+}
+
+.customer-account-login .page-main .login-container .block {
+    max-width: calc(50% - 45px);
+}
+
+.columns .login-container .block-customer-login,
+.block.block-new-customer {
+    padding: 40px;
+    background-color: #fff;
+    margin: 0 auto;
+    font-size: 18px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px 5px;
+    min-height: 100px;
+    margin-bottom: 20px !important;
+}
+
+.page-main .login-container .block .block-title {
+    font-size: 24px;
+    border: 0;
+    color: rgba(0, 0, 0, .8);
+}
+
+.login-container form.form-login .fieldset>.field .label,
+.fieldset>.fields>.field .label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: rgba(0, 0, 0, .8);
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0 0 15px;
+    width: auto;
+    padding: 0;
+}
+
+.login-container form.form-login .fieldset>.field,
+.fieldset>.fields>.field {
+    margin: 0 0 24px;
+}
+
+.login-container .fieldset>.field:not(.choice)>.control {
+    width: 80%;
+    float: none;
+    display: block;
+}
+
+.field.choice {
+    display: none;
+}
+
+form.form-login .action.primary,
+.actions-toolbar .primary .action {
+    background-color: #183e0c;
+    border: 1px solid #000;
+    border-radius: 20px;
+}
+
+.login-container .form.form-login .actions-toolbar,
+.login-container .fieldset:after {
+    margin-left: 0 !important;
+}
+
+form.form-login .action.primary,
+.action.primary {
+    font-size: 11px;
+    font-weight: 400;
+    padding: 13px 40px;
+    line-height: 1.5;
+    letter-spacing: 1.5px;
+    text-align: center;
+    font-family: "Candara" !important;
+    text-transform: uppercase !important;
+}
+
+form.form-login .actions-toolbar>.secondary a.action {
+    color: #a6c722;
+}
+
+form.form-login .actions-toolbar>.secondary a.action {
+    vertical-align: middle;
+    background-color: transparent;
+    border-color: transparent;
+    padding-left: 0;
+    padding-right: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 1.5;
+    letter-spacing: 1.5px;
+    margin: 0;
+}
+
+.page-main .login-container .block {
+    width: 100%;
+}
+
+.login-container .block.block-new-customer {
+    padding: 40px;
+    background-color: #fff;
+    margin: 0px auto;
+    font-size: 18px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px 5px;
+    min-height: 100px;
+    height: min-content;
+}
+
+form.form-login .actions-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    text-align: left;
+}
+
+.form.form-login .actions-toolbar>.primary {
+    margin: 0 15px 0 0;
+}
+
+input[type=text],
+input[type=password],
+input[type=email] {
+    border-radius: 5px;
+    border: 1px solid #004213;
+}
+
+input[type=text],
+input[type=password],
+input[type=email] {
+    background-clip: border-box;
+    font-size: 12px;
+    height: 44px;
+    line-height: 1.4;
+    padding: 0 20px;
+}
+
+.customer-account-create .page-main>.page-title-wrapper .page-title {
+    text-align: center;
+    display: block;
+    margin-bottom: 40px;
+}
+
+.page-main .form.create.account {
+    min-width: 600px;
+    padding: 40px;
+    background-color: #fff;
+    margin: 10px auto;
+    font-size: 18px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px 5px #004213;
+    min-height: 100px;
+    width: 100% !important;
+}
+
+.customer-account-create .page-main>.page-title-wrapper .page-title {
+    text-align: center;
+    display: block;
+    margin-bottom: 40px;
+}
+.page-main .form.create.account .fieldset .legend, body.account .fieldset .legend {
+    font-size: 24px;
+    font-family: 'Cormorant Garamond', serif;
+    border: 0;
+    color: rgba(0, 0, 0, .8);
+}
+.customer-account-create .fieldset>.legend {
+    margin: 0 0 20px;
+    padding: 0 0 10px;
+    width: 100%;
+    box-sizing: border-box;
+    float: left;
+    font-weight: 300;
+    line-height: 1.2;
+    font-size: 1.8rem;
+}
+
+@media screen and (max-width: 768px) {
+    .page-main .login-container .block {
+        padding: 40px;
+        background-color: #fff;
+        margin: 10px auto;
+        font-size: 18px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 8px 5px #004213;
+        min-height: 100px;
+        height: min-content;
+        max-width: 100% !IMPORTANT;
+    }
+
+    .page-main .login-container {
+        flex-wrap: wrap;
+    }
+}

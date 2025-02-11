@@ -1,0 +1,82 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$base_url = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB);
+?>
+
+<div class="container above_footer">
+
+	<div class="icon-banners type-4 row middle-xl">
+		
+		<div class="single-icon col-xs-12 col-sm-6 col-md-2">
+			<a href="<?php echo $base_url .'delivery-page'; ?>">
+				<img src="<?php echo $base_url .'media/wysiwyg/footer/fast-del.png' ?>" alt="Fast delivery service">
+				<span class="subtitle">Fast delivery service</span> 
+			</a>
+		</div>
+		<div class="single-icon col-xs-12 col-sm-6 col-md-2 col-half-offset">
+			<a href="<?php echo $base_url .'our-price-guarantee'; ?>">
+				<img src="<?php echo $base_url .'media/wysiwyg/footer/debit.png' ?>" alt="Credit/Debit/Klarna">
+				<span class="subtitle">Credit/Debit/Klarna</span> 
+			</a>
+		</div>
+		<div class="single-icon col-xs-12 col-sm-6 col-md-2 col-half-offset">
+			<a href="<?php echo $base_url .''; ?>">
+				<img src="<?php echo $base_url .'media/wysiwyg/footer/1-year.png' ?>" alt="1 years warranty">
+				<span class="subtitle">1 years warranty</span>
+			</a>
+		</div>
+		<div class="single-icon col-xs-12 col-sm-6 col-md-2 col-half-offset">
+			<a href="<?php echo $base_url .'our-price-guarantee'; ?>">
+				<img src="<?php echo $base_url .'media/wysiwyg/footer/price-match.png' ?>" alt="Price match guarantee">
+				<span class="subtitle">Price match guarantee</span> 
+			</a>
+		</div>
+		<div class="single-icon col-xs-12 col-sm-6 col-md-2 col-half-offset">
+			<a href="<?php echo $base_url .'our-price-guarantee'; ?>">
+				<img src="<?php echo $base_url .'media/wysiwyg/footer/next-day.png' ?>" alt="Next Day Delivery">
+				<span class="subtitle">Next Day Delivery </span><span class="line" style="font-size: 11px;color: rgba(0, 0, 0, 0.6);position: relative;top: 15px; width: 150px;">On selected items</span>
+			</a>
+		</div>
+		
+	
+	</div>
+</div>
+<div class="container-above-footer-mobile">
+	<div class="icon-footer"><img src="<?php echo $base_url .'media/wysiwyg/footer/fast-del.png' ?>" alt="Fast delivery service"><span class="subtitle-delivery">Fast delivery service</span> </div>
+	<div class="icon-footer"><img src="<?php echo $base_url .'media/wysiwyg/footer/debit.png' ?>" alt="Credit/Debit/Klarna"><span class="subtitle-Credit">Credit/Debit/Klarna</span> </div>
+	<div class="icon-footer"><img src="<?php echo $base_url .'media/wysiwyg/footer/1-year.png' ?>" alt="1 years warranty"><span class="subtitle-warranty">1 years warranty</span></div>
+	<div class="icon-footer"><img src="<?php echo $base_url .'media/wysiwyg/footer/price-match.png' ?>" alt="Price match guarantee"><span class="subtitle-guarantee">Price match guarantee</span></div>
+	<div class="icon-footer"><img src="<?php echo $base_url .'media/wysiwyg/footer/next-day.png' ?>" alt="Next Day Delivery"><span class="subtitle-Next-Delivery">Next Day Delivery </span><span class="line" style="font-size: 11px;color: rgba(0, 0, 0, 0.6);position: relative;top: -5px;">On selected items</span></div>
+</div>
+<script>
+require(['jquery', 'jquery/ui'], function($){
+jQuery('#widget-products-5316 .block-title strong').replaceWith(function () {
+  return "<h3>" + jQuery('#widget-products-5316 .block-title strong').html() + "</h3>";
+  });
+  jQuery('#widget-products-6442 .block-title strong').replaceWith(function () {
+  return "<h3>" + jQuery('#widget-products-6442 .block-title strong').html() + "</h3>";
+  });
+   jQuery('.block-title.testimonial strong').replaceWith(function () {
+  return "<h3>" + jQuery('.block-title.testimonial strong').html() + "</h3>";
+  });
+  $(document).ready(function () {
+    // Listen for changes on the dropdown
+    $('#field_id_10').on('change', function () {
+        var selectedValue = $(this).val();
+        console.log(selectedValue);
+        var imageField = $('#field_id_16');
+
+        // Check if the selected option is "I need to Report Damage"
+        if (selectedValue === 'I need to Report Damage') {
+            imageField.attr('required', true); // Make the image field required
+            imageField.closest('.control').find('.note').text('This field is required for damage claims.');
+        } else {
+            imageField.removeAttr('required'); // Remove the required attribute
+            imageField.closest('.control').find('.note').text('Allow minimum types of image, video and files. Allowed Max Size 30 MB');
+        }
+    });
+});
+  
+}); 
+</script>

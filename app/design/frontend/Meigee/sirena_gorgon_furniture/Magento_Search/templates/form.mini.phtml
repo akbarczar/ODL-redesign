@@ -1,0 +1,55 @@
+<?php
+/**
+ * @var $block \Magento\Framework\View\Element\Template
+ * @var $helper \Magento\Search\Helper\Data
+ * @var \Meigee\Sirena\ViewModel\ThemeConfigPhp $themeConfigPhp
+ */
+ 
+ // phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+
+//$themeConfigPhp = $block->getThemeConfigPhp();
+$helper = $this->helper(\Magento\Search\Helper\Data::class);
+$rand = rand(5, 1500);
+//$search_type = $themeConfigPhp->getSearchType();
+?>
+<div class="block block-search <?php //echo $block->escapeHtmlAttr($search_type); ?>">
+    <div class="block block-title"><strong><?= $block->escapeHtml(__('Search')); ?></strong></div>
+    <div class="block block-content">
+        <form class="form minisearch" id="search_mini_form_<?php echo $block->escapeHtmlAttr($rand); ?>" action="<?= $block->escapeUrl($helper->getResultUrl()); ?>" method="get">
+            <div class="field search">
+                <label class="label" for="search_<?php echo $block->escapeHtmlAttr($rand); ?>" data-role="minisearch-label">
+                    <span><?= $block->escapeHtml(__('Search')); ?></span>
+                </label>
+                <div class="control">
+                    <input id="search_<?php echo $block->escapeHtmlAttr($rand); ?>"
+                           data-mage-init='{"quickSearch":{
+                                "formSelector":"#search_mini_form_<?php echo $block->escapeHtmlAttr($rand); ?>",
+                                "url":"<?= $block->escapeUrl($block->getUrl('search/ajax/suggest', ['_secure' => $block->getRequest()->isSecure()])); ?>",
+                                "destinationSelector":"#search_autocomplete_<?php echo $block->escapeHtmlAttr($rand); ?>"}
+                           }'
+                           type="text"
+                           name="<?= $block->escapeHtmlAttr($helper->getQueryParamName()); ?>"
+                           value="<?= $block->escapeHtmlAttr($helper->getEscapedQueryText()); ?>"
+                           placeholder="<?= $block->escapeHtml(__('Search entire store here...')); ?>"
+                           class="input-text"
+                           maxlength="<?= $block->escapeHtmlAttr($helper->getMaxQueryLength()); ?>"
+                           role="combobox"
+                           aria-haspopup="false"
+                           aria-expanded="true"
+                           aria-autocomplete="both"
+                           autocomplete="off"
+                           aria-expanded="false" />
+                    <div id="search_autocomplete_<?php echo $block->escapeHtmlAttr($rand); ?>" class="search-autocomplete"></div>
+                    <?= $block->getChildHtml() ?>
+                </div>
+            </div>
+            <div class="actions">
+                <button type="submit"
+                        title="<?= $block->escapeHtml(__('Search')) ?>"
+                        class="action search" aria-label="Search">
+                    <span><?= $block->escapeHtml(__('Search')); ?></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

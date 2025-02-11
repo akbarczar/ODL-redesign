@@ -1,0 +1,47 @@
+{
+  "name": "ksolves/magento-layered-navigation",
+  "description": "The Magento 2 Layered Navigation extension allows the users to add an attractive and extra flexible navigation to their store. It also significantly expands default Magento 2 layered navigation, fixes specific issues and adds many new features.",
+  "keywords": [
+    "magento 2",
+    "layered navigation",
+    "ajax filtering",
+    "price slider",
+    "instant search",
+    "ajax loading",
+    "product ajax loading",
+    "single page product loading",
+    "fast product loading"
+  ],
+
+  "config": {
+    "preferred-install": "dist",
+    "platform": {
+        "php": "^7.1 || ^8.0"
+    }
+  },
+
+  "type": "magento2-module",
+  "version": "1.3.4",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+
+  "authors": [
+    {
+      "name": "Ksolves India Pvt. Ltd.",
+      "email": "magento@ksolves.com",
+      "homepage": "https://www.ksolves.com",
+      "role": "Developer"
+    }
+  ],
+
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Ksolves\\LayeredNavigation\\": ""
+    }
+  }
+}

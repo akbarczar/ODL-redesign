@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+	<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+		<head>
+			<css src="css/custom.css" />
+			<css src="css/dipti.css" />
+			<css src="css/farhan.css" />
+            <link src="js/custom.js"/>
+		</head>
+	</page>

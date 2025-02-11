@@ -1,0 +1,117 @@
+<?php
+/**
+ * Ksolves
+ *
+ * @category  Ksolves
+ * @package   Ksolves_LayeredNavigation
+ * @author    Ksolves Team
+ * @copyright Copyright (c) Ksolves India Limited (https://www.ksolves.com/)
+ * @license   https://store.ksolves.com/magento-license
+ */
+?>
+<?php
+/**
+ * Category layered navigation
+ *
+ * @var $block \Magento\LayeredNavigation\Block\Navigation
+ */
+?>
+<?php 
+    /* create object of helper class */
+    $ksHelper = $this->helper('Ksolves\LayeredNavigation\Helper\Data');
+    $wrapOptions = false; $ksActiveKey = 0; $ksActiveArray = []; 
+?>
+<?php if ($block->canShowBlock()) : ?>
+    <div class="block filter" id="layered-filter-block" data-mage-init=''>
+        <?php $ksFiltered = count($block->getLayer()->getState()->getFilters()) ?>
+        <div class="block-content filter-content">
+            <?= $block->getChildHtml('state') ?>
+
+            <?php if ($block->getLayer()->getState()->getFilters()) : ?>
+                <!--<div class="block-actions filter-actions">
+                    <a href="<?//= $block->escapeUrl($block->getClearUrl()) ?>" class="action clear filter-clear">
+                        <span><?//= $block->escapeHtml(__('Clear All')) ?></span>
+                    </a>
+                </div>-->
+            <?php endif; ?>
+
+            <?php 
+			
+			$akki_counter = 1;
+			$akki_count = count($block->getFilters());			
+			foreach ($block->getFilters() as $key => $filter): ?>
+				
+                <?php 
+				
+				if ($filter->getItemsCount()): ?>
+                    <?php if (!$wrapOptions): ?>
+                        <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle" ><?php /* @escapeNotVerified */ echo __('Shopping Optionsssss') ?></strong>
+                        <div class="filter-options" id="narrow-by-list" data-role="content">
+                    <?php  $wrapOptions = true; endif; ?>
+					<h4 class="filter-heading"><?php /* @escapeNotVerified */ echo __($filter->getName()) ?></h4>
+                    <div data-role="collapsible" class="filter-options-item " name="<?php /* @escapeNotVerified */ echo __($filter->getName()) ?>">
+                       
+                    <div data-role="content" class="filter-options-content"><?php /* @escapeNotVerified */ echo $block->getChildBlock('renderer')->render($filter); ?></div>
+                </div>
+					
+                <?php
+                    if($block->getRequest()->getParam($filter->getRequestVar())){
+                        $ksActiveArray[] = $ksActiveKey;
+                    }
+                    $ksActiveKey++;    
+                ?>
+                <?php endif; ?>
+            <?php 
+			
+			endforeach; ?>
+            <?php if ($wrapOptions) : ?>
+                </div>
+            <?php else : ?>
+                <script>
+                    require([
+                        'jquery'
+                    ], function ($) {
+                        $('#layered-filter-block').addClass('filter-no-options');
+                    });
+                </script>
+            <?php endif; ?>
+        </div>
+    </div>
+<?php endif; ?>
+
+<!-- Condition to check enable or disable ajax     -->
+<?php if ($ksHelper->isAjaxEnabled()) : ?>
+    <script type="text/x-magento-init">
+        {
+            ".block.filter": {
+                "ksAjaxLayeredNavigationFilter": {}
+            }
+        }
+    </script>
+    <!-- active the  price slider -->
+    <script type="text/x-magento-init">
+        {
+            ".filter-options": {
+                "accordion": {
+                    "openedState": "active",
+                    "collapsible": true,
+                    "active": <?php echo sizeof($ksActiveArray) ? $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($ksActiveArray) : 'false' ?>,
+                    "multipleCollapsible": true
+                }
+            }
+        }
+    </script>
+<?php else: ?>
+    <script type="text/x-magento-init">
+        {
+            ".filter-options": {
+                "accordion": {
+                    "openedState": "active",
+                    "collapsible": true,
+                    "active": true,
+                    "multipleCollapsible": true
+                }
+            }
+        }
+    </script>
+<?php endif; ?>

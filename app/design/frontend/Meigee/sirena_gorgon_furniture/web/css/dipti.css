@@ -1,0 +1,149 @@
+.catalog-product-view .swatch-option.text {
+    border-radius: 5px;
+    /* color: #000; */
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, .1);
+    border: 1px solid #fff;
+    height: 22px;
+}
+.catalog-product-view .page-title-wrapper. product h1 .page-title span .base {
+    font-size: 30px;
+    float: unset;
+    margin-top: 0 !important;
+    font-family: "Candara light" !important;
+    font-weight: 600;
+    color: #2e592f;
+    margin-right: 20px;
+    text-align: left;
+}
+/*.product-info-main a.action.tocompare {
+    display: none;
+}*/
+.product-info-main .product-add-form form .box-tocart .actions .action.tocart:hover, .page-layout-1column .product-info-main .product-add-form form .box-tocart .actions .action.tocart:hover {
+    background-color: #000 !important;
+    border: 1px solid #222;
+    color: #fff;
+}
+.product-info-main .product-add-form form .box-tocart .actions .action.tocart, .page-layout-1column .product-info-main .product-add-form form .box-tocart .actions .action.tocart {
+    background-color: #183e0c !important;
+    border: 1px solid #183e0c;
+    padding: 12px 20px;
+    font-size: 11px;
+    line-height: inherit;
+    width: 100%;
+    border-radius: 30px;
+}
+.product-info-main, .page-layout-1column .product-info-main {
+    padding: 0 145px 0 120px;
+}
+.product-info-main .product-add-form .product-options-wrapper .swatch-attribute .swatch-attribute-options .swatch-option.text {
+    border-radius: 5px;
+    line-height: 25px;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, .1);
+    border: 1px solid #fff !important;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+}
+.product-info-main .product-add-form .product-options-wrapper .swatch-attribute .swatch-attribute-options .swatch-option.text:hover {
+    background-color: #183e0c;
+    color: #fff;
+}
+.product-add-form .product-options-bottom .field.qty .label {
+    display: none;
+}
+.product-reviews-summary .reviews-actions a {
+    margin-right: 5px;
+    color: #183e0c;
+}
+.product.info.detailed .product.data.items>.item.title.active a.switch.data, .catalog-product-view .product.info.detailed .product.data.items>.item.title a.switch.data {
+    border: 0px solid green !important;
+    padding: 10px;
+    font-size:13px;
+    border-radius:30px 30px 0 0;
+    text-align: center;
+    min-height: 40px;
+    background-color: #bdbdbd;
+    text-transform: uppercase;
+    font-family: 'Cormorant Garamond', serif;
+}
+.catalog-product-view .product.info.detailed .product.data.items>.item.title.active a.switch.data {
+    background-color: #183e0c !important;
+    color: #fff !important;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.catalog-product-view .product.info.detailed .product.data.items > .data.item.content {
+    font-size: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: #000;
+    text-align: left;
+    line-height: 30px;
+    padding: 2px 15px 2px 15px;
+    text-align: justify;
+    margin-top: 63px;
+}
+.catalog-product-view .product.info.detailed .product.data.items {
+    text-align: left;
+    padding: 20px;
+}
+.product .product.data.items>.item.title {
+    width: 150px;
+    margin-right: 5px;
+}
+.catalog-product-view #maincontent .columns {
+    padding: 15px 20px 0;
+}
+.product-info-main .box-tocart, .product-options-bottom .box-tocart, .product-info-main .box-tocart .actions, .product-options-bottom .box-tocart .actions{
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 0px;
+}
+.page-layout-1column .columns .product.media {
+    width: 40% !important;
+}
+.page-layout-1column .product-info-main {
+    width: 60%;
+}
+.page-layout-1column .product-info-main .product-add-form .product-options-wrapper .swatch-attribute .swatch-attribute-selected-option {
+    display: none;
+}
+div#product-options-wrapper .swatch-attribute .swatch-option.text:hover {
+    outline: unset;
+}
+div#product-options-wrapper .swatch-option.text.selected {
+    background: #183e0c;
+    color: #fff;
+    outline: 2px solid #fff;
+}
+.product-info-main .product-add-form .product-options-wrapper .swatch-attribute .swatch-attribute-options .swatch-option.text {
+     border-radius: 5px; 
+    border: 1px solid #fff !important; 
+}
+.product-options-bottom .fieldset {
+    display: flex;
+    flex-wrap: wrap;
+}
+.product-info-main .product-add-form form .box-tocart .actions, .page-layout-1column .product-info-main .product-add-form form .box-tocart .actions {
+    width: 60%;
+    padding: 0;
+}
+.product-add-form .fieldset > .field{
+    margin: 0;
+}
+.product-info-main .box-tocart .input-text.qty, .product-options-bottom .box-tocart .input-text.qty {
+    height: 40px;
+    text-align: center;
+    width: 51px;
+}
+.product .info .detailed .product.data.items > .item.title > .switch {
+    color: #000000 !important;
+}
+@media (max-width: 480px) {
+    .page-layout-1column .product-info-main {
+        width: 95%;
+    }
+    .product-info-main, .page-layout-1column .product-info-main {
+        padding: 10px 5px 5px 2px;
+    }
+}

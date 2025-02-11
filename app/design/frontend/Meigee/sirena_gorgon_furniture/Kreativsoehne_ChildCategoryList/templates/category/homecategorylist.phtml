@@ -1,0 +1,102 @@
+<?php
+/**
+ * @var $block \Kreativsoehne\ChildCategoryList\Block\Category\ChildCategoryList
+ */
+$blockObj= $block->getLayout()->createBlock('Kreativsoehne\ChildCategoryList\Block\Category\HomeCategoryList');
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('Magento\Store\Model\StoreManagerInterface');
+    $store = $storeManager->getStore();
+    $mediaUrl = $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$categories = $blockObj->getCategories(); 
+//echo "count is ".count($categories);?>
+<?php if (count($categories) > 0): ?>
+    <div class="row" id="home-categories">
+        
+            <?php foreach($categories as $category):?>
+                <?php $_category = $objectManager->create('Magento\Catalog\Model\Category')->load($category->getId()); ?>
+				<?php 
+				/* echo '<pre>';
+				print_r($_category->getData());echo '</pre>'; */
+				?>
+				  <div class="column" name="<?php echo $block->escapeHtml($_category->getName()) ?>">
+					 <a class="list-product-imgk" href="<?php echo $block->escapeUrl($category->getUrl()) ?>" title="<?php echo $block->escapeHtml($_category->getName()) ?>">
+						<?php if($_category->getImageUrl()):?>
+							<img class="img-responsive" src="<?php echo $block->escapeUrl($_category->getImageUrl()) ?>" alt="<?php echo $block->escapeHtml($_category->getName()) ?>" />
+						<?php endif;?>
+					</a>
+					<a class="list-product-linkk" href="<?php echo $block->escapeUrl($category->getUrl()) ?>" title="<?php echo $block->escapeHtml($category->getName()) ?>">
+						<span class="cat-title-name"><?php echo $block->escapeHtml($_category->getName()) ?></span><br>
+						<span class="cat-title-disc"><?php echo $block->escapeHtml($_category->getMeigeeCatLabeltext()) ?></span>
+					</a>
+				  </div>
+            <?php endforeach; ?>
+        
+    </div>
+<?php endif; ?>
+<div class="brands-block">
+		<li class="brand-image">
+			<a href="/brands/eastern-connections-water-features.html">
+				<img alt="eastern connection" src="<?php echo $mediaUrl."wysiwyg/brands/6_1.png" ?>">
+			</a>
+		</li> 
+		<li class="brand-image">
+			<a href="/brands/altico-water-features.html">
+				<img alt="altico" src="<?php echo $mediaUrl."wysiwyg/brands/altico.jpg" ?>">
+			</a>
+		</li>
+		<li class="brand-image">
+			<a href="/brands/aqua-creations-water-features.html">
+				<img alt="aqua" src="<?php echo $mediaUrl."wysiwyg/brands/aqua.png" ?>">
+			</a>
+		</li>
+		<li class="brand-image">
+			<a href="/brands/bermuda-water-features.html">
+				<img alt="bermuda" src="<?php echo $mediaUrl."wysiwyg/brands/bermuda_1.png" ?>">
+			</a>
+		</li>
+		<li class="brand-image">
+			<a href="/brands/deco-pak.html">
+				<img alt="deco pak" src="<?php echo $mediaUrl."wysiwyg/brands/deco-pak.png" ?>">
+			</a>
+		</li>
+		<li class="brand-image">
+			<a href="/brands/gardman-topiary-garden-accessories.html">
+				<img alt="gardman" src="<?php echo $mediaUrl."wysiwyg/brands/gardman.png" ?>">
+			</a>
+		</li>
+		<li class="brand-image">
+			<a href="/brands/haddonstone-water-features.html">
+				<img alt="haddonstone" src="<?php echo $mediaUrl."wysiwyg/brands/haddonstone.png" ?>">
+			</a>
+		</li>
+		<li class="brand-image">
+			<a href="/brands/ivyline-water-features.html">
+				<img alt="iveline" src="<?php echo $mediaUrl."wysiwyg/brands/iveline.png" ?>">
+			</a>
+		</li>
+		<li class="brand-image">
+			<a href="/brands/norlog-fish-ponds.html">
+				<img alt="Norlog" src="<?php echo $mediaUrl."wysiwyg/brands/Norlog.png" ?>">
+			</a>
+		</li>
+		<li class="brand-image">
+			<a href="/brands/smart-solar-water-features.html">
+				<img alt="smart garden" src="<?php echo $mediaUrl."wysiwyg/brands/smart-garden.png" ?>">
+			</a>
+		</li>
+		<li class="brand-image">
+			<a href="/brands/tranquility-water-features.html">
+				<img alt="tranquility" src="<?php echo $mediaUrl."wysiwyg/brands/tranquility.png" ?>">
+			</a>
+		</li>
+		<li class="brand-image">
+			<a href="/brands/woodlodge.html">
+				<img alt="woodland" src="<?php echo $mediaUrl."wysiwyg/brands/woodland.jpg" ?>">
+			</a>
+		</li>
+	</div>
+
+
+<style>
+
+</style>
