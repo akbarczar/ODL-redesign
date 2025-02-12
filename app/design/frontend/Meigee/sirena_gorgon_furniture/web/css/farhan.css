@@ -7,7 +7,7 @@
     column-gap: 25px;
 }
 
-.page-main>.page-title-wrapper .page-title {
+.page-main .page-title-wrapper .page-title {
     font-weight: 400;
     color: rgba(0, 0, 0, .8);
     letter-spacing: -1.1px;
@@ -58,7 +58,7 @@
     display: block;
 }
 
-.field.choice {
+.login-container .form-login .field.choice {
     display: none;
 }
 
@@ -136,11 +136,6 @@ input[type=password],
 input[type=email] {
     border-radius: 5px;
     border: 1px solid #004213;
-}
-
-input[type=text],
-input[type=password],
-input[type=email] {
     background-clip: border-box;
     font-size: 12px;
     height: 44px;
@@ -155,7 +150,6 @@ input[type=email] {
 }
 
 .page-main .form.create.account {
-    min-width: 600px;
     padding: 40px;
     background-color: #fff;
     margin: 10px auto;
@@ -163,7 +157,6 @@ input[type=email] {
     border-radius: 10px;
     box-shadow: 0px 0px 8px 5px #004213;
     min-height: 100px;
-    width: 100% !important;
 }
 
 .customer-account-create .page-main>.page-title-wrapper .page-title {
@@ -171,12 +164,15 @@ input[type=email] {
     display: block;
     margin-bottom: 40px;
 }
-.page-main .form.create.account .fieldset .legend, body.account .fieldset .legend {
+
+.page-main .form.create.account .fieldset .legend,
+body.account .fieldset .legend {
     font-size: 24px;
     font-family: 'Cormorant Garamond', serif;
     border: 0;
     color: rgba(0, 0, 0, .8);
 }
+
 .customer-account-create .fieldset>.legend {
     margin: 0 0 20px;
     padding: 0 0 10px;
@@ -186,6 +182,69 @@ input[type=email] {
     font-weight: 300;
     line-height: 1.2;
     font-size: 1.8rem;
+}
+
+.customer-account-create .fieldset.fieldset.create.info .field {
+    width: 45%;
+    float: left;
+    margin-left: 35px;
+}
+
+.create.account .fieldset>.field .label,
+.fieldset>.fields>.field .label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    width: auto;
+    color: rgba(0, 0, 0, .8);
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0 0 15px;
+    padding: 0;
+    float: none;
+}
+
+.form.create.account .fieldset>.field:not(.choice)>.control {
+    width: auto;
+    float: none;
+}
+
+form.create.account .fieldset.create.account .field {
+    width: 30%;
+    float: left;
+    margin-left: 24px;
+}
+
+.field.password .control .password-strength-meter:before {
+    content: '';
+    height: 12px;
+    max-height: 12px;
+    width: 12px;
+    max-width: 12px;
+    left: 0;
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    border-radius: 50%;
+    margin: -6px 0 0;
+    background-color: #e8e8e8;
+}
+
+.field.password .control .password-strength-meter {
+    height: 44px;
+    line-height: 44px;
+    position: relative;
+    z-index: 1;
+    background-color: transparent;
+    padding: 0 0 0 20px;
+    font-size: 11px;
+}
+
+.form-create-account .actions-toolbar {
+    margin-left: 0 !important;
+}
+
+.form-create-account .field.choice {
+    display: none;
 }
 
 @media screen and (max-width: 768px) {
@@ -203,5 +262,51 @@ input[type=email] {
 
     .page-main .login-container {
         flex-wrap: wrap;
+    }
+
+    .page-main .form.create.account {
+        padding: 40px;
+        background-color: #fff;
+        margin: 10px auto;
+        font-size: 18px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 8px 5px #004213;
+        min-height: 100px;
+    }
+
+    .form.create.account fieldset.fieldset.create.info .field,
+    form.create.account fieldset.fieldset.create.account .field {
+        width: 80%;
+        float: left;
+        margin-left: 35px;
+    }
+
+    .form-create-account .actions-toolbar {
+        display: inline-block;
+        min-height: 1px;
+        margin-top: 70px;
+    }
+
+    @media only screen and (min-width: 769px) {
+        .form-create-account fieldset.fieldset.create.info .field {
+            width: 45%;
+            float: left;
+            margin-left: 35px;
+        }
+
+        .page-main .form-create-account {
+            min-width: 600px;
+            width: 80% !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+
+    .customer-account-create .fieldset.fieldset.create.info .field,
+    form.create.account fieldset.fieldset.create.account .field {
+        width: 80%;
+        float: left;
+        margin-left: 35px;
     }
 }

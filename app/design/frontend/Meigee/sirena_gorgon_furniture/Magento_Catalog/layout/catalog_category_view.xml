@@ -12,5 +12,6 @@
         <referenceBlock name="breadcrumbs" remove="true" />
         <referenceBlock name="category.product.addto.compare" remove="true" /> 
         <referenceBlock name="product.info.addtocart" remove="true" />
+        <move element="product_list_toolbar" destination="category.description" before="-" />
     </body>
 </page>
