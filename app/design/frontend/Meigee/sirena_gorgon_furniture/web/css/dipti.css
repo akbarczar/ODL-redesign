@@ -1,42 +1,36 @@
-.catalog-product-view .page-title-wrapper. product h1 .page-title span .base {
-    font-size: 30px;
-    float: unset;
-    margin-top: 0 !important;
-    font-family: "Candara light" !important;
+.catalog-product-view .product-info-main .page-title-wrapper h1{
+    font-family: "Candara light";
     font-weight: 600;
     color: #2e592f;
-    margin-right: 20px;
-    text-align: left;
+    font-size: 30px;
 }
-/*.product-info-main a.action.tocompare {
-    display: none;
-}*/
-.product-info-main .product-add-form form .box-tocart .actions .action.tocart:hover, .page-layout-1column .product-info-main .product-add-form form .box-tocart .actions .action.tocart:hover {
+.product-info-main .product-add-form .product-options-bottom .fieldset {
+    display: flex;
+  /*  flex-wrap: wrap;*/
+}
+.product-info-main .product-add-form form .box-tocart .actions .action.tocart{
+    background-color: #183e0c;
+    border: 1px solid #183e0c;
+    padding: 12px 20px;
+    width: 100%;
+    border-radius: 20px;
+}
+.product-info-main .product-add-form form .box-tocart .actions .action.tocart:hover{
     background-color: #000 !important;
     border: 1px solid #222;
     color: #fff;
 }
-.product-info-main .product-add-form form .box-tocart .actions .action.tocart, .page-layout-1column .product-info-main .product-add-form form .box-tocart .actions .action.tocart {
-    background-color: #183e0c !important;
-    border: 1px solid #183e0c;
-    padding: 12px 20px;
-    font-size: 11px;
-    line-height: inherit;
-    width: 100%;
-    border-radius: 30px;
-}
 .product-info-main .product-add-form .product-options-wrapper .swatch-attribute .swatch-attribute-options .swatch-option.text {
     border-radius: 5px;
-    line-height: 30px;
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, .1);
     border: 1px solid #fff !important;
     padding: 0 10px;
     background-color: transparent;
-    min-height: 25px;
-    min-width: 30px;
-    line-height: 25px;
+    height: 35px;
+    line-height: 35px;
     font-weight: 400;
     color: #000;
+    margin: 0px 10px 7px 0px;
 }
 .product-info-main .product-add-form .product-options-wrapper .swatch-attribute .swatch-attribute-options .swatch-option.text:hover {
     background-color: #183e0c;
@@ -62,13 +56,13 @@
     font-family: 'Cormorant Garamond', serif;
     font-weight: 400;
 }
-.catalog-product-view .product.info.detailed .product.data.items>.item.title.active a.switch.data {
+.product.info.detailed .product.data.items>.item.title.active a.switch.data {
     background-color: #183e0c !important;
     color: #fff !important;
     text-transform: uppercase;
     font-weight: 700;
 }
-.catalog-product-view .product.info.detailed .product.data.items > .data.item.content {
+.product.info.detailed .product.data.items > .data.item.content {
     font-size: 16px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     color: #000;
@@ -78,32 +72,24 @@
     text-align: justify;
     margin-top: 63px;
 }
-.catalog-product-view .product.info.detailed .product.data.items {
+.product.info.detailed .product.data.items {
     padding: 0;
 }
-.product .product.data.items>.item.title {
-    width: 150px;
-    margin-right: 5px;
-}
 .catalog-product-view #maincontent .columns {
-       display: flex;
+    display: flex;
 }
 .product-info-main .box-tocart, .product-options-bottom .box-tocart, .product-info-main .box-tocart .actions, .product-options-bottom .box-tocart .actions{
     width: 100%;
     margin: 0;
-    text-align: center;
+   /* text-align: center;*/
     vertical-align: middle;
     padding-top: 0px;
 }
-.page-layout-1column .columns .product.media {
-    width: 40% !important;
-}
-.page-layout-1column .product-info-main {
-    width: 43% !important;
-    padding: 0 145px 0 120px;
-}
 .page-layout-1column .product-info-main .product-add-form .product-options-wrapper .swatch-attribute .swatch-attribute-selected-option {
     display: none;
+}
+.product-info-main .product-options-bottom {
+    width: 861.188px;
 }
 div#product-options-wrapper .swatch-attribute .swatch-option.text:hover {
     outline: unset;
@@ -112,10 +98,6 @@ div#product-options-wrapper .swatch-option.text.selected {
     background: #183e0c;
     color: #fff;
     outline: 2px solid #fff;
-}
-.product-options-bottom .fieldset {
-    display: flex;
-    flex-wrap: wrap;
 }
 .product-info-main .product-add-form form .box-tocart .actions, .page-layout-1column .product-info-main .product-add-form form .box-tocart .actions {
     width: 60%;
@@ -128,12 +110,6 @@ div#product-options-wrapper .swatch-option.text.selected {
     height: 40px;
     text-align: center;
     width: 51px;
-}
-.catalog-product-view .product.media .fotorama__stage{
-    left: 102px;
-    width: 836px;
-    height: 836px;
-    margin-left: 20px !important;
 }
 .product.info.detailed .product.data.items:before {
     position: relative;
@@ -148,12 +124,7 @@ div#product-options-wrapper .swatch-option.text.selected {
     font-style: italic;
     color: #183e0c;
 }
-.page-main .page-title-wrapper.product .page-title {
-    font-family: "Candara light" !important;
-    font-weight: 600;
-    color: #2e592f;
-    font-size: 30px;
-}
+
 .review-form .action.submit.primary:hover {
     background: #000;
     border: 1px solid #000;
@@ -164,11 +135,139 @@ div#product-options-wrapper .swatch-option.text.selected {
     border: 1px solid #183e0c;
     color: #fff;
 }
-@media (max-width: 480px) {
-    .page-layout-1column .product-info-main {
-        width: 95%;
+/*footer page T&C*/
+.cms-term-condition h1, .cms-faq-page h1 {
+    margin-bottom: 40px;
+}
+body.cms-term-condition .page-title, body.cms-faq-page .page-title{
+   font-size: 30px;
+   font-family: 'Poppins', sans-serif;
+   color: rgba(0, 0, 0, .8);
+}
+.cms-term-condition .columns .column.main, .cms-about-us .columns .column.main, .cms-faq-page .columns .column.main {
+    padding-bottom: 0;
+}
+.cms-term-condition .page-wrapper main#maincontent {
+    padding: 0 25px !important;
+}
+/*footer page about us*/
+.cms-about-us .page-wrapper main#maincontent {
+    padding: 0px;
+}
+body.cms-about-us, body.cms-term-condition, body.cms-faq-page {
+    color: rgba(0, 0, 0, .6);
+    font-family: 'Poppins', sans-serif;
+}
+/*footer faq-page*/
+.cms-faq-page .page-main{
+    padding-left: 0; 
+    padding-right: 0;
+}
+.cms-faq-page .column.main {
+    max-width: 75% !important;
+    margin: 0 auto;
+}
+.cms-faq-page .accordion-main {
+    margin-bottom: 20px;
+}
+.cms-faq-page .accordion-main .panel{
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    overflow: hidden;
+}
+.cms-faq-page .accordion-main .accordion.active {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.cms-faq-page .accordion-main .accordion{
+    padding: 15px 40px 15px 15px;
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .1);
+    width: 100%;
+    text-align: left;
+    text-transform: uppercase;
+    border-radius: 4px;
+    font-size: 16px;
+    border: 1px solid #000;
+    color: #000;
+    transition: .4s;
+    transition-behavior: normal;
+    transition-duration: 0.4s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+}
+.cms-faq-page .accordion-main .accordion.active, .accordion:hover {
+    background-color: #004000;
+    color: #fff !important;
+}
+.cms-faq-page button{
+    background: #fff;
+    line-height: 1.5;
+}
+.cms-faq-page .arblock-title {
+    background-color: #004000 !important;
+    font-size: 15.096px;
+}
+.cms-faq-page .col-md-4.col-sm-6.col-xs-12, .cms-faq-page .col-md-12.col-sm-12.col-xs-12{
+    margin-bottom: 20px;
+}
+.catalogsearch-result-index .column.main {
+    width: 75% !important;
+    padding: 0px;
+}
+.catalogsearch-result-index .sidebar.sidebar-main {
+    width: 100%;
+    float: none;
+}
+/*minicart*/
+.block-minicart div#bottom-content {
+    border-top: 1px;
+    margin-left: -30px;
+}
+.block-minicart a.action.viewcart {
+    text-decoration: none;
+}
+.block-minicart #bottom-content .secondary {
+    margin-bottom: 10px;
+}
+.block-minicart #bottom-content button#top-cart-btn-checkout {
+    margin-top: 0px;
+    font-family: "Candara" !important;
+    text-transform: uppercase !important;
+    font-weight: 400;
+    padding: 10px 22px;
+}
+@media only screen and (min-width: 320px) and (max-width 792px) {
+    .cms-faq-page .accordion-main .accordion{
+        text-transform capitalize;
     }
-    .product-info-main, .page-layout-1column .product-info-main {
-        padding: 10px 5px 5px 2px;
+}
+@media only screen and (min-width: 320px) and (max-width: 1024px) {
+    .cms-about-us .breadcrumbs {
+        display: none;
+    }
+}
+@media only screen and (max-width: 1440px){
+    .cms-faq-page .arblock-title {
+        font-size: 13.096px;
+    }
+    .cms-faq-page .column.main {
+        width: 100%;
+        max-width: 100% !important;
+    }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1024px){
+    .cms-about-us .pagebuilder-column-line {
+        flex-wrap: wrap;
+    }
+    .cms-about-us .pagebuilder-column {
+        background-attachment: scroll !important;
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+     .cms-about-us figure {
+        display: none;
     }
 }

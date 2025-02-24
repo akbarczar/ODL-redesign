@@ -1,0 +1,23 @@
+<?php
+/** @var $block \Czargroup\CategoryContent\Block\Category\CustomContent */
+?>
+<?php if ($content = $block->getFilteredContent('category_banner_content')): ?>
+    <div class="category-banner-content">
+        <?php echo $content; ?>
+    </div>
+<?php endif; ?>
+<?php if ($content = $block->getFilteredContent('category_below_banner_content')): ?>
+    <div class="category-below-banner-content">
+        <?php echo $content; ?>
+    </div>
+<?php endif; ?>
+<?php if ($content = $block->getFilteredContent('category_above_shows_content')): ?>
+    <div class="category-above-show-content">
+        <?php echo $content; ?>
+    </div>
+<?php endif; ?>
+<?php if ($content = $block->getFilteredContent('category_above_footer_content')): ?>
+    <div class="category-above-footer-content">
+        <?php echo $content; ?>
+    </div>
+<?php endif; ?>

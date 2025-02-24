@@ -1,15 +1,12 @@
-.page-main .page-title-wrapper .page-title {
-    margin-bottom: 40px;
-}
-
-.page-main .login-container {
+.customer-account-login .page-main .login-container {
     display: flex;
     column-gap: 25px;
 }
 
-.page-main .page-title-wrapper .page-title {
+.customer-account-login .page-main .page-title-wrapper .page-title,
+.customer-account-create .page-main .page-title-wrapper .page-title {
     font-weight: 400;
-    color: rgba(0, 0, 0, .8);
+    color: rgba(0, 0, 0, 0.8);
     letter-spacing: -1.1px;
 }
 
@@ -17,29 +14,29 @@
     max-width: calc(50% - 45px);
 }
 
-.columns .login-container .block-customer-login,
-.block.block-new-customer {
+.customer-account-login .columns .login-container .block-customer-login,
+.customer-account-login .columns .login-container .block-new-customer {
     padding: 40px;
     background-color: #fff;
     margin: 0 auto;
     font-size: 18px;
     border-radius: 10px;
-    box-shadow: 0px 0px 8px 5px;
+    box-shadow: 0 0 8px 5px;
     min-height: 100px;
     margin-bottom: 20px !important;
 }
 
-.page-main .login-container .block .block-title {
+.customer-account-login .page-main .login-container .block .block-title {
     font-size: 24px;
     border: 0;
-    color: rgba(0, 0, 0, .8);
+    color: rgba(0, 0, 0, 0.8);
 }
 
-.login-container form.form-login .fieldset>.field .label,
-.fieldset>.fields>.field .label {
+.customer-account-login .login-container form.form-login .fieldset>.field .label,
+.customer-account-create .form-create-account .fieldset>.field .label {
     font-size: 11px;
     letter-spacing: 1.5px;
-    color: rgba(0, 0, 0, .8);
+    color: rgba(0, 0, 0, 0.8);
     font-weight: 400;
     text-transform: uppercase;
     margin: 0 0 15px;
@@ -47,35 +44,35 @@
     padding: 0;
 }
 
-.login-container form.form-login .fieldset>.field,
-.fieldset>.fields>.field {
+.customer-account-login .login-container form.form-login .fieldset>.field {
     margin: 0 0 24px;
 }
 
-.login-container .fieldset>.field:not(.choice)>.control {
+.customer-account-login .login-container .fieldset>.field:not(.choice)>.control {
     width: 80%;
     float: none;
     display: block;
 }
 
-.login-container .form-login .field.choice {
+.customer-account-login .login-container .form-login .field.choice {
     display: none;
 }
 
-form.form-login .action.primary,
-.actions-toolbar .primary .action {
+.customer-account-login .action.primary,
+.customer-account-create .form-create-account .action.primary {
     background-color: #183e0c;
     border: 1px solid #000;
     border-radius: 20px;
 }
 
-.login-container .form.form-login .actions-toolbar,
-.login-container .fieldset:after {
+.customer-account-login .login-container .form.form-login .actions-toolbar,
+.customer-account-login .login-container .fieldset:after {
     margin-left: 0 !important;
+    text-align: left;
 }
 
-form.form-login .action.primary,
-.action.primary {
+.customer-account-login .action.primary,
+.customer-account-create .form-create-account .action.primary {
     font-size: 11px;
     font-weight: 400;
     padding: 13px 40px;
@@ -86,54 +83,49 @@ form.form-login .action.primary,
     text-transform: uppercase !important;
 }
 
-form.form-login .actions-toolbar>.secondary a.action {
-    color: #a6c722;
+.customer-account-login .actions-toolbar .action.primary:hover,
+.customer-account-create .actions-toolbar .primary .action:hover {
+    color: #fff;
+    background-color: #000;
+    border: 1px solid #a6c722;
 }
 
-form.form-login .actions-toolbar>.secondary a.action {
+.customer-account-login .actions-toolbar>.secondary a.action:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+.customer-account-login .actions-toolbar>.secondary a.action {
     vertical-align: middle;
-    background-color: transparent;
-    border-color: transparent;
     padding-left: 0;
     padding-right: 0;
-    font-family: 'Poppins', sans-serif;
     font-size: 11px;
-    font-weight: 400;
     text-transform: uppercase;
     line-height: 1.5;
     letter-spacing: 1.5px;
     margin: 0;
+    color: #a6c722;
 }
 
-.page-main .login-container .block {
+.customer-account-login .page-main .login-container .block {
     width: 100%;
 }
 
-.login-container .block.block-new-customer {
-    padding: 40px;
-    background-color: #fff;
-    margin: 0px auto;
-    font-size: 18px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 8px 5px;
-    min-height: 100px;
+.customer-account-login .login-container .block.block-new-customer {
     height: min-content;
 }
 
-form.form-login .actions-toolbar {
+.customer-account-login .actions-toolbar {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    text-align: left;
 }
 
-.form.form-login .actions-toolbar>.primary {
-    margin: 0 15px 0 0;
-}
-
-input[type=text],
-input[type=password],
-input[type=email] {
+.customer-account-login .form-login input[type="text"],
+.customer-account-login .form-login input[type="password"],
+.customer-account-login .form-login input[type="email"],
+.customer-account-create .form-create-account input[type="text"],
+.customer-account-create .form-create-account input[type="password"],
+.customer-account-create .form-create-account input[type="email"] {
     border-radius: 5px;
     border: 1px solid #004213;
     background-clip: border-box;
@@ -149,39 +141,24 @@ input[type=email] {
     margin-bottom: 40px;
 }
 
-.page-main .form.create.account {
+.customer-account-create .page-main .form.create.account {
     padding: 40px;
-    background-color: #fff;
     margin: 10px auto;
     font-size: 18px;
     border-radius: 10px;
-    box-shadow: 0px 0px 8px 5px #004213;
-    min-height: 100px;
+    box-shadow: 0 0 8px 5px #004213;
 }
 
-.customer-account-create .page-main>.page-title-wrapper .page-title {
-    text-align: center;
-    display: block;
-    margin-bottom: 40px;
-}
-
-.page-main .form.create.account .fieldset .legend,
-body.account .fieldset .legend {
+.customer-account-create .page-main .form.create.account .fieldset .legend {
     font-size: 24px;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "Cormorant Garamond", serif;
     border: 0;
-    color: rgba(0, 0, 0, .8);
+    color: rgba(0, 0, 0, 0.8);
 }
 
 .customer-account-create .fieldset>.legend {
     margin: 0 0 20px;
     padding: 0 0 10px;
-    width: 100%;
-    box-sizing: border-box;
-    float: left;
-    font-weight: 300;
-    line-height: 1.2;
-    font-size: 1.8rem;
 }
 
 .customer-account-create .fieldset.fieldset.create.info .field {
@@ -190,38 +167,26 @@ body.account .fieldset .legend {
     margin-left: 35px;
 }
 
-.create.account .fieldset>.field .label,
-.fieldset>.fields>.field .label {
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    width: auto;
-    color: rgba(0, 0, 0, .8);
-    font-weight: 400;
-    text-transform: uppercase;
-    margin: 0 0 15px;
-    padding: 0;
+.customer-account-create .create.account .fieldset>.field .label {
     float: none;
 }
 
-.form.create.account .fieldset>.field:not(.choice)>.control {
+.customer-account-create .form.create.account .fieldset>.field:not(.choice)>.control {
     width: auto;
     float: none;
 }
 
-form.create.account .fieldset.create.account .field {
+.customer-account-create form.create.account .fieldset.create.account .field {
     width: 30%;
     float: left;
     margin-left: 24px;
 }
 
-.field.password .control .password-strength-meter:before {
-    content: '';
-    height: 12px;
+.customer-account-create form.create.account .field.password .control .password-strength-meter:before {
+    content: "";
     max-height: 12px;
     width: 12px;
     max-width: 12px;
-    left: 0;
-    position: absolute;
     top: 50%;
     z-index: 1;
     border-radius: 50%;
@@ -229,84 +194,261 @@ form.create.account .fieldset.create.account .field {
     background-color: #e8e8e8;
 }
 
-.field.password .control .password-strength-meter {
+.customer-account-create form.create.account .field.password .control .password-strength-meter {
     height: 44px;
     line-height: 44px;
-    position: relative;
-    z-index: 1;
     background-color: transparent;
     padding: 0 0 0 20px;
     font-size: 11px;
 }
 
-.form-create-account .actions-toolbar {
+.customer-account-create .form-create-account .actions-toolbar {
     margin-left: 0 !important;
 }
 
-.form-create-account .field.choice {
+.customer-account-create .form-create-account .field.choice {
     display: none;
 }
 
+.catalogsearch-result-index .search.results .block {
+    display: none;
+}
+
+.catalogsearch-result-index .search.results .top-toolbar {
+    top: -50px;
+    z-index: 99;
+}
+
+.catalogsearch-result-index .search.results .product .product-item-details .product-item-inner {
+    display: none;
+}
+
+.catalogsearch-result-index .breadcrumbs .items a,
+.catalogsearch-result-index .breadcrumbs .items strong {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.catalogsearch-result-index .breadcrumbs .items>li:last-child strong {
+    font-weight: 600;
+    color: #183e0c;
+}
+
+.catalogsearch-result-index .search.results .toolbar .toolbar-amount {
+    display: inline-block;
+    float: none;
+    position: relative;
+    margin: 0 20px 10px 0;
+    line-height: 45px;
+    padding: 0;
+}
+
+.catalogsearch-result-index .search.results .toolbar.toolbar-products {
+    padding: 0;
+}
+
+.catalogsearch-result-index .search.results .toolbar {
+    font-size: 12px;
+}
+
+.catalogsearch-result-index .search.results .toolbar .sorter {
+    float: none;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0 10px;
+    padding: 0;
+}
+
+.catalogsearch-result-index .search.results .toolbar .sorter .sorter-label {
+    margin: 0 20px 0 0;
+}
+
+.cms-stone-support .page-title-wrapper .page-title {
+    font-family: "Candara light" !important;
+    font-weight: 600;
+    color: #2e592f;
+    font-size: 30px;
+}
+
+.cms-stone-support {
+    color: rgba(0, 0, 0, .6);
+    letter-spacing: .4px;
+}
+
+.cms-stone-support .arblock-title {
+    background-color: #004213;
+    font-family: "Candara light" !important;
+    font-size: 20px;
+}
+
+.cms-stone-support em {
+    font-family: "Candara Light";
+    font-style: italic;
+    color: #000;
+}
+
+.cms-delivery-page .page-main .column p strong {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.cms-delivery-page {
+    font-size: 14px;
+    color: rgba(0, 0, 0, .6);
+    letter-spacing: .4px;
+}
+
+.cms-delivery-page .page-title {
+    font-weight: 400;
+    color: rgba(0, 0, 0, .8);
+    letter-spacing: -1.1px;
+}
+
+.cms-delivery-page h3 {
+    letter-spacing: -.2px;
+    color: rgba(0, 0, 0, .8);
+    margin-top: 0;
+}
+
+.cms-delivery-page .page-wrapper main#maincontent {
+    padding: 0 25px !important;
+    letter-spacing: 0.4px;
+}
+
+.cms-stone-support .columns .column.main {
+    padding-bottom: 0;
+}
+
+.catalogsearch-result-index .search.results select,
+.catalogsearch-result-index .toolbar select {
+    height: 44px;
+    padding: 0 20px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    background-color: rgba(0, 0, 0, 0.04);
+    border-radius: 0;
+    cursor: pointer;
+    margin: 0;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.cms-stone-support .col-md-4.col-sm-6.col-xs-12 {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 20px;
+}
+
+.cms-stone-support .col-md-12.col-sm-12.col-xs-12 {
+    margin-bottom: 20px;
+    margin: 0 0 20px;
+    padding: 0 15px;
+}
+
+.cms-stone-support .page-wrapper main#maincontent {
+    padding: 0 25px !important;
+}
+
+.product-info-main .product-add-form .actions .action.primary {
+    border-radius: 20px;
+}
+
 @media screen and (max-width: 768px) {
-    .page-main .login-container .block {
+    .customer-account-login .page-main .login-container .block {
         padding: 40px;
         background-color: #fff;
         margin: 10px auto;
         font-size: 18px;
         border-radius: 10px;
-        box-shadow: 0px 0px 8px 5px #004213;
+        box-shadow: 0 0 8px 5px #004213;
         min-height: 100px;
         height: min-content;
-        max-width: 100% !IMPORTANT;
+        max-width: 100% !important;
     }
 
-    .page-main .login-container {
+    .customer-account-login .page-main .login-container {
         flex-wrap: wrap;
     }
 
-    .page-main .form.create.account {
+    .customer-account-create .page-main .form.create.account {
         padding: 40px;
         background-color: #fff;
         margin: 10px auto;
         font-size: 18px;
         border-radius: 10px;
-        box-shadow: 0px 0px 8px 5px #004213;
+        box-shadow: 0 0 8px 5px #004213;
         min-height: 100px;
     }
 
-    .form.create.account fieldset.fieldset.create.info .field,
-    form.create.account fieldset.fieldset.create.account .field {
-        width: 80%;
-        float: left;
-        margin-left: 35px;
-    }
-
-    .form-create-account .actions-toolbar {
+    .customer-account-create .form-create-account .actions-toolbar {
         display: inline-block;
         min-height: 1px;
         margin-top: 70px;
     }
+}
 
-    @media only screen and (min-width: 769px) {
-        .form-create-account fieldset.fieldset.create.info .field {
-            width: 45%;
-            float: left;
-            margin-left: 35px;
-        }
+@media only screen and (min-width: 769px) {
+    .customer-account-create .page-main .form-create-account {
+        width: 80% !important;
+    }
 
-        .page-main .form-create-account {
-            min-width: 600px;
-            width: 80% !important;
-        }
+    .catalogsearch-result-index .search.results select,
+    .catalogsearch-result-index .toolbar select {
+        border-radius: 5px !important;
+        border: 1px solid #004213 !important;
+    }
+
+    .customer-account-login .login-container .block .login .actions-toolbar>.primary,
+    .customer-account-login .actions-toolbar>.primary {
+        margin: 0 15px 0 0;
     }
 }
 
 @media only screen and (max-width: 1024px) {
 
     .customer-account-create .fieldset.fieldset.create.info .field,
-    form.create.account fieldset.fieldset.create.account .field {
+    .customer-account-create form.create.account fieldset.fieldset.create.account .field {
         width: 80%;
         float: left;
         margin-left: 35px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .cms-stone-support .col-md-12>.col-md-4:first-child {
+        padding-left: 0;
+    }
+
+    .cms-stone-support .col-md-12>.col-md-4:last-child {
+        padding-right: 0;
+    }
+
+    .catalogsearch-result-index .search.results .top-toolbar .toolbar-sorter.sorter {
+        top: 0;
+    }
+
+    /* .cms-index-index .sections.nav-sections .navigation .level0 > .level-top span:not(span.ui-menu-icon.ui-icon.ui-icon-caret-1-e) {
+        padding-right: 0;
+    }
+
+    .cms-index-index .sections.nav-sections .navigation .ui-menu > li.level-top a.level-top {
+        font-size: 18px;
+    } */
+}
+
+@media (min-width: 801px),
+print {
+
+    .customer-account-login .page-title-wrapper h1,
+    .customer-account-create .page-title-wrapper h1,
+    .cms-delivery-page .page-title-wrapper h1,
+    .cms-stone-support .page-title-wrapper h1,
+    .catalogsearch-result-index .page-title-wrapper h1 {
+        margin-bottom: 40px;
+    }
+}
+
+@media (min-width: 1370px),
+print {
+    .catalogsearch-result-index .search.results .toolbar .toolbar-amount {
+        margin: 0 40px 10px 0;
     }
 }

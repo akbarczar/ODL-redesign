@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+    <update handle="empty"/>
+    <referenceContainer name="page.wrapper">
+        <container name="checkout.header.container.main" as="checkout_header_container" label="Checkout Page Header Container" htmlTag="header" htmlClass="checkout-page-header" before="main.content">
+        <container name="checkout.header.container" as="checkout_header_container_child" label="Checkout Page Header Container child" htmlTag="header" htmlClass="checkout-page-header-child">
+        <container name="custom.checkout.cart.link" as="back-to-cart" label="Back to Cart" htmlTag="div" htmlClass="back-to-cart" htmlId="tocart-checkout" before="custom.checkout.header.left">
+			<block class="Magento\Framework\View\Element\Template" name="custom.file" template="Magento_Theme::backtocart.phtml" />
+		</container>
+        <container name="custom.checkout.header.left" htmlClass="left-block" htmlTag="div" before="-">
+			<block class="Magento\Theme\Block\Html\Header\Logo" name="logo.checkout">
+				<arguments>
+					<argument name="logo_file" xsi:type="string">images/logo.png</argument>
+					<argument name="logo_img_width" xsi:type="number">110</argument>
+					<argument name="logo_img_height" xsi:type="number">20</argument>
+				</arguments>
+			</block>
+		</container>
+		</container>
+        </container>
+    </referenceContainer>
+    <move element="logo" destination="checkout.header.wrapper"/>
+    <!-- <referenceContainer name="checkout.header.container" remove="true"/> -->
+</layout>

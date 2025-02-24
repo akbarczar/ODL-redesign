@@ -1,0 +1,158 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Generic.Files.LineLength
+
+/** @var $block \Magento\Checkout\Block\Cart\Item\Renderer */
+
+$_item = $block->getItem();
+$product = $_item->getProduct();
+$isVisibleProduct = $product->isVisibleInSiteVisibility();
+/** @var \Magento\Msrp\Helper\Data $helper */
+$helper = $this->helper(Magento\Msrp\Helper\Data::class);
+$canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinimalPriceLessMsrp($product);
+?>
+<tbody class="cart item">
+    <tr class="item-info">
+        <td data-th="<?= $block->escapeHtml(__('Item')) ?>" class="col item">
+            <?php if ($block->hasProductUrl()): ?>
+                <a href="<?= $block->escapeUrl($block->getProductUrl()) ?>"
+                   title="<?= $block->escapeHtml($block->getProductName()) ?>"
+                   tabindex="-1"
+                   class="product-item-photo">
+            <?php else: ?>
+                <span class="product-item-photo">
+            <?php endif; ?>
+            <?= $block->getImage($block->getProductForThumbnail(), 'cart_page_product_thumbnail')->toHtml() ?>
+            <?php if ($block->hasProductUrl()): ?>
+                </a>
+            <?php else: ?>
+                </span>
+            <?php endif; ?>
+            <div class="product-details-parent"> 
+                <div class="product-item-details">
+                    <strong class="product-item-name">
+                        <?php if ($block->hasProductUrl()): ?>
+                            <a href="<?= $block->escapeUrl($block->getProductUrl()) ?>"><?= $block->escapeHtml($block->getProductName()) ?></a>
+                        <?php else: ?>
+                            <?= $block->escapeHtml($block->getProductName()) ?>
+                        <?php endif; ?>
+                    </strong>
+                    <?php if ($_options = $block->getOptionList()): ?>
+                        <dl class="item-options">
+                            <?php foreach ($_options as $_option): ?>
+                                <?php $_formatedOptionValue = $block->getFormatedOptionValue($_option) ?>
+                                <dt><?= $block->escapeHtml($_option['label']) ?></dt>
+                                <dd>
+                                    <?php if (isset($_formatedOptionValue['full_view'])): ?>
+                                            <?= $block->escapeHtml($_formatedOptionValue['full_view'], ['span', 'a']) ?>
+                                        <?php else: ?>
+                                            <?= $block->escapeHtml($_formatedOptionValue['value'], ['span', 'a']) ?>
+                                    <?php endif; ?>
+                                </dd>
+                            <?php endforeach; ?>
+                        </dl>
+                    <?php endif; ?>
+                    <div class="standard-stock-status clearfix">
+                        <div id="notify-me" class="stock available">
+                        <span>In stock</span>
+                        </div>
+                    </div>
+                    <?php if ($messages = $block->getMessages()): ?>
+                        <?php foreach ($messages as $message): ?>
+                            <div class= "cart item message <?= $block->escapeHtmlAttr($message['type']) ?>">
+                                <div><?= $block->escapeHtml($message['text']) ?></div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                    <?php $addInfoBlock = $block->getProductAdditionalInformationBlock(); ?>
+                    <?php if ($addInfoBlock): ?>
+                        <?= $addInfoBlock->setItem($_item)->toHtml() ?>
+                    <?php endif; ?>
+                </div>
+                <?= $block->getUnitPriceHtml($_item) ?>
+            </div>
+        </td>
+
+        <?php if ($canApplyMsrp): ?>
+            <td class="col msrp" data-th="<?= $block->escapeHtml(__('Price')) ?>">
+                <span class="pricing msrp">
+                    <span class="msrp notice"><?= $block->escapeHtml(__('See price before order confirmation.')) ?></span>
+                    <?php $helpLinkId = 'cart-msrp-help-' . $_item->getId(); ?>
+                    <a href="#" class="action help map"
+                       id="<?= ($block->escapeHtmlAttr($helpLinkId)) ?>"
+                       data-mage-init='{"addToCart":{
+                                            "origin": "info",
+                                            "helpLinkId": "#<?= $block->escapeJs($block->escapeHtml($helpLinkId)) ?>",
+                                            "productName": "<?= $block->escapeJs($block->escapeHtml($product->getName())) ?>",
+                                            "showAddToCart": false
+                                            }
+                                        }'
+                    >
+                        <span><?= $block->escapeHtml(__("What's this?")) ?></span>
+                    </a>
+                </span>
+            </td>
+        <?php else: ?>
+            <td class="col price" data-th="<?= $block->escapeHtml(__('Price')) ?>">
+                <?//= $block->getUnitPriceHtml($_item) ?>
+            </td>
+        <?php endif; ?>
+        <td class="col qty" data-th="<?= $block->escapeHtml(__('Qty')) ?>">
+            <?php 
+			$qtyval =  $block->escapeHtmlAttr($block->getQty()); 
+			// echo "qty is ".$qtyval;
+			?>
+			<script>
+			require(['jquery', 'jquery/ui'], function($){ 
+			var simple = '<?php echo $qtyval; ?>';
+			$('.qty-cart').text(simple);
+			 $(".cartqty option").each(function(){
+				 console.log("qty is "+simple);
+				  if ($(this).text() == simple){
+					$(this).attr("selected","selected");
+				  }
+				});
+				$('.cartqty').on('change', function() {
+					var prevqty = $('.product-details .field.qty .control input.qty').val();
+					var cur_value = $('option:selected',this).text();
+					$('.product-details .field.qty .control input.qty').val(cur_value);
+					$('span.update-qty').css('opacity','1');
+					
+				});
+				/* $('.cartqty').on('change', function() {
+				  console.log((this).value);
+				  var cur_value = $('option:selected',this).text();
+				  $('option:selected',this).attr("selected","selected");
+				  console.log(cur_value);
+				}); */
+			});
+			</script>
+			
+			<select class="cartqty">
+			<?php
+				for ($i=1; $i<=10; $i++){ ?>
+				<option value="<?php echo $i;?>"><?php echo $i;?></option>
+			<?php }
+			?>
+			</select>
+			<?php //echo "avail qty is ". $_item->getId();
+				$prodObj = $product->load($_item->getId()); // $_product object in list.phtml
+				$stockItem = $prodObj->getExtensionAttributes()->getStockItem();
+				$stockQty = $stockItem->getQty(); //echo "<pre>";print_r($stockItemData = $stockItem->getData());echo "</pre>";
+			?>
+			<span class="update-qty" style="opacity:0;">Update</span>
+        </td>
+    </tr>
+    <tr class="item-actions">
+        <td colspan="4">
+            <div class="actions-toolbar">
+                <?= /* @noEscape */ $block->getActions($_item) ?>
+            </div>
+        </td>
+    </tr>
+</tbody>

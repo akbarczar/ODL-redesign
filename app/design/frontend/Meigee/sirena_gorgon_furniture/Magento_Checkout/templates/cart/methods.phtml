@@ -1,0 +1,32 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+?>
+<?php
+/** @var $block \Magento\Checkout\Block\Cart */
+?>
+<?php if (!$block->hasError()) :?>
+    <?php $methods = $block->getMethods('methods') ?: $block->getMethods('top_methods') ?>
+    <ul class="checkout methods items checkout-methods-items">
+        <?php foreach ($methods as $method) :?>
+            <?php $methodHtml = $block->getMethodHtml($method); ?>
+            <?php if (trim($methodHtml) !== '') :?>
+                <li class="item"><?= /* @noEscape */ $methodHtml ?></li>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </ul>
+    <div class="opc-payment-text">
+        <span class="opc-payment-inner">
+            <span data-bind="i18n: 'Secure Payments'">Secure Payments</span> 
+            <span data-bind="i18n: 'Hassle Free Returns'">Hassle Free Returns</span>
+        </span>
+    </div>
+    <div class="summary-credit-card">
+        <div class="list-inline summary-card">
+            <img loading="lazy" src="https://www.outdoorlivinguk.co.uk/media/wysiwyg/footer_cards1.png" alt="Payment-logo" width="" height="">
+        </div>
+    </div>
+<?php endif; ?>

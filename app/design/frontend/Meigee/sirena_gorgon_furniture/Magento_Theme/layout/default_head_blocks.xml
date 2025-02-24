@@ -1,9 +1,29 @@
 <?xml version="1.0"?>
-	<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-		<head>
-			<css src="css/custom.css" />
-			<css src="css/dipti.css" />
-			<css src="css/farhan.css" />
-            <link src="js/custom.js"/>
-		</head>
-	</page>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <!-- Add custom CSS files -->
+        <css src="css/custom.css" />
+        <css src="css/dipti.css" />
+        <css src="css/farhan.css" />
+        
+        <!-- External CSS links -->
+        <link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" 
+              src_type="url" />
+              
+        <link rel="stylesheet" src="https://db.onlinewebfonts.com/c/702d8433e65d57e2612d01f1db078242?family=Candara+Bold" 
+              src_type="url" />
+              
+        <link rel="stylesheet" src="https://db.onlinewebfonts.com/c/e662339992c4abf5b43f537391bd3169?family=Candara" 
+              src_type="url" />
+              
+        <link rel="stylesheet" src="https://db.onlinewebfonts.com/c/5c452fb7a0f5751f4e94e9d84eb01154?family=Segoe+Script" 
+              src_type="url" />
+              
+        <link rel="stylesheet" src="https://db.onlinewebfonts.com/c/3e7c392e6314d3043afade17def0975c?family=Segoe+Print" 
+              src_type="url" />
+              
+        <!-- Add custom JavaScript file -->
+        <script src="js/custom.js" />
+    </head>
+</page>

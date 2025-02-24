@@ -139,13 +139,13 @@
 		<referenceContainer name="product.info.overview" remove="true" />		
 		<referenceBlock name="catalog.product.related" remove="true" />
 		<referenceBlock name="product.attributes" remove="true" />
-		<!-- <referenceContainer name="product.info.main">
+		<referenceContainer name="product.info.main">
             <block class="Magento\Framework\View\Element\Template" name="custom" template="Magento_Catalog::product/view/mycustomtext.phtml" after="product.info.addtocart"/>
-			<referenceBlock name="product.info.addto">
+			<!-- <referenceBlock name="product.info.addto">
                 <block class="Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist" name="view.addto.wishlist"
                        template="Magento_Wishlist::catalog/product/view/addto/wishlist.phtml" />
-            </referenceBlock>
-        </referenceContainer> -->
+            </referenceBlock> -->
+        </referenceContainer>
 		<move element="product.info.addto" destination="product.info.main" after="page.main.title" />
 		<move element="productalert.stock" destination="product.info.main" after="product.info.addto" />
 		<move element="productalert.stock" destination="product.info.main" after="custom" />

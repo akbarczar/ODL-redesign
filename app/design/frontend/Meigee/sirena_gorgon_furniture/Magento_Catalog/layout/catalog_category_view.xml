@@ -7,6 +7,9 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
+ <move element="product_list_toolbar" destination="page.top" after="-"/>
+ <move element="catalog.leftnav" destination="columns" before="columns.main"/> 
+		 <move element="category.description" destination="columns" before="catalog.leftnav"/>  
         <referenceBlock name="page.main.title" remove="true" />
         <referenceBlock name="sidebar.additional" remove="true"/>
         <referenceBlock name="breadcrumbs" remove="true" />

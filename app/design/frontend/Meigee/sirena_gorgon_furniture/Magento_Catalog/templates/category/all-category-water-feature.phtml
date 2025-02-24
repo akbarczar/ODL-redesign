@@ -1,0 +1,179 @@
+<?php
+/** @var $categoryblock Czargroup\ThemeConfig\Block\CategoryPage */
+$categoryblock = $block->getLayout()->createBlock('Czargroup\ThemeConfig\Block\CategoryPage');
+$category = $categoryblock->getCurrentCategory();
+$categoryId = $category ? $category->getId() : null;
+$categoryName = $category ? $category->getName() : '';
+$categoryImageUrl = $category ? $category->getImageUrl() : '';
+$categoryDescription = $category ? $category->getDescription() : '';
+$categoryextraDescription = $category ? $category->getCategoryBelowBannerContent() : '';
+
+$productCollection = $categoryblock->getBestsellerProducts($categoryId, 12);
+?>
+<!-- Category Banner -->
+<?php if ($categoryImageUrl): ?>
+    <div class="category-banner" style="background-image: url('<?= $categoryImageUrl ?>');">
+        <div class="center-desc">
+        <h1 class="category-name"><?= $categoryName ?></h1>
+        <h4 class="short-desc">Are an ideal addition to any garden or outdoor space. A decorative feature that is fit for purpose in bringing new life and a real touch of style to any of your outdoor areas. With so many different tastes and styles, the market is now full of quality garden water features to choose from</h4>
+</div>
+    </div>
+<?php endif; ?>
+<!-- Category Description -->
+<?php if (!empty($categoryDescription)): ?>
+    <div class="category-description">
+        <?= $categoryDescription ?>
+    </div>
+<?php endif; ?>
+<div class="bestseller-products">
+    <h2>Our Best Seller Products</h2>
+    <div class="products-grid">
+        <?php if ($productCollection->getSize() > 0): ?>
+            <?php foreach ($productCollection as $product): ?>
+                <?php
+                $productUrl = $product->getProductUrl();
+                $productId = $product->getId();
+                $productImage = $categoryblock->getProductImageUrl($product, 'category_page_grid');
+                $productName = $product->getName();
+                $productPrice = $categoryblock->escapeHtml($categoryblock->getPriceHtml($product));
+                ?>
+                <li class="item product product-item">
+                    <div class="product-item-info" id="product-item-info_<?= $productId ?>" data-container="product-grid">
+                        <a href="<?= $productUrl ?>" class="product photo product-item-photo" tabindex="-1">
+                            <img class="product-image-photo" src="<?= $productImage ?>" width="405" height="405" alt="<?= $productName ?>">
+                        </a>
+                        <div class="product details product-item-details">
+                            <strong class="product name product-item-name">
+                                <a class="product-item-link" href="<?= $productUrl ?>">
+                                    <?= $productName ?>
+                                </a>
+                            </strong>
+                            <span class="price-block">
+                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="<?= $productId ?>">
+                                    <span class="normal-price">
+                                        <span class="price-container price-final_price tax weee">
+                                            <span class="price-label">As low as</span>
+                                            <span id="product-price-<?= $productId ?>" data-price-amount="<?= $productPrice ?>" data-price-type="finalPrice" class="price-wrapper">
+                                                <span class="price"><?= $productPrice ?></span>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>No bestseller products found for this category.</p>
+        <?php endif; ?>
+    </div>
+</div>
+<div class="category-extra-content">
+<?php if ($content = $categoryblock->getFilteredContent('category_below_banner_content')): ?>
+    <div class="category-below-banner-content">
+        <?php echo $content; ?>
+    </div>
+<?php endif; ?>
+</div>
+
+<style>
+    .category-below-banner-content {
+    font-family: 'Candara';
+    color: #000;
+    font-weight: 400;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+.category-below-banner-content h2 {
+    text-transform: uppercase;
+    font-size: 32px;
+}
+.category-below-banner-content p {
+    font-size: 21px;
+    text-align: justify;
+}
+.bestseller-products,.category-below-banner-content {
+    max-width: 1440px;
+    margin: 0px auto;
+}
+.category-page-button .pagebuilder-button-primary {
+    background: #183e0c;
+}
+.category-below-banner-content .pagebuilder-column-line {
+    column-gap: 25px;
+}
+    .category-banner {
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        padding: 100px 0;
+        text-align: center;
+        color: #fff;
+    }
+    .center-desc{
+        background: rgba(0, 0, 0, 0.5);
+        padding:20px;
+    }
+    h4.short-desc {
+    max-width: 1440px;
+    margin: 0px auto;
+    line-height: 25px;
+}
+p.desc-large {
+    font-size: 24px;
+    font-family: "Candara";
+    font-weight: 400;
+    padding-left: 20px;
+    font-weight: 400;
+    padding: 0;
+}
+.category-name {
+    font-size: 55px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: 'Candara';
+}
+.category-description-main h1 {
+    text-align: center;
+    padding: 20px;
+}
+.category-garden-water-features .columns {
+    display: none;
+}
+    .bestseller-products h2 {
+    font-family: 'Candara';
+    font-weight: 400;
+    font-size: 28px;
+}
+.bestseller-products .products-grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+    /* .bestseller-products {
+        padding: 40px 20px;
+    }
+    .products-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+    .product-item {
+        width: 200px;
+        text-align: center;
+    }
+    .product-item img {
+        width: 100%;
+        border-radius: 8px;
+    }
+    .product-item h3 {
+        font-size: 1.2rem;
+        margin: 10px 0;
+    }
+    .product-item .price {
+        font-weight: bold;
+        color: #d9534f;
+    } */
+</style>

@@ -1,0 +1,34 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!-- ko if: isDisplayed() -->
+<table class="data table table-totals">
+    <caption class="table-caption" data-bind="i18n: 'Order Summary'"></caption>
+    <tbody>
+    <!-- ko foreach: elems() -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    <!-- /ko -->
+    </tbody>
+</table>
+<div class="actions-toolbar" id="shipping-method-buttons-container">
+	<div class="primary">
+		<button data-role="opc-continue" type="submit" class="button action continue primary">
+			<span translate="'Next'"></span>
+		</button>
+	</div>
+</div>
+<div class="opc-payment-text">
+	<span class="opc-payment-inner">
+	<span data-bind="i18n: 'Secure Payments'">Secure Payments</span>
+	<span data-bind="i18n: 'Hassle Free Returns'">Hassle Free Returns</span>
+	</span>
+</div>
+<div class="summary-credit-card">
+		<div class="list-inline summary-card">
+		<img src="/media/wysiwyg/footer_cards1.png" alt="Payment-logo" width="" height="">
+		</div>
+</div>
+<!-- /ko -->

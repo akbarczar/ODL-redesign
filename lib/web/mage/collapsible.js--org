@@ -517,9 +517,9 @@ define([
                 'aria-hidden': 'false'
             });
 
-            // this.element.trigger('dimensionsChanged', {
-            //     opened: true
-            // });
+            this.element.trigger('dimensionsChanged', {
+                opened: true
+            });
         },
 
         /**
