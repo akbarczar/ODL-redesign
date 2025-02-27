@@ -15,7 +15,14 @@ $productCollection = $categoryblock->getBestsellerProducts($categoryId, 12);
     <div class="category-banner" style="background-image: url('<?= $categoryImageUrl ?>');">
         <div class="center-desc">
         <h1 class="category-name"><?= $categoryName ?></h1>
-        <h4 class="short-desc">Are an ideal addition to any garden or outdoor space. A decorative feature that is fit for purpose in bringing new life and a real touch of style to any of your outdoor areas. With so many different tastes and styles, the market is now full of quality garden water features to choose from</h4>
+        <h4 class="short-desc">
+        <?php if ($content = $categoryblock->getFilteredContent('category_banner_content')): ?>
+    <div class="category-banner-content">
+        <?php echo $content; ?>
+    </div>
+<?php endif; ?>
+
+        </h4>
 </div>
     </div>
 <?php endif; ?>
@@ -48,18 +55,18 @@ $productCollection = $categoryblock->getBestsellerProducts($categoryId, 12);
                                     <?= $productName ?>
                                 </a>
                             </strong>
-                            <span class="price-block">
-                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="<?= $productId ?>">
+                            <!-- <span class="price-block">
+                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="<?//= $productId ?>">
                                     <span class="normal-price">
                                         <span class="price-container price-final_price tax weee">
                                             <span class="price-label">As low as</span>
-                                            <span id="product-price-<?= $productId ?>" data-price-amount="<?= $productPrice ?>" data-price-type="finalPrice" class="price-wrapper">
-                                                <span class="price"><?= $productPrice ?></span>
+                                            <span id="product-price-<?//= $productId ?>" data-price-amount="<?//= $productPrice ?>" data-price-type="finalPrice" class="price-wrapper">
+                                                <span class="price"><?//= $productPrice ?></span>
                                             </span>
                                         </span>
                                     </span>
                                 </div>
-                            </span>
+                            </span> -->
                         </div>
                     </div>
                 </li>
@@ -76,7 +83,14 @@ $productCollection = $categoryblock->getBestsellerProducts($categoryId, 12);
     </div>
 <?php endif; ?>
 </div>
-
+<div class="brands-block-list">
+    <h2 class="brands-heading">Check Our Brand list</h2>
+    <img src="/media/brands-full.png" alt="brands full list">
+</div>
+<div class="col-md-12" style="font-weight: bold; text-align: center; font-size: 24px; color: #000000; padding: 10px;">
+<h2 class="brands-heading">Check Our What our customers said</h2>
+	 <iframe src="https://www.youtube.com/embed/yyO1a_96ubY" width="100%" height="250" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+</div>
 <style>
     .category-below-banner-content {
     font-family: 'Candara';
@@ -85,6 +99,10 @@ $productCollection = $categoryblock->getBestsellerProducts($categoryId, 12);
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
+}
+h2.brands-heading {
+    text-align: center;
+    text-transform: uppercase;
 }
 .category-below-banner-content h2 {
     text-transform: uppercase;
@@ -97,6 +115,7 @@ $productCollection = $categoryblock->getBestsellerProducts($categoryId, 12);
 .bestseller-products,.category-below-banner-content {
     max-width: 1440px;
     margin: 0px auto;
+    margin-bottom:40px;
 }
 .category-page-button .pagebuilder-button-primary {
     background: #183e0c;
@@ -143,9 +162,19 @@ p.desc-large {
     display: none;
 }
     .bestseller-products h2 {
-    font-family: 'Candara';
-    font-weight: 400;
-    font-size: 28px;
+        font-size: 28px;
+    text-align: center;
+    font-weight: bold;
+}
+.bestseller-products .product.details.product-item-details {
+    display: block;
+    height: auto;
+    margin: 0px !IMPORTANT;
+    min-height: 0;
+}
+
+.bestseller-products li.item.product.product-item {
+    margin-bottom: 0;
 }
 .bestseller-products .products-grid {
     display: flex;
@@ -176,4 +205,46 @@ p.desc-large {
         font-weight: bold;
         color: #d9534f;
     } */
+
+
+     /* farhan css */
+     .catalog-category-view .bestseller-products .products-grid li.item.product.product-item {
+    box-shadow: 2px 10px 34px #a5aaad;
+    transition: all 0.5s ease;
+    margin-bottom: 20px;
+    padding: 0px;
+  }
+
+.bestseller-products .product.details.product-item-details .product.name.product-item-name {
+    background-color: #044414;
+    color: #fff;
+    border: 0 none;
+    border-radius: unset;
+    font-size: 13px;
+    padding: 10px 22px;
+    text-transform: none;
+    text-align: center;
+    margin: 0;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.category-cms .bestseller-products .product.details.product-item-details .product-item-name > a{
+  color: #fff !important;
+}
+
+.bestseller-products .product.details.product-item-details {
+  padding: 0;
+}
+
+.bestseller-products .product.details.product-item-details .product.name.product-item-name a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.bestseller-products .product.details.product-item-details .product.name.product-item-name:hover {
+  background-color: #000;
+}
+
+.bestseller-products {}
 </style>
