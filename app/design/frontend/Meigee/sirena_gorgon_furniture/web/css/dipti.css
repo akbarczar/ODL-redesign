@@ -251,7 +251,10 @@ body.cms-about-us, body.cms-term-condition, body.cms-faq-page {
     line-height: 1;
     display: block;
     text-align: left;
-    margin: 0 0 15px;
+    margin: 0px 25px;
+    padding: 30px;
+    text-align: center;
+    line-height: 30px;
 }
 .minicart-wrapper .block-minicart .minicart-items-wrapper {
     border: none;
@@ -283,6 +286,7 @@ body.cms-about-us, body.cms-term-condition, body.cms-faq-page {
     font-size: 12px;
     color: rgba(0, 0, 0, .4);
     margin-bottom: 0px;
+    overflow: scroll;
 }
 .page-header .minicart-wrapper .block-minicart .minicart-items-wrapper .product-item .product-item-details .details-qty {
     display: flex;
@@ -297,8 +301,33 @@ body.cms-about-us, body.cms-term-condition, body.cms-faq-page {
     text-align:left;
     border-radius: 5px;
 }
-.minicart-items .action.edit:before, .minicart-items .action.delete:before {
+.minicart-items .product.actions .action:before {
     color: rgba(0, 0, 0, .4);
+    font-size: 10px;
+}
+.minicart-items .action.edit:before{
+    content: '\e907';
+    line-height: inherit;
+}
+.minicart-items .action.delete:before {
+    content: '\e90f';
+    font-weight: 700;
+}
+.minicart-wrapper .product.actions > .primary {
+    display: block;
+}
+.minicart-items .product.active > .toggle:after, .minicart-items .product .toggle:after {
+    font-size: 8px;
+    color: #8f8f8f;
+    margin: 0 0 0 5px;
+    line-height: 12px;
+}
+ .minicart-items .product .toggle:after{
+    content: '\e906';
+ }
+
+.minicart-items .product.active > .toggle:after {
+    content: '\e925';
 }
 .page-header .minicart-wrapper .block-minicart .minicart-items-wrapper .product-item .product-item-details .product.actions {
     position: absolute;
@@ -307,7 +336,7 @@ body.cms-about-us, body.cms-term-condition, body.cms-faq-page {
     width: 30px;
     margin: 0;
 }
-.page-header .minicart-wrapper .block-minicart .minicart-items-wrapper .product-item .product-item-details .product.actions .action:hover {
+.minicart-items .action.edit:hover:before, .minicart-items .action.delete:hover:before {
     color: #222;
 }
 .block-minicart .product.options .toggle span{

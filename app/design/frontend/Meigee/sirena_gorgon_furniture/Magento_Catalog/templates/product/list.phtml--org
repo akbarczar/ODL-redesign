@@ -64,33 +64,17 @@ $_helper = $block->getData('outputHelper');
                      data-container="product-<?= /* @noEscape */ $viewMode ?>">
                     <?php
                     $productImage = $block->getImage($_product, $imageDisplayArea);
-                   // $hoverImageUrl = $this->helper('Magento\Cms\Helper\Wysiwyg\Images')->getBaseUrl().'catalog/product'.$_product->getData('hover_image');
-                    $hoverImage = $block->getImage($_product, 'product_page_main_hover_image'); // Fetch hover image
-                    //$hoverImage =  $_product->getData('hover_image');
                     if ($pos != null) {
                         $position = 'left:' . $productImage->getWidth() . 'px;'
                             . 'top:' . $productImage->getHeight() . 'px;';
                     }
-                    if (strpos($hoverImage->getImageUrl(), 'placeholder') !== false) {
-                        $hoverImage = $productImage; // Fallback to main image
-                    }
                     ?>
                     <?php // Product Image ?>
-                    
                     <a href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>"
-                        class="product photo product-item-photo"
-                        tabindex="-1">
-                        <span class="image-parent">
-                            <img src="<?= $escaper->escapeUrl($productImage->getImageUrl()) ?>"
-                                class="product-main-image"
-                                alt="<?= $escaper->escapeHtmlAttr($_product->getName()) ?>" />
-                        <?php if($hoverImage){ ?>
-                            <img src="<?= $escaper->escapeUrl($hoverImage->getImageUrl()) ?>"
-                                class="product-hover-image"
-                                alt="<?= $escaper->escapeHtmlAttr($_product->getName()) ?>" />
-                                <?php } ?>
-                        </span>
-                        </a>
+                       class="product photo product-item-photo"
+                       tabindex="-1">
+                        <?= $productImage->toHtml() ?>
+                    </a>
                     <?php if (!$_product->isAvailable()): ?>
                             <div class="sold-out-label">
                                 <span><?php echo $block->escapeHtml(__('Sold out')); ?></span>

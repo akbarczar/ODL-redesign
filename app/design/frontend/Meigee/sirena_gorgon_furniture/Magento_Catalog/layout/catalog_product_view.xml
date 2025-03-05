@@ -93,18 +93,18 @@
 			</block>
 		</referenceBlock>
 		<referenceContainer name="content">
-			<!-- <container name="upsell-products-popup" htmlTag="div" htmlClass="upsell_popup" after="product.info.details">
+		 <!-- <container name="upsell-products-popup" htmlTag="div" htmlClass="upsell_popup" after="product.info.details">
 				<block class="Magento\Catalog\Block\Product\ProductList\Upsell" name="product.info.upsell" template="Magento_Catalog::product/list/upsell.phtml">
 					<arguments>
 						<argument name="type" xsi:type="string">upsell</argument>
 					</arguments>
 				</block>
-			</container> -->
+			</container>  -->
 
 
-            <!-- <block class="Magento\Framework\View\Element\Template" name="image_carousel" template="Magento_Catalog::product/view/testimonial.phtml" after="content.aside" />
-			<block class="Magento\Catalog\Block\Product\ProductList\Related" name="product.related" template="Magento_Catalog::product/list/related.phtml" before="image_carousel"/>
-			<block class="Magento\Catalog\Block\Product\ProductList\Related" name="product.recommended" template="Magento_Catalog::product/list/recommended.phtml" before="image_carousel"/> -->
+            <block class="Magento\Framework\View\Element\Template" name="image_carousel" template="Magento_Catalog::product/view/testimonial.phtml" after="content.aside" />
+			<!-- <block class="Magento\Catalog\Block\Product\ProductList\Related" name="product.related" template="Magento_Catalog::product/list/related.phtml" before="image_carousel"/>
+			<block class="Magento\Catalog\Block\Product\ProductList\Related" name="product.recommended" template="Magento_Catalog::product/list/recommended.phtml" before="image_carousel"/>  -->
 		</referenceContainer>
 		<referenceContainer name="product.info.price">
 			<container name="product.prices" label="Product prices" htmlTag="div" htmlClass="product-msrp-price">
@@ -121,7 +121,7 @@
 		</referenceContainer>
 		<move element="page.main.title" destination="product.info.main" before="product.info.price"/>
 		<move element="upsell-products-popup" destination="content" after="product.info.details"/>
-		<!-- <move element="image_carousel" destination="content.aside" after="product.info.details"/> -->
+		<move element="image_carousel" destination="content" after="product.info.details"/> 
 		<move element="product.info.stock.sku" destination="product.info.price" before="-"/>
 		<move element="product.price.final" destination="product.prices" after="product.msrp"/>
 		<move element="product.info.type" destination="product.info.stock.sku" after="-"/>

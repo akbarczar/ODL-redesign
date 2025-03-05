@@ -20,6 +20,10 @@
                 <width>405</width>
                 <height>405</height>
             </image>
+            <image id="product_page_main_hover_image" type="hover_image">
+                <width>405</width>
+                <height>405</height>
+            </image>
             <image id="product_swatch_image_medium" type="image">
                 <width>405</width>
                 <height>405</height>

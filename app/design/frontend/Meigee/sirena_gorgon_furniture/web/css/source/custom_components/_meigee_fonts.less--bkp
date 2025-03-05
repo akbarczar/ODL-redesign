@@ -1,0 +1,86 @@
+& when (@media-common = true) {
+	@font-face {
+		font-family: "Cormorant Garamond";
+		src: url("../fonts/CormorantGaramond-Regular.woff2") format("woff2"), url("../fonts/CormorantGaramond-Regular.woff") format("woff");
+		font-weight: 400;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: "Cormorant Garamond";
+		src: url("../fonts/CormorantGaramond-Italic.woff2") format("woff2"), url("../fonts/CormorantGaramond-Italic.woff") format("woff");
+		font-weight: 400;
+		font-style: italic;
+	}
+	@font-face {
+		font-family: "Cormorant Garamond";
+		src: url("../fonts/CormorantGaramond-SemiBold.woff2") format("woff2"), url("../fonts/CormorantGaramond-SemiBold.woff") format("woff");
+		font-weight: 600;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: "Cormorant Garamond";
+		src: url("../fonts/CormorantGaramond-SemiBoldItalic.woff2") format("woff2"), url("../fonts/CormorantGaramond-SemiBoldItalic.woff") format("woff");
+		font-weight: 600;
+		font-style: italic;
+	}
+	@font-face {
+		font-family: "Cormorant Garamond";
+		src: url("../fonts/CormorantGaramond-Medium.woff2") format("woff2"), url("../fonts/CormorantGaramond-Medium.woff") format("woff");
+		font-weight: 500;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: "CormorantGaramond";
+		src: url("../fonts/CormorantGaramond-MediumItalic.woff2") format("woff2"), url("../fonts/CormorantGaramond-MediumItalic.woff") format("woff");
+		font-weight: 500;
+		font-style: italic;
+	}
+// 	@font-face {
+// 		font-family: "Poppins";
+// 		src: url("../fonts/Poppins-SemiBoldItalic.woff2") format("woff2"), url("../fonts/Poppins-SemiBoldItalic.woff") format("woff");
+// 		font-weight: 600;
+// 		font-style: italic;
+// 	}
+// 	@font-face {
+// 		font-family: "Poppins";
+// 		src: url("../fonts/Poppins-SemiBold.woff2") format("woff2"), url("../fonts/Poppins-SemiBold.woff") format("woff");
+// 		font-weight: 600;
+// 		font-style: normal;
+// 	}
+// 	@font-face {
+// 		font-family: "Poppins";
+// 		src: url("../fonts/Poppins-Regular.woff2") format("woff2"), url("../fonts/Poppins-Regular.woff") format("woff");
+// 		font-weight: 400;
+// 		font-style: normal;
+// 	}
+// 	@font-face {
+// 		font-family: "Poppins";
+// 		src: url("../fonts/Poppins-Italic.woff2") format("woff2"), url("../fonts/Poppins-Italic.woff") format("woff");
+// 		font-weight: 400;
+// 		font-style: italic;
+// 	}
+// 	@font-face {
+// 		font-family: "Poppins";
+// 		src: url("../fonts/Poppins-MediumItalic.woff2") format("woff2"), url("../fonts/Poppins-MediumItalic.woff") format("woff");
+// 		font-weight: 500;
+// 		font-style: italic;
+// 	}
+// 	@font-face {
+// 		font-family: "Poppins";
+// 		src: url("../fonts/Poppins-Medium.woff2") format("woff2"), url("../fonts/Poppins-Medium.woff") format("woff");
+// 		font-weight: 500;
+// 		font-style: normal;
+// 	}
+// 	@font-face {
+// 		font-family: "Poppins";
+// 		src: url("../fonts/Poppins-ExtraLightItalic.woff2") format("woff2"), url("../fonts/Poppins-ExtraLightItalic.woff") format("woff");
+// 		font-weight: 200;
+// 		font-style: italic;
+// 	}
+// 	@font-face {
+// 		font-family: "Poppins";
+// 		src: url("../fonts/Poppins-ExtraLight.woff2") format("woff2"), url("../fonts/Poppins-ExtraLight.woff") format("woff");
+// 		font-weight: 200;
+// 		font-style: normal;
+// 	}
+}
