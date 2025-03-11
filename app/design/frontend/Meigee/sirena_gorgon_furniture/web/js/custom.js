@@ -17,21 +17,16 @@ require(['jquery', 'jquery/ui'], function($){
         $('.minicart-wrapper, .block.block-search, .custom-header').wrapAll(mobilewrapper); 
     });
     jQuery(window).scroll(function () {
-        if( jQuery(window).scrollTop() > jQuery('.sections.nav-sections').offset().top && !(jQuery('.sections.nav-sections').hasClass('sticky'))){
-        jQuery('.sections.nav-sections').addClass('sticky');
-        jQuery('.page-header .minicart-wrapper .block-minicart').css('top','50px');
+        var $navSection = jQuery('.sections.nav-sections');
         
-    } else if (jQuery(window).scrollTop() == 0){
-        jQuery('.sections.nav-sections').removeClass('sticky');
-    }
-});
-    // jQuery(window).scroll(function () {
-	// 		if( jQuery(window).scrollTop() > jQuery('.nav-sections-item-content:first-child').offset().top && !(jQuery('.nav-sections-item-content:first-child').hasClass('sticky'))){
-	// 		jQuery('.nav-sections-item-content:first-child').addClass('sticky');
-	// 		jQuery('.page-header .minicart-wrapper .block-minicart').css('top','50px');
-			
-	// 	} else if (jQuery(window).scrollTop() == 0){
-	// 		jQuery('.nav-sections-item-content:first-child').removeClass('sticky');
-	// 	}
-	// });
+        // Check if the element exists before using it
+        if ($navSection.length > 0) {
+            if (jQuery(window).scrollTop() > $navSection.offset().top && !$navSection.hasClass('sticky')) {
+                $navSection.addClass('sticky');
+                jQuery('.page-header .minicart-wrapper .block-minicart').css('top', '50px');
+            } else if (jQuery(window).scrollTop() == 0) {
+                $navSection.removeClass('sticky');
+            }
+        }
+    });
 });

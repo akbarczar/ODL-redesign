@@ -1,28 +1,24 @@
 <?php
 /** @var Czargroup\ThemeConfig\Block\Header $block */
 ?>
-<!-- <link rel="preload" href="<?php echo $block->escapeUrl($this->getViewFileUrl('fonts/meigee-icons.woff2')); ?>" as="font" type="font/woff2" crossorigin="" /> -->
+<!-- <link rel="preload" href="<?php //echo $block->escapeUrl($this->getViewFileUrl('fonts/meigee-icons.woff2')); ?>" as="font" type="font/woff2" crossorigin="" /> -->
 <div class="custom-header">
     <!-- Search Bar -->
    <div class="header-item search">
    <?php //echo $this->getLayout()
        //->createBlock("Magento\Framework\View\Element\Template")
        //->setTemplate("Magento_Search::form.mini.phtml")
-      // ->toHtml(); ?>
+      // ->toHtml(); 
+      $mediaUrl = $this->getUrl('pub/media/');
+      ?>
+      
     <div class="header_rating_image_new">
         <span class="text">Customer Satisfaction</span>
-        <img width="115" height="24" src="<?php echo $this->getViewFileUrl(
-            "images/Star_rating_4.5_of_5.png"
-        ); ?>" alt="Customer Satisfaction" />
+        <img width="115" height="24" src="<?php echo $mediaUrl . 'header/Star_rating_4.5_of_5.png'; ?>" alt="Customer Satisfaction" />
         </div>
         <div class="search-wrapper" id="second-div">
-            <img class="header-delevery-icon"height="40" width="150"src="<?php echo $this->getViewFileUrl(
-                "images/free-del.png"
-            ); ?>" alt="Free Delivery" />
-
-            <img class="header-experience-icon" height="40" width="100" src="<?php echo $this->getViewFileUrl(
-                "images/25-years-a.png"
-            ); ?>" alt="25 years" />
+            <img class="header-delevery-icon"height="40" width="150"src="<?php echo $mediaUrl . 'header/free-del.png'; ?>" alt="Free Delivery" />
+            <img class="header-experience-icon" height="40" width="100" src="<?php echo $mediaUrl . 'header/25-years-a.png'; ?>" alt="25 years" />
     </div>
     </div> 
 

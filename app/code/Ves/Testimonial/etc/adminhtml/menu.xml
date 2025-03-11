@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Venustheme
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the venustheme.com license that is
+ * available through the world-wide-web at this URL:
+ * http://venustheme.com/license
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category   Venustheme
+ * @package    Ves_Testimonial
+ * @copyright  Copyright (c) 2017 Landofcoder (http://www.venustheme.com/)
+ * @license    http://www.venustheme.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+	<menu>
+		<add id="Ves_Testimonial::testimonial" title="Testimonial" module="Ves_Testimonial" sortOrder="50" resource="Ves_Testimonial::testimonial" parent="Ves_All::ves_all"/> 
+		<add id="Ves_Testimonial::testimonial_new" title="Add New Testimonial" module="Ves_Testimonial" sortOrder="10" parent="Ves_Testimonial::testimonial" action="testimonial/testimonial/new" resource="Ves_Testimonial::testimonial_edit"/>
+		<add id="Ves_Testimonial::testimonial_manage" title="Manage Testimonials" module="Ves_Testimonial" sortOrder="20" parent="Ves_Testimonial::testimonial" action="testimonial/testimonial/index" resource="Ves_Testimonial::testimonial"/> 
+		<add id="Ves_Testimonial::category_new" title="Add New Category" module="Ves_Testimonial" sortOrder="30" parent="Ves_Testimonial::testimonial" action="testimonial/category/new" resource="Ves_Testimonial::category_edit"/>
+		<add id="Ves_Testimonial::category_manage" title="Manage Categories" module="Ves_Testimonial" sortOrder="40" parent="Ves_Testimonial::testimonial" action="testimonial/category/index" resource="Ves_Testimonial::category"/> 
+		<add id="Ves_Testimonial::configuration" title="Settings" module="Ves_Testimonial" sortOrder="50" parent="Ves_Testimonial::testimonial" action="adminhtml/system_config/edit/section/testimonial" resource="Ves_Testimonial::config_testimonial"/>
+	</menu>
+</config>

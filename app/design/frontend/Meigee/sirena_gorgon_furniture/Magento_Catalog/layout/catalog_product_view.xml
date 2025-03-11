@@ -137,7 +137,7 @@
 		<referenceContainer name="sidebar.additional" remove="true" />
 		<referenceContainer name="product.info.social" remove="true" />
 		<referenceContainer name="product.info.overview" remove="true" />		
-		<referenceBlock name="catalog.product.related" remove="true" />
+		<!-- <referenceBlock name="catalog.product.related" remove="true" /> -->
 		<referenceBlock name="product.attributes" remove="true" />
 		<referenceContainer name="product.info.main">
             <block class="Magento\Framework\View\Element\Template" name="custom" template="Magento_Catalog::product/view/mycustomtext.phtml" after="product.info.addtocart"/>
@@ -150,7 +150,7 @@
 		<move element="productalert.stock" destination="product.info.main" after="product.info.addto" />
 		<move element="productalert.stock" destination="product.info.main" after="custom" />
 		<!-- <move element="product.info.details" destination="page.wrapper" before="footer-container"/>  -->
-		 <move element="image_carousel" destination="page.wrapper" after="product.info.details"/> 
+		 <!-- <move element="image_carousel" destination="page.wrapper" after="product.info.details"/>  -->
 		 <move element="product.related" destination="page.wrapper" after="product.info.details"/> 
 		 <move element="product.recommended" destination="page.wrapper" after="product.info.details"/> 
 		 

@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Venustheme
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Venustheme.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.venustheme.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category   Venustheme
+ * @package    Ves_Testimonial
+ * @copyright  Copyright (c) 2020 Venustheme (http://www.venustheme.com/)
+ * @license    http://www.venustheme.com/LICENSE-1.0.html
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../app/code/Magento/Webapi/etc/webapi.xsd">
+
+    <route url="/V1/vestestimonial/testimonial" method="POST">
+        <service class="Ves\Testimonial\Api\TestimonialRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Ves_Testimonial::testimonial_save"/>
+        </resources>
+    </route>
+    <route url="/V1/vestestimonial/testimonial" method="PUT">
+        <service class="Ves\Testimonial\Api\TestimonialRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Ves_Testimonial::testimonial_save"/>
+        </resources>
+    </route>
+
+    <route url="/V1/vestestimonial/testimonial/:testimonialId" method="DELETE">
+        <service class="Ves\Testimonial\Api\TestimonialRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Ves_Testimonial::testimonial_delete"/>
+        </resources>
+    </route>
+
+    <route url="/V1/vestestimonial/testimonial/:id" method="GET">
+        <service class="Ves\Testimonial\Api\TestimonialRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Ves_Testimonial::testimonial"/>
+        </resources>
+    </route>
+
+    <route url="/V1/vestestimonial/testimonials" method="GET">
+        <service class="Ves\Testimonial\Api\TestimonialRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Ves_Testimonial::testimonial"/>
+        </resources>
+    </route>
+
+    <route url="/V1/vestestimonial/testimonial/list" method="GET">
+        <service class="Ves\Testimonial\Api\TestimonialRepositoryInterface" method="getPublishList"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+
+    <route url="/V1/vestestimonial/category" method="POST">
+        <service class="Ves\Testimonial\Api\CategoryRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Ves_Testimonial::category_save"/>
+        </resources>
+    </route>
+
+    <route url="/V1/vestestimonial/category" method="PUT">
+        <service class="Ves\Testimonial\Api\CategoryRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Ves_Testimonial::category_save"/>
+        </resources>
+    </route>
+
+    <route url="/V1/vestestimonial/category/:categoryId" method="DELETE">
+        <service class="Ves\Testimonial\Api\CategoryRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Ves_Testimonial::category_delete"/>
+        </resources>
+    </route>
+
+    <route url="/V1/vestestimonial/category/:categoryId" method="GET">
+        <service class="Ves\Testimonial\Api\CategoryRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Ves_Testimonial::category"/>
+        </resources>
+    </route>
+
+    <route url="/V1/vestestimonial/categories" method="GET">
+        <service class="Ves\Testimonial\Api\CategoryRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Ves_Testimonial::category"/>
+        </resources>
+    </route>
+
+    <route url="/V1/vestestimonial/category/list" method="GET">
+        <service class="Ves\Testimonial\Api\CategoryRepositoryInterface" method="getPublishList"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+
+</routes>
