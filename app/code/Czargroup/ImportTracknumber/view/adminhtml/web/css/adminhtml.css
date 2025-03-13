@@ -1,0 +1,9 @@
+li#menu-czargroup-importtracknumber-importtracknumber a:before {
+    content: url('../images/icon.png');
+}
+li#menu-vendor_extension-menu_id > a > span {
+    display: none;
+}
+li#menu-czargroup-importtracknumber-importtracknumber .submenu a:before {
+    content: none;
+}

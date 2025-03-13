@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c9d0cf3a207458d8dc2dc0fb01557230",
+    "content-hash": "d60547b02cdfccf7e708661312678afc",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -465,10 +465,15 @@
         {
             "name": "amasty/module-page-speed-optimizer-subscription-package-pro",
             "version": "3.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/2tvenom/CBOREncode.git",
+                "reference": "0d5b30ba792bdbf8991a646fc9c30561b38a5559"
+            },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/2tvenom/CBOREncode/zipball/9bff63111f9765b4277750db8d276d92b3e16ed0",
-                "reference": "9bff63111f9765b4277750db8d276d92b3e16ed0",
+                "url": "https://api.github.com/repos/2tvenom/CBOREncode/zipball/0d5b30ba792bdbf8991a646fc9c30561b38a5559",
+                "reference": "0d5b30ba792bdbf8991a646fc9c30561b38a5559",
                 "shasum": ""
             },
             "require": {
@@ -979,6 +984,40 @@
                 }
             ],
             "time": "2024-05-10T17:15:19+00:00"
+        },
+        {
+            "name": "bsscommerce/magento-2-custom-product-attribute-export-extension",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/2tvenom/CBOREncode.git",
+                "reference": "42aedccb861d01fc0554782348cc08f8ebf22332"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/2tvenom/CBOREncode/zipball/42aedccb861d01fc0554782348cc08f8ebf22332",
+                "reference": "42aedccb861d01fc0554782348cc08f8ebf22332",
+                "shasum": ""
+            },
+            "suggest": {
+                "magento/module-cookie": "100.0.*"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Bss\\CustomProductAttributeExport\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Bss Custom Product Attribute Export Modules",
+            "time": "2020-10-01T02:08:42+00:00"
         },
         {
             "name": "christian-riesen/base32",

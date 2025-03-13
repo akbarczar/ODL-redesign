@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+	<type name="Magento\ImportExport\Controller\Adminhtml\Export\Export">
+		<plugin disabled="false" name="Czargroup_Czargroup_Plugin_Magento_ImportExport_Controller_Adminhtml_Export" sortOrder="10" type="Czargroup\Export\Plugin\Magento\ImportExport\Controller\Adminhtml\Export"/>
+	</type>
+</config>

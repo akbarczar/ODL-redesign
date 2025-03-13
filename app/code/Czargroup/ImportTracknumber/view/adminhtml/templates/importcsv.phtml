@@ -1,0 +1,129 @@
+<div id="page:main-container" style="min-height:500px;">
+<div style="margin:20px;">
+	<a class="download_sample" href="<?php echo $block->getBaseUrl() . "media/track_import_sample.csv"; ?>" download>Download sample csv file</a>
+</div>
+	<form class="form fileimport" id="fileimport" method="post" enctype="multipart/form-data">
+	        <?php echo $block->getBlockHtml("formkey"); ?>
+		<div class="field attachment1">
+			<label for="attachment1"><?= $block->escapeHtml(__("Upload file: ")); ?></label>          
+			<input name="upload_document1" id="upload_document1" type="file" />
+	        </div>
+		<button type="submit" title="<?= $block->escapeHtmlAttr( __("Submit")); ?>" class="action submit primary">
+			<span><?= $block->escapeHtml(__("Check data")); ?></span>
+		</button>
+	</form>
+	<div class="custom_spin" style="background: rgba(255, 255, 255, 0.5);bottom: 0;left: 0;position: absolute;right: 0;top: 0;z-index: 399;display:none;height:300px;">
+		<div class="spinner" style="font-size: 4rem;left: 50%;margin-left: -2rem;margin-top: -2rem;position: absolute;top: 50%;">
+			<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+		</div>
+	</div>
+	<div class="messages" id="messages">
+		<div class="message message-notice notice" style="display:none;">
+			<span class="msg_span"></span>
+			<div id="import_div" class="messages" style="display:none;">
+				<div>File is Valid !! Click Import to generate shippment and add Track numbers.</div>
+				<button type="button" title="<?= $block->escapeHtmlAttr(__("Import")); ?>" class="import_button" id="import_button">
+					<span><?= $block->escapeHtml(__("Import")); ?></span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+.message:before{
+	content:none;
+}
+button{ 
+	margin-top:20px;
+}
+#messages{
+	margin-top:20px;
+}
+</style>
+
+<script>
+require([
+        'jquery',
+		'jquery/ui'
+    ], function ($) {
+	jQuery(document).ready(function () {
+		var file_to_import = '';
+		jQuery('#fileimport').submit(function(e){
+			e.preventDefault();
+			e.stopPropagation();
+			var fileobj = document.getElementById("upload_document1");
+			if(fileobj.files.length > 0)
+			{
+				jQuery(".custom_spin").show();
+				jQuery.ajax({
+					type: "POST",
+					url: "<?php echo $block->getBaseUrl() . "odladminM2/importtracknumber/index/checkdata"; ?>?isAjax=true",
+					data: new FormData(this),
+					processData: false,
+					contentType: false,
+					success: function(data) {
+						jQuery(".custom_spin").hide();
+						if(data)
+						{
+							if(data["errormsg"] === undefined)
+							{
+
+							}
+							else
+							{
+								/*console.log(data["errormsg"]);*/
+								jQuery('.msg_span').html('<span style="color: red;">'+data["errormsg"]+'</span>');
+								jQuery(".message-notice").show();
+								jQuery('#fileimport') [0].reset();
+							}
+							if(data["successmsg"])
+							{
+								jQuery('.msg_span').html('');
+								file_to_import = data["filetoimport"];
+								//console.log(file_to_import);
+								jQuery(".message-notice").show();
+								jQuery("#import_div").show();
+							}
+						}		
+					}
+				});
+			}
+			else
+			{
+				alert("Please select file");
+			}
+		});
+		jQuery('#import_button').click(function(e){
+			e.preventDefault();
+			if(file_to_import != '')
+			{
+				jQuery(".custom_spin").show();
+				jQuery.ajax({
+					type: "POST",
+					url: "<?php echo $block->getBaseUrl() . "odladminM2/importtracknumber/index/importdata"; ?>?isAjax=true",
+					data: {filepath:file_to_import},
+					success: function(data) {
+						jQuery(".custom_spin").hide();
+						if(data)
+						{
+							if(data["importmsg"] != '')
+							{
+								jQuery("#import_div").hide();
+								jQuery('.msg_span').html('');
+								jQuery('.msg_span').html('<span style="color: green;">'+data["importmsg"]+'</span>');
+								jQuery(".message-notice").show();
+							}
+						}
+						jQuery('#fileimport') [0].reset();
+					}
+				});
+			}
+			else
+			{
+				jQuery('#messages > span').html('<span style="color: red;">File not found</span>');
+			}
+		});
+	});
+});
+</script>

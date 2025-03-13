@@ -1,0 +1,112 @@
+<style>
+input, select {
+	padding:5px;
+}
+</style>
+<div id="page:main-container" style="min-height:500px;">
+			<table width="55%" cellspacing="0" class="data border" id="question_grid" style="padding: 0px 20px;">
+			<thead>
+				<tr class="headings">
+					<th class="cell-position"><span>Date from</span></th>					
+					<th class="cell-position"><span>Date To</span></th>
+					<th class="cell-position"><span>Filtered by</span></th>
+					<th class="cell-position"><span>Actions</span></th>
+				</tr>
+			</thead>   
+			
+			<tbody id="trgrid1">
+			<tr> 
+				<td class="cell-position"><input type="text" id="datepickerFrom"></td>				
+				<td class="cell-position"><input type="text" id="datepickerTo"></td>
+				<td class="cell-position">
+					<select class="cell-position" type="text" id="filteredBy">
+						<option value="">All</option>
+						<option value="processing">Processing</option>
+						<option value="complete">Complete</option>
+						<option value="pending">Pending</option>
+						<option value="cancelled">Cancelled</option>
+						<option value="partial refund">Partial Refund</option>
+					</select>
+				</td>
+				<td class="cell-position"><button class="scalable save" type="button" title="Edit" id="scalable_add">Export Orders</button>
+				<div class="custom_spin" style="background: rgba(255, 255, 255, 0.5);bottom: 0;left: 0;position: absolute;right: 0;top: 0;z-index: 399;display:none;height:300px;">
+					<div class="spinner" style="font-size: 4rem;left: 50%;margin-left: -2rem;margin-top: -2rem;position: absolute;top: 50%;">
+						<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+					</div>
+				</div>
+				</td>
+			</tr>    
+		</tbody>
+	  </table>
+	  <div id="messages" style="margin: 10px 20px;"><span></span></div>
+</div>
+<script>
+require([
+        'jquery',
+		'jquery/ui'
+    ], function ($) {
+	jQuery(document).ready(function () {
+		jQuery( "#datepickerFrom" ).datepicker();jQuery( "#datepickerTo" ).datepicker();
+		jQuery('#scalable_add').click(function(){				
+			var datepickerFrom = jQuery('#trgrid1 #datepickerFrom').val();
+			console.log("datepickerFrom is "+datepickerFrom);
+			var datepickerTo = jQuery('#trgrid1 #datepickerTo').val();
+			console.log("datepickerTo is "+datepickerTo);
+			var filteredBy = jQuery('#trgrid1 #filteredBy').val();
+			console.log("filteredBy is "+filteredBy);
+			var mydatepickerFrom = new Date(datepickerFrom);
+			var mydatepickerTo = new Date(datepickerTo);
+			var cur_date = new Date();
+
+			if(datepickerFrom!='' && datepickerTo!='')
+			{
+				if(mydatepickerFrom > cur_date){
+					alert('You cannot enter a from-date in the future!');
+				}
+				else if(mydatepickerTo > cur_date){
+					alert('You cannot enter a to-date in the future!');
+				}
+				else{
+					//alert(datepickerFrom+' '+datepickerTo);
+					jQuery(".custom_spin").show();
+					//jQuery(".admin__data-grid-loading-mask").css("height","300px");
+					jQuery.ajax({
+						type: "POST",
+						url: "<?php echo $block->getBaseUrl().'admin_1bjokq/importtracknumber/ordersexport/ordersget'; ?>?isAjax=true",
+						data: {dateFrom:datepickerFrom,dateTo:datepickerTo,filterBy:filteredBy},
+						success: function(data) {			
+							if(data){	
+								jQuery('#messages span').html('');
+								console.log(data);
+								//jQuery('#messages span').html(data);
+								var cdate = new Date();
+								var datetime = cdate.getFullYear() + "-" + (cdate.getMonth()+1)  + "-" + cdate.getDate() + "-"  + cdate.getHours() + "-" + cdate.getMinutes() + "-" + cdate.getSeconds();
+								var file_name = "orders_exported_on_"+datetime+".csv";
+								var blob = new Blob([data], { type: 'text/csv;charset=utf-8;' });
+								var link = document.createElement("a");
+								if (link.download !== undefined) { // feature detection
+									// Browsers that support HTML5 download attribute
+									var url = URL.createObjectURL(blob);
+									link.setAttribute("href", url);
+									link.setAttribute("download", file_name);
+									link.style.visibility = 'hidden';
+									document.body.appendChild(link);
+									link.click();
+									document.body.removeChild(link);
+								}
+							}else{
+								jQuery('#messages span').html('<span style="color: red;">Sorry, No record found</span>');
+							}		
+							jQuery(".custom_spin").hide();
+						}
+					});
+				}
+			}
+			else{
+				alert("Please enter the ranges");
+			}
+		});
+	});
+});
+
+</script>

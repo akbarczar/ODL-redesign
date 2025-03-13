@@ -22,6 +22,7 @@
         "amasty/module-mass-order-actions": "^1.6",
         "amasty/module-page-speed-optimizer-subscription-package-pro": "^3.6",
         "amasty/module-pre-order-lite": "^2.1",
+        "bsscommerce/magento-2-custom-product-attribute-export-extension": "^1.0",
         "ghoster/module-outofstockatlast": "^1.1",
         "magento/composer-dependency-version-audit-plugin": "~0.1",
         "magento/composer-root-update-plugin": "^2.0.4",

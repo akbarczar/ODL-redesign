@@ -1,0 +1,40 @@
+<?php
+/** @var \Magento\Backend\Block\Template $block */
+/** @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer */
+?>
+
+<?php $scriptString = <<<script
+require([
+    'mage/adminhtml/grid',
+    'mage/translate'
+], function(grid, t){
+    if (window['export_filter_gridJsObject'] != undefined) {
+        export_filter_gridJsObject.selectAll = function () {
+            var element = document.querySelector(".action-selectall");
+            if (element.classList.contains('select')) {
+                element.classList.remove('select');
+                element.classList.add('deselect');
+                var inputs = document.getElementsByClassName("admin__control-checkbox");
+                for(var i = 0; i < inputs.length; i++) {
+                    if(inputs[i].type == "checkbox") {
+                        inputs[i].checked = true;
+                    }
+                }
+                element.firstChild.innerHTML = t('Deselect All');
+            } else if (element.classList.contains('deselect')) {
+                element.classList.remove('deselect');
+                element.classList.add('select');
+                var inputs = document.getElementsByClassName("admin__control-checkbox");
+                for(var i = 0; i < inputs.length; i++) {
+                    if(inputs[i].type == "checkbox") {
+                        inputs[i].checked = false;
+                    }
+                }
+                element.firstChild.innerHTML = t('Select All');
+            }
+        };
+    }
+});
+script;
+?>
+<?= /* @noEscape */ $secureRenderer->renderTag('script', [], $scriptString, false) ?>
