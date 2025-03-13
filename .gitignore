@@ -73,3 +73,8 @@ atlassian*
 /generated/*
 !/generated/.htaccess
 .DS_Store
+# Ignore all .sql files
+*.sql
+
+# Ignore all .gz files
+*.gz
