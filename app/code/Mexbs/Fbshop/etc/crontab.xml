@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="fbshop">
+        <job name="fbshop_generate_feed" instance="Mexbs\Fbshop\Cron\GenerateFeed" method="execute">
+            <config_path>fbshop/feed/feed_generation_schedule</config_path>
+        </job>
+        <job name="fbshop_generate_feed_now" instance="Mexbs\Fbshop\Cron\GenerateFeedTriggeredManually" method="execute">
+              <schedule>0 0 0 0 0</schedule>
+        </job>
+    </group>
+</config>

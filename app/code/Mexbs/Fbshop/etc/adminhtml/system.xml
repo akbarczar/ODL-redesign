@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="fbshop" translate="label" type="text" sortOrder="1500" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Facebook Shop Integration</label>
+            <tab>general</tab>
+            <resource>Mexbs_Fbshop::config</resource>
+            <group id="feed" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Feed Settings</label>
+                <field id="feed_generation_schedule_enabled" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Feed Generation Schedule Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="feed_generation_schedule" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Feed Generation Schedule</label>
+                </field>
+                <field id="append_feed_id_to_product_ids" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Append the Feed ID to the product IDs</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="feed_id" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Feed ID</label>
+                    <comment>This can be any string or number that idenitifes the Feed (eg: ID, creation date). The string should only include English letters or digits.</comment>
+                    <depends>
+                        <field id="*/*/append_feed_id_to_product_ids">1</field>
+                    </depends>
+                </field>
+                <field id="append_parent_id_to_product_ids" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Append Parent ID to the children product IDs</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>This should be set to "Yes" if you have products that are children of more than one parent (to avoid duplicate lines in the feed)</comment>
+                </field>
+				<field id="remove_out_of_stock_products_from_feed" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Remove out of stock products from the feed</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="is_apply_catalog_rules" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Apply catalog rules on product prices</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="customer_group_id_for_catalog_rules" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Customer group for catalog rules</label>
+                    <source_model>Mexbs\Fbshop\Model\Config\Source\CustomerGroup</source_model>
+                    <depends>
+                        <field id="*/*/is_apply_catalog_rules">1</field>
+                    </depends>
+                </field>
+                <field id="is_price_incl_tax" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add prices including tax</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="customer_group_id_for_tax" translate="label" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Customer group for tax</label>
+                    <source_model>Mexbs\Fbshop\Model\Config\Source\CustomerGroup</source_model>
+                    <depends>
+                        <field id="*/*/is_price_incl_tax">1</field>
+                    </depends>
+                </field>
+                <field id="include_nonvisible_products" translate="label" type="select" sortOrder="115" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Include products that are not invisible individually</label>
+                    <comment>Children of configurable products will be automatically included regardless what is set in this configuration</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="inherit_image_from_parent" translate="label" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Inherit the image from the parent product (in Configurable products)</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="field_to_construct_id" translate="label" type="select" sortOrder="125" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Field to use to construct ID</label>
+                    <source_model>Mexbs\Fbshop\Model\Config\Source\IdSku</source_model>
+                </field>
+                <field id="default_brand" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default brand name</label>
+                    <comment>This brand name will be used if the product has no mapped brand name</comment>
+                </field>
+                <field id="enable_tracking" translate="label" type="select" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Tracking</label>
+                    <comment>When enabled, you will see in the order whether the customer came from Facebook</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="all_products_in_feed" translate="label" type="select" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add all products to feed</label>
+                    <comment>When enabled, the extension will add all products to the feed, ignoring the "Is In Feed" flag in the products</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="product_redirect" translate="label" type="select" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Where should the products on Facebook redirect?</label>
+                    <source_model>Mexbs\Fbshop\Model\Config\Source\ProductRedirect</source_model>
+                </field>
+                <field id="add_custom_options" translate="label" type="select" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add custom options to the feed?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="feed_file_location" translate="label" type="select" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Feed file location</label>
+                    <source_model>Mexbs\Fbshop\Model\Config\Source\FeedFileLocation</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

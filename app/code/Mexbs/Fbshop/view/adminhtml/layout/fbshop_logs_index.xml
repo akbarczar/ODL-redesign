@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Mexbs\Fbshop\Block\Adminhtml\Logs\Grid\Container" name="adminhtml.block.fbshop.logs.grid.container">
+                <block class="Magento\Backend\Block\Widget\Grid" name="adminhtml.block.fbshop.logs.grid" as="grid">
+                    <arguments>
+                        <argument name="id" xsi:type="string">fbshop_grid</argument>
+                        <argument name="dataSource" xsi:type="object">Mexbs\Fbshop\Model\ResourceModel\Log\Collection</argument>
+                        <argument name="default_sort" xsi:type="string">sort_order</argument>
+                        <argument name="default_dir" xsi:type="string">ASC</argument>
+                        <argument name="save_parameters_in_session" xsi:type="string">1</argument>
+                    </arguments>
+                    <block class="Magento\Backend\Block\Widget\Grid\ColumnSet" as="grid.columnSet" name="adminhtml.fbshop.grid.columnSet">
+                        <arguments>
+                            <argument name="rowUrl" xsi:type="array">
+                                <item name="path" xsi:type="string">fbshop/logs/view</item>
+                                <item name="extraParamsTemplate" xsi:type="array">
+                                    <item name="id" xsi:type="string">getLogId</item>
+                                </item>
+                            </argument>
+                        </arguments>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="log_id">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">ID</argument>
+                                <argument name="index" xsi:type="string">log_id</argument>
+                                <argument name="filter_index" xsi:type="string">main_table.log_id</argument>
+                                <argument name="column_css_class" xsi:type="string">col-id</argument>
+                                <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="started_at">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Started at</argument>
+                                <argument name="type" xsi:type="string">started_at</argument>
+                                <argument name="timezone" xsi:type="boolean">false</argument>
+                                <argument name="index" xsi:type="string">started_at</argument>
+                                <argument name="column_css_class" xsi:type="string">col-date</argument>
+                                <argument name="header_css_class" xsi:type="string">col-date</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="finished_at">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Finished at</argument>
+                                <argument name="type" xsi:type="string">finished_at</argument>
+                                <argument name="timezone" xsi:type="boolean">false</argument>
+                                <argument name="index" xsi:type="string">finished_at</argument>
+                                <argument name="column_css_class" xsi:type="string">col-date</argument>
+                                <argument name="header_css_class" xsi:type="string">col-date</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="triggered_by">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Triggered By</argument>
+                                <argument name="index" xsi:type="string">triggered_by</argument>
+                                <argument name="filter_index" xsi:type="string">main_table.triggered_by</argument>
+                                <argument name="type" xsi:type="string">text</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="store_code">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Store Code</argument>
+                                <argument name="index" xsi:type="string">store_code</argument>
+                                <argument name="filter_index" xsi:type="string">main_table.store_code</argument>
+                                <argument name="type" xsi:type="string">text</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="product_ids">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Product IDs</argument>
+                                <argument name="index" xsi:type="string">product_ids</argument>
+                                <argument name="filter_index" xsi:type="string">main_table.product_ids</argument>
+                                <argument name="type" xsi:type="string">text</argument>
+                                <argument name="renderer" xsi:type="string">Mexbs\Fbshop\Block\Adminhtml\Grid\Column\Renderer\ShortenText</argument>
+                                <argument name="width" xsi:type="string">200</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="status">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Status</argument>
+                                <argument name="index" xsi:type="string">status</argument>
+                                <argument name="filter_index" xsi:type="string">main_table.status</argument>
+                                <argument name="type" xsi:type="string">text</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="message">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Message</argument>
+                                <argument name="index" xsi:type="string">message</argument>
+                                <argument name="filter_index" xsi:type="string">main_table.message</argument>
+                                <argument name="type" xsi:type="string">text</argument>
+                                <argument name="renderer" xsi:type="string">Mexbs\Fbshop\Block\Adminhtml\Grid\Column\Renderer\ShortenText</argument>
+                            </arguments>
+                        </block>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Massaction" name="adminhtml.block.fbshop.logs.massactions"  as="grid.massaction">
+                        <arguments>
+                            <argument name="massaction_id_field" xsi:type="string">log_id</argument>
+                            <argument name="form_field_name" xsi:type="string">log_id</argument>
+                            <argument name="use_select_all" xsi:type="string">1</argument>
+                            <argument name="options" xsi:type="array">
+                                <item name="delete" xsi:type="array">
+                                    <item name="label" xsi:type="string" translate="true">Delete</item>
+                                    <item name="url" xsi:type="string">*/*/massDelete</item>
+                                    <item name="confirm" xsi:type="string" translate="true">Are you sure that you want to delete the selected items?</item>
+                                </item>
+                            </argument>
+                        </arguments>
+                    </block>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

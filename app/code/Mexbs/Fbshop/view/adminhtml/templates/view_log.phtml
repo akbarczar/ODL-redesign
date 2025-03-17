@@ -1,0 +1,61 @@
+<?php
+/**
+ * @var $block \Mexbs\Fbshop\Block\Adminhtml\ViewLog
+ */
+$currentFeedLog = $block->getCurrentFeedLog();
+?>
+<style>
+    fieldset.fb-feed-log{
+        line-height: 3.2rem;
+    }
+</style>
+<fieldset class="admin__fieldset fb-feed-log">
+    <div class="admin__field">
+        <label class="admin__field-label">
+            <span>Log ID</span>
+        </label>
+        <div class="admin__field-control">
+            <label class><?php echo $currentFeedLog->getId() ?></label>
+        </div>
+    </div>
+    <div class="admin__field">
+        <label class="admin__field-label">
+            <span>Started At</span>
+        </label>
+        <div class="admin__field-control">
+            <label class><?php echo $block->getDateFromTimestamp($currentFeedLog->getStartedAt()) ?></label>
+        </div>
+    </div>
+    <div class="admin__field">
+        <label class="admin__field-label">
+            <span>Finished At</span>
+        </label>
+        <div class="admin__field-control">
+            <label class><?php echo $block->getDateFromTimestamp($currentFeedLog->getFinishedAt()) ?></label>
+        </div>
+    </div>
+    <div class="admin__field">
+        <label class="admin__field-label">
+            <span>Status</span>
+        </label>
+        <div class="admin__field-control">
+            <label class><?php echo $currentFeedLog->getStatus() ?></label>
+        </div>
+    </div>
+    <div class="admin__field">
+        <label class="admin__field-label">
+            <span>Message</span>
+        </label>
+        <div class="admin__field-control">
+            <label class><?php echo $currentFeedLog->getMessage() ?></label>
+        </div>
+    </div>
+    <div class="admin__field">
+        <label class="admin__field-label">
+            <span>Product IDs</span>
+        </label>
+        <div class="admin__field-control">
+            <label class><?php echo $currentFeedLog->getProductIds() ?></label>
+        </div>
+    </div>
+</fieldset>
