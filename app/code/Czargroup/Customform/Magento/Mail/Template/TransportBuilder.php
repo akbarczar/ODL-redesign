@@ -26,7 +26,7 @@ use Magento\Framework\Mail\TransportInterface;
 use Magento\Framework\Mail\TransportInterfaceFactory;
 use Magento\Framework\ObjectManagerInterface;
 use Magento\Framework\Phrase;
-use Zend\Mime\Mime;
+use Laminas\Mime\Mime;
 use Laminas\Mime\PartFactory;
 
 /**
