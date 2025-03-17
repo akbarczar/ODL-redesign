@@ -1,0 +1,24 @@
+<!--
+/**
+ * Copyright (c) 2025 Czargroup Technologies. All rights reserved.
+ *
+ * @package Czargroup_Customform
+ * @author Czargroup Technologies
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="\Magento\Framework\Mail\Template\TransportBuilder" type="\Czargroup\Customform\Magento\Mail\Template\TransportBuilder" />
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="czargroup_customform_confirmform_listing_data_source" xsi:type="string">Czargroup\Customform\Model\ResourceModel\Confirmform\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Czargroup\Customform\Model\ResourceModel\Confirmform\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">confirm_form</argument>
+            <argument name="resourceModel" xsi:type="string">Czargroup\Customform\Model\ResourceModel\Confirmform</argument>
+        </arguments>
+    </virtualType>
+</config>

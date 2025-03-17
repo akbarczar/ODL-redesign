@@ -1,0 +1,369 @@
+<style>
+@media only screen and (min-width: 768px) {
+    .contact-us-container{
+        width: 100%;
+        padding: 0px 20px;
+    }
+}
+.hidden {
+    display: none;
+}
+input[type="file"] {
+    display: block;
+    margin: 10px 0px;
+}
+.pre-container {
+    display: flex;
+}
+.contact-reason-section, .contact-form-section {
+    margin-bottom: 20px;
+}
+
+.info-box {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+.info-text {
+    color: red; /* Set text color to red */
+    font-weight: bold; /* Make text bold */
+}
+
+.confirmation-checkbox {
+    margin: 15px 0;
+}
+
+#submit-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+.contact-us-container {
+    width: 60%;
+    max-width: 100%;
+    margin: 0px auto;
+}
+</style>
+
+<div class="contact-us-container">
+    <!-- Introductory Text -->
+    <p>Thank you for visiting our contact us page. During our peak seasons, we ask for up to 48 hours to reply and resolve your query.</p>
+    <p>If you are an existing customer, please input your order number below – this will help us locate your information faster, allowing for a quicker reply.</p>
+<form id="contact-form" action="/customform/index/index" method="post" enctype="multipart/form-data">
+    <!-- Order Number Field -->
+    <label for="order-number">Order Number (if applicable):</label>
+    <input type="text" id="order-number" name="order_number" placeholder="Enter your order number" />
+   
+   <!-- Purchase Location Dropdown -->
+    <div class="contact-reason-section">
+        <h2>Where did you make your purchase?</h2>
+        <select id="purchase-location-dropdown" name="purchase_location">
+           <option value="">--Please Select--</option>
+<option value="OutdoorLivingUK or WaveWaterFeatures">OutdoorLivingUK or WaveWaterFeatures</option>
+<option value="Garden Show or Exhibition">Garden Show or Exhibition</option>
+<option value="B&amp;Q Outlet">B&amp;Q Outlet</option>
+<option value="The Range Outlet">The Range Outlet</option>
+<option value="Robert Dyas Outlet">Robert Dyas Outlet</option>
+<option value="Amazon">Amazon</option>
+<option value="Ebay">Ebay</option>
+<option value="Other">Other</option>
+        </select>
+    </div>
+
+    <!-- Contact Reason Dropdown -->
+    <div class="contact-reason-section">
+        <h2>Please select the reason you wish to contact us:</h2>
+        <select id="contact-reason-dropdown" name="reasonforcontact">
+           <option value="">--Please Select--</option>
+<option value="When / Where is my delivery">When / Where is my delivery</option>
+<option value="I need to Report Damage">I need to Report Damage</option>
+<option value="Missing an item from delivery">Missing an item from delivery</option>
+<option value="Other Solar Related Question">Other Solar Related Question</option>
+<option value="Solar Powered Troubleshooting LED issues">Solar Powered Troubleshooting LED issues</option>
+<option value="Mains Power Troubleshooting">Mains Power Troubleshooting</option>
+<option value="Sales Enquiry">Sales Enquiry</option>
+<option value="Trade Enquiry">Trade Enquiry</option>
+<option value="Marketing">Marketing</option>
+<option value="Other">Other</option>
+        </select>
+    </div>
+
+    <!-- Information Box -->
+    <div id="info-box" class="info-box hidden">
+        <h3>Information</h3>
+        <p id="info-text" class="info-text"></p>
+        <iframe id="info-video" width="100%" height="315" class="hidden" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <!-- Confirmation Checkbox -->
+    <div class="confirmation-checkbox">
+        <input type="checkbox" id="info-confirm" required>
+        <label for="info-confirm">I confirm I have read the information box above</label>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-form-section">
+        <h2>Contact Us</h2>
+        
+            <label for="name">Your Name *</label>
+            <input type="text" id="name" name="name" required />
+
+            <label for="email">Your Email *</label>
+            <input type="email" id="email" name="email" required />
+<label for="phone-number">Your Mobile/Telephone Number *</label>
+<input type="tel" id="phone-number" name="phone_number" placeholder="Enter your mobile/telephone number" required />
+            <label for="message">Your Message *</label>
+            <textarea id="message" name="message" rows="5" required maxlength="300"></textarea>
+            <span id="char-count">0/300 characters</span>
+
+            <label for="attachment">Attach an Image (Required for damage claims) *</label>
+            <input type="file" id="attachment" name="attachment" accept="image/*" />
+            <input type="file" id="attachment_1" name="attachment_1" accept="image/*" />
+            <input type="file" id="attachment_2" name="attachment_2" accept="image/*" />
+<div class="pre-container">
+<div id="image-preview"></div>
+<div id="image-preview-1"></div>
+<div id="image-preview-2"></div></div>
+            <button type="submit" id="submit-button" disabled>Submit</button>
+        </form>
+    </div>
+</div>
+</div>
+<script>
+    document.getElementById('attachment').addEventListener('change', function (event) {
+        const previewContainer = document.getElementById('image-preview');
+        previewContainer.innerHTML = ''; // Clear previous previews
+
+        const files = event.target.files;
+        if (files) {
+            Array.from(files).forEach((file) => {
+                if (file.type.startsWith('image/')) { // Ensure it's an image
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.style.width = '100px'; // Set preview dimensions
+                        img.style.height = '100px';
+                        img.style.margin = '5px';
+                        img.style.objectFit = 'cover';
+                        previewContainer.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+    });
+	  document.getElementById('attachment_1').addEventListener('change', function (event) {
+        const previewContainer = document.getElementById('image-preview-1');
+        previewContainer.innerHTML = ''; // Clear previous previews
+
+        const files = event.target.files;
+        if (files) {
+            Array.from(files).forEach((file) => {
+                if (file.type.startsWith('image/')) { // Ensure it's an image
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.style.width = '100px'; // Set preview dimensions
+                        img.style.height = '100px';
+                        img.style.margin = '5px';
+                        img.style.objectFit = 'cover';
+                        previewContainer.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+    });
+	  document.getElementById('attachment_2').addEventListener('change', function (event) {
+        const previewContainer = document.getElementById('image-preview-2');
+        previewContainer.innerHTML = ''; // Clear previous previews
+
+        const files = event.target.files;
+        if (files) {
+            Array.from(files).forEach((file) => {
+                if (file.type.startsWith('image/')) { // Ensure it's an image
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.style.width = '100px'; // Set preview dimensions
+                        img.style.height = '100px';
+                        img.style.margin = '5px';
+                        img.style.objectFit = 'cover';
+                        previewContainer.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+    });
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const infoContent = {
+        "When / Where is my delivery": { text: "Please note, not all items are shipped from a central location. Items with SKUs starting with KL/, AQ/, AO/, or EC/ may take up to 10 working days from the order date for delivery. Kindly refer to your item’s SKU prefix to determine the estimated delivery timeframe.", video: null },
+        "I need to Report Damage": { text: "To assist us in swiftly processing your damage claim, please upload up to three clear images showing the item and any visible damage using the upload button below. It is essential that images are attached via this form, as we will be unable to respond or proceed with your claim without them. All damage claims must be submitted within 2 days of delivery to ensure prompt and accurate handling of your request.", video: null },
+        "Missing an item from delivery": { text: "Please specify the missing part or item in the message section. For pump head adaptors, please first consult our FAQ videos to verify if this part is required for your model. Some features include a pre-installed black fitting; if using solar power, this fitting may need to be removed before operation.", video: null },
+        "Other Solar Related Question": { text: "Please review the troubleshooting video below for solar-related questions. This video covers common operational tips and seasonal performance factors that could impact solar efficiency.", video: "https://www.youtube.com/embed/wmSNT9Plz_k" },
+        "Solar Powered Troubleshooting LED issues": { text: "To resolve potential LED issues with your solar kit, please watch the troubleshooting video below. It provides guidance on resolving typical LED connectivity and functionality questions.", video: "https://www.youtube.com/embed/EDNp0cSbg4w" },
+        "Mains Power Troubleshooting": { text: "Before submitting your query, we ask you to review the troubleshooting video below. Please note, mains components are covered by a 3-month wear-and-tear policy. Items such as transformers, pumps, and LEDs may not be eligible for warranty but can be purchased in our accessories section.", video: "https://www.youtube.com/embed/hOeFM-2salc" },
+        "Sales Enquiry": { text: "Thank you for reaching out. Please note that we prioritize existing customer support inquiries and aim to respond to your request within 72 hours.", video: null },
+        "Trade Enquiry": { text: "Thank you for reaching out. Please note that we prioritize existing customer support inquiries and aim to respond to your request within 72 hours.", video: null },
+        "Marketing": { text: "Thank you for reaching out. Please note that we prioritize existing customer support inquiries and aim to respond to your request within 72 hours.", video: null },
+        "Other": { text: "Please include detailed information about your request in the message box below. Our team will respond as soon as possible with the next steps", video: null }
+    };
+
+    const infoBox = document.getElementById("info-box");
+    const infoText = document.getElementById("info-text");
+    const infoVideo = document.getElementById("info-video");
+    const dropdown = document.getElementById("contact-reason-dropdown");
+    const charCountDisplay = document.getElementById("char-count");
+    const messageField = document.getElementById("message");
+    const attachmentInput = document.getElementById("attachment");
+    const submitButton = document.getElementById("submit-button");
+    const infoConfirm = document.getElementById("info-confirm");
+
+    // Update character count for the message field
+    messageField.addEventListener("input", function() {
+        charCountDisplay.textContent = `${messageField.value.length}/300 characters`;
+    });
+
+    // Display the info box based on dropdown selection
+    dropdown.addEventListener("change", function() {
+        const selectedOption = dropdown.value;
+        const content = infoContent[selectedOption];
+
+        if (content) {
+            infoText.textContent = content.text;
+            if (content.video) {
+                infoVideo.src = content.video;
+                infoVideo.classList.remove("hidden");
+            } else {
+                infoVideo.src = "";
+                infoVideo.classList.add("hidden");
+            }
+            infoBox.classList.remove("hidden");
+        } else {
+            infoBox.classList.add("hidden");
+        }
+    });
+
+    // Validate attachments
+    attachmentInput.addEventListener("change", function() {
+        const files = attachmentInput.files;
+        if (files.length > 3) {
+            alert("You can only upload a maximum of 3 files.");
+            attachmentInput.value = "";
+        } else {
+            for (let file of files) {
+                if (file.size > 10 * 1024 * 1024) {
+                    alert("Each file must be less than 10MB.");
+                    attachmentInput.value = "";
+                    break;
+                }
+            }
+        }
+    });
+
+    // Enable submit button when form is complete
+    function checkFormCompletion() {
+        const allFilled = document.getElementById("name").value &&
+                          document.getElementById("email").value &&
+                          messageField.value &&
+                          infoConfirm.checked;
+        submitButton.disabled = !allFilled;
+        submitButton.style.backgroundColor = allFilled ? "green" : "";
+    }
+
+    document.querySelectorAll("input, textarea, select").forEach(field => {
+        field.addEventListener("input", checkFormCompletion);
+        field.addEventListener("change", checkFormCompletion);
+    });
+});
+document.getElementById("contact-reason-dropdown").addEventListener("change", function() {
+    const attachmentField = document.getElementById("attachment");
+    const submitButton = document.getElementById("submit-button");
+    
+    // Check if the "Report Damage" option is selected
+    if (this.value === "I need to Report Damage") {
+        attachmentField.required = true;
+    } else {
+        attachmentField.required = false;
+    }
+    
+    // Check if all conditions for submission are met
+    checkFormCompletion();
+});
+
+document.getElementById("contact-form").addEventListener("input", checkFormCompletion);
+
+function checkFormCompletion() {
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+    const confirmChecked = document.getElementById("info-confirm").checked;
+    const attachmentField = document.getElementById("attachment");
+    const isAttachmentValid = !attachmentField.required || attachmentField.files.length > 0;
+    
+    // Enable submit button only if all required fields are filled
+    document.getElementById("submit-button").disabled = !(name && email && message && confirmChecked && isAttachmentValid);
+}
+
+</script>
+
+<script>
+require(['jquery', 'jquery/ui'], function($){
+  $(document).ready(function () {
+        const fileInputs = $('input[type="file"]');
+        const submitButton = $('#submit-button');
+        const dropdown = $('#contact-reason-dropdown');
+
+        // Function to check if all file inputs are filled
+        function areFilesFilled() {
+            let allFilled = true;
+            fileInputs.each(function () {
+                if ($(this).val() === '') {
+                    allFilled = false;
+                    return false; // Break the loop
+                }
+            });
+            return allFilled;
+        }
+
+        // Event listener for dropdown change
+        dropdown.on('change', function () {
+            const selectedValue = $(this).val();
+
+            if (selectedValue === 'I need to Report Damage') {
+                // Make file inputs required
+                fileInputs.attr('required', true);
+
+                // Disable the submit button initially
+                submitButton.prop('disabled', true);
+
+                // Enable button if all file inputs are filled
+                fileInputs.on('input', function () {
+                    submitButton.prop('disabled', !areFilesFilled());
+                });
+            } else {
+                // Make file inputs optional
+                fileInputs.removeAttr('required');
+
+                // Enable the submit button
+                submitButton.prop('disabled', false);
+
+                // Remove the event listener for input on file inputs
+                fileInputs.off('input');
+            }
+        });
+
+        // Initial state (if the dropdown already has a selected value)
+        dropdown.trigger('change');
+    });
+});
+    
+</script>
