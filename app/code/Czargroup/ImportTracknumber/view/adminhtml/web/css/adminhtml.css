@@ -7,3 +7,7 @@ li#menu-vendor_extension-menu_id > a > span {
 li#menu-czargroup-importtracknumber-importtracknumber .submenu a:before {
     content: none;
 }
+li#menu-czargroup-importtracknumber-importtracknumber a.action-close._close:before {
+    content: '\e62f' ! IMPORTANT;
+    transition: color 0.1s linear;
+}

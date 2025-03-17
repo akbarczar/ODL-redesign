@@ -243,9 +243,6 @@ body.cms-about-us, body.cms-term-condition, body.cms-faq-page {
     font-family: 'Cormorant Garamond', serif;
     line-height: 1;
     display: block;
-    text-align: left;
-    margin: 0 0 15px;
-    padding: 0;
 }
 .minicart-wrapper .block-minicart .minicart-items-wrapper {
     border: none;

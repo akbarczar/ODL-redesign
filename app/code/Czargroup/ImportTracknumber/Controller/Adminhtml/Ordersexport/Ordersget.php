@@ -89,7 +89,27 @@ private $preOrderCollection;
 					//$logger->info("after");
 				}
 				else{ */
-					$orders = $connection->fetchAll("SELECT * FROM $tblSalesOrder WHERE created_at >= '$datepickerFrom' AND created_at <= '$datepickerTo' AND  product_type != 'configurable' GROUP BY order_id");
+					// $orders = $connection->fetchAll("SELECT * FROM $tblSalesOrder WHERE created_at >= '$datepickerFrom' AND created_at <= '$datepickerTo' AND  product_type != 'configurable' GROUP BY order_id");
+					$statusMap = [
+						'cancelled' => 'canceled', 
+						'partial refund' => 'closed',  
+					];
+					if ($filteredBy == '' || $filteredBy == 'All') {
+						$statusCondition = ''; // No filtering by status
+					} else {
+					  
+						$mappedStatus = isset($statusMap[$filteredBy]) ? $statusMap[$filteredBy] : $filteredBy;
+						$statusCondition = "AND sales_order.status = '$mappedStatus'";
+					}
+		
+					$orders = $connection->fetchAll("SELECT * 
+						FROM $tblSalesOrder 
+						INNER JOIN sales_order ON $tblSalesOrder.order_id = sales_order.entity_id
+						WHERE $tblSalesOrder.created_at >= '$datepickerFrom' 
+						  AND $tblSalesOrder.created_at <= '$datepickerTo' 
+						  AND $tblSalesOrder.product_type != 'configurable' 
+						  $statusCondition
+						GROUP BY $tblSalesOrder.order_id;");
 					//$logger->info("else");
 				//}
 				//$all = $datefrom."+".$dateto;
