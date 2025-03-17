@@ -1,0 +1,55 @@
+<!--
+/**
+ * Copyright (c) 2025 Czargroup Technologies. All rights reserved.
+ *
+ * @package Czargroup_Customform
+ * @author Czargroup Technologies
+ */
+-->
+<!--@subject {{trans "Outdoorliving Customer Query"}} @-->
+<!--@vars {
+"var data.customer_name":"Name",
+"var data.subject":"Sender Email",
+"var data.telephone":"Sender Telephone",
+"var data.orderid":"Sender Order Id",
+"var data.reasonforcontact":"Reason For Contact",
+"var data.purchase_location":"Purchase Location",
+"var data.comment":"Sender comment"
+
+} @-->
+
+
+{{template config_path="design/email/header_template"}}
+
+<body style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<div style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<table cellspacing="0" cellpadding="0" border="0" height="100%" width="100%">
+		<tr>
+			<td align="center" valign="top" style="padding:20px 0 20px 0">
+				<!-- [ header starts here] -->
+				<table bgcolor="FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650" style="border:1px solid #E0E0E0;">
+				<!-- [ middle starts here] -->
+					<tr>
+						<td valign="top">
+							<h1 style="font-size:22px; font-weight:normal; line-height:22px; margin:0 0 11px 0;">{{var subject}}</h1>
+						</td>
+					</tr>
+					<tr><td>
+						<table>
+							<tr><td><strong>Name</strong>: {{var name}}</td></tr>
+							<tr><td><strong>Email</strong>: {{var email}}</td></tr>
+							<tr><td><strong>Telephone</strong>: {{var telephone}}</td></tr>
+							<tr><td><strong>Order Id</strong>: {{var orderid}}</td></tr>
+							<tr><td><strong>Reason For Contact</strong>: {{var reasonforcontact}}</td></tr>
+							<tr><td><strong>Purchase Location</strong>: {{var purchase_location}}</td></tr>
+							<tr><td><strong>comment</strong>: {{var comment}}</td></tr>
+							
+						</table>
+					</td></tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</div>
+</body>
+

@@ -1,0 +1,110 @@
+<?php
+/**
+ * Copyright (c) 2025 Czargroup Technologies. All rights reserved.
+ *
+ * @package Czargroup_Customform
+ * @author Czargroup Technologies
+ */
+
+// @codingStandardsIgnoreFile
+/** @var \Magento\Contact\Block\ContactForm $block */
+?>
+<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+<form class="form contact"
+      action-xhr="<?= $block->escapeUrl($block->getFormAction()) ?>"
+      id="contact-form"
+      method="post"
+      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+      data-mage-init='{"validation":{}}' enctype="multipart/form-data">
+      <?php echo $block->getBlockHtml('formkey')?>
+    <fieldset class="fieldset">
+		<p>
+			<b><u>NOTICE</u></b><br/><br/>
+			Unfortunately we are working on a skeleton staff during this pandemic and at the present time and have a high volume of orders.<br/>
+			During this time we are unable to respond to your emails within a reasonable time which we duly apologise.<br/>
+			Our office does remain open between 10-4 where we will be able to deal with your enquiry.<br/>
+			If you are progressing an order, our normal delivery time is 5-7 days, on occasions due to limited space on carriers these are sometimes extending to 10 days and we will update your order with the tracking number.  Of course our aim is to deliver your order as fast as possible.<br/>
+			Please note we are unable to deal with enquiries relating to ordering spare parts such as pumps and transformer during this time and they must be ordered on-line.<br/><br/>
+			Thank you for your time and keep safe and we appreciate your patience.
+		</p><hr style="border-color: #000;" />
+        <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('contact_form_content')->toHtml(); ?>
+        <p class="indoor-p">Contact Us</p>
+        <div class="field email required">
+            <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+            <div class="control">
+                <input name="email" id="email" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('email') ?: $this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+            </div>
+        </div>
+        <div class="field telephone">
+            <label class="label" for="telephone"><span><?= $block->escapeHtml(__('Phone Number')) ?></span></label>
+            <div class="control">
+                <input name="telephone" id="telephone" title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('telephone')) ?>" class="input-text" type="text" />
+            </div>
+        </div>
+        <div class="field orderid">
+            <label class="label" for="orderid"><span><?= $block->escapeHtml(__('Order Number – if applicable')) ?></span></label>
+            <div class="control">
+                <input name="orderid" id="orderid" title="<?= $block->escapeHtmlAttr(__('Order Number – if applicable')) ?>"  class="input-text" type="text" />
+            </div>
+        </div>
+        <div class="field name">
+            <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
+            <div class="control">
+                <input name="name" id="name" title="<?= $block->escapeHtmlAttr(__('Name')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('name') ?: $this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text" />
+            </div>
+        </div>
+        <div class="field reasonforcontact">
+            <label class="label" for="reasonforcontact"><span><?= $block->escapeHtml(__('Reason for contact')) ?></span></label>
+            <div class="control">
+                <select name="reasonforcontact" id="reasonforcontact" title="<?= $block->escapeHtmlAttr(__('Reason for contact')) ?>" class="input-text form-control-dup">
+
+                            <option value=""><?= $block->escapeHtmlAttr(__('Please select...')) ?></option>
+                            <option value="<?= $block->escapeHtmlAttr(__('Item Query / Usage Instructions')) ?>"><?= $block->escapeHtmlAttr(__('Item Query / Usage Instructions')) ?></option>
+                            <option value="<?= $block->escapeHtmlAttr(__('Delivery Query')) ?>"><?= $block->escapeHtmlAttr(__('Delivery Query')) ?></option>
+                            <option value="<?= $block->escapeHtmlAttr(__('Faults or Damages or Missing Components')) ?>"><?= $block->escapeHtmlAttr(__('Faults or Damages or Missing Components')) ?></option>
+                            <option value="<?= $block->escapeHtmlAttr(__('Cancellations / Refunds')) ?>"><?= $block->escapeHtmlAttr(__('Cancellations / Refunds')) ?></option>
+                            <option value="<?= $block->escapeHtmlAttr(__('Sales / Stock Enquiries')) ?>"><?= $block->escapeHtmlAttr(__('Sales / Stock Enquiries')) ?></option>
+                            <option value="<?= $block->escapeHtmlAttr(__('Marketing Enquires')) ?>"><?= $block->escapeHtmlAttr(__('Marketing Enquires')) ?></option>
+                            <option value="<?= $block->escapeHtmlAttr(__('Other')) ?>"><?= $block->escapeHtmlAttr(__('Other')) ?></option>
+                        </select>
+            </div>
+        </div>
+        <div class="field comment">
+            <label class="label" for="comment"><span><?= $block->escapeHtml(__('Brief Description – Max 1500 characters')) ?></span></label>
+            <div class="control">
+                <textarea maxlength="1500" name="comment" id="comment" title="<?= $block->escapeHtmlAttr(__('Brief Description – Max 1500 characters')) ?>" class="input-text" data-validate="{required:true}"><?= $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getPostValue('comment')) ?></textarea>
+            </div>
+        </div>
+        <div class="field attachment1" style="display:block;">
+            <label for="attachment1"><?= $block->escapeHtml(__('Attachment1')) ?></label>
+          
+            <input name="upload_document1" type="file" value="" />
+        </div>
+        <div class="field attachment2" style="display:block;">
+            <label for="attachment2"><?= $block->escapeHtml(__('Attachment2')) ?></label>                   
+            <input name="upload_document2" type="file" value="" />
+        </div>
+        <div class="field attachment3" style="display:block;">
+            <label for="attachment3"><?= $block->escapeHtml(__('Attachment3')) ?></label>                   
+            <input name="upload_document3" type="file" value="" />
+        </div>
+        <div class="field attachment4" style="display:block;">
+            <label for="attachment4"><?= $block->escapeHtml(__('Attachment4')) ?></label>                   
+            <input name="upload_document4" type="file" value="" />
+        </div>
+        <div class="field attachment5" style="display:block;">
+            <label for="attachment5"><?= $block->escapeHtml(__('Attachment5')) ?></label>                   
+            <input name="upload_document5" type="file" value="" />
+        </div>
+        
+        <?= $block->getChildHtml('form.additional.info') ?>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <input type="hidden" name="hideit" id="hideit" value="" />
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Submit')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>
