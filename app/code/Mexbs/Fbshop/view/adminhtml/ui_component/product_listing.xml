@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+<listingToolbar name="listing_top">
+    <massaction name="listing_massaction">
+        <action name="fb_update">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="type" xsi:type="string">is_in_feed</item>
+                    <item name="label" xsi:type="string" translate="true">Change product Facebook Feed status</item>
+                </item>
+            </argument>
+            <argument name="actions" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="type" xsi:type="string">in_feed</item>
+                    <item name="label" xsi:type="string" translate="true">In Feed</item>
+                    <item name="url" xsi:type="url" path="fbshop/feed/MassChangeIsInFeedStatus">
+                        <param name="is_in_feed">1</param>
+                    </item>
+                </item>
+                <item name="1" xsi:type="array">
+                    <item name="type" xsi:type="string">not_in_feed</item>
+                    <item name="label" xsi:type="string" translate="true">Not in Feed</item>
+                    <item name="url" xsi:type="url" path="fbshop/feed/MassChangeIsInFeedStatus">
+                        <param name="is_in_feed">0</param>
+                    </item>
+                </item>
+            </argument>
+        </action>
+    </massaction>
+</listingToolbar>
+</listing>

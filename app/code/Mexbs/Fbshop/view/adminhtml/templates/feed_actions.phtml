@@ -1,0 +1,176 @@
+<?php
+/**
+ * @var $block \Mexbs\Fbshop\Block\Adminhtml\FeedActions
+ */
+$missingFieldsErrorMessage = $this->getMissingFieldsErrorMessage(true);
+?>
+<div class="feed_actions_store_wrapper">
+    <label for="feed_actions_store">Store view:</label>
+    <select id="feed_actions_store">
+    <?php
+    /**
+     * @var \Magento\Store\Model\Store $store
+     */
+    foreach($block->getStores() as $store): ?>
+        <option value="<?php echo $store->getId() ?>"><?php echo $store->getName() ?> (code:<?php echo $store->getCode() ?>)</option>
+    <?php endforeach; ?>
+    </select>
+</div>
+<?php echo $block->getGenerateButtonHtml() ?>
+<style>
+    .feed-generation-status-title{
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+    .missing-mappings-error,
+    .missing-configurations-error{
+        padding: 5px;
+        background-color: #ff9494;
+        border: 1px solid #000;
+        margin-bottom: 20px;
+    }
+    .download-feed-file{
+        margin-top: 20px;
+    }
+    .feed_actions_store_wrapper{
+        margin: 20px 0;
+        background-color: #f1ff46;
+        padding: 10px 15px;
+    }
+</style>
+<script type="text/javascript">
+    require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/confirm'
+        ],
+        function(
+            $, confirmation
+            ) {
+            window.generationScheduleInProgress = false;
+            $("button.generate-feed").click(function(){
+                window.generationScheduleInProgress = true;
+                $("#feed-generation-status-message").val("Scheduling feed generation ...");
+
+                window.reloadFeedViewByCurrentStoreAndProgress();
+
+                $.ajax({
+                    url: "<?php echo $this->getUrl('fbshop/feed/generateFeed', ['_secure' => $this->getRequest()->isSecure()]) ?>",
+                    data: {form_key : "<?php echo $block->getFormKey(); ?>", store_id: $("#feed_actions_store").val()},
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (response) {
+                        if(!$.isEmptyObject(response)){
+                        }
+                        $("#feed-generation-status-message").val("Scheduled the feed generation. It should start running soon. You can leave this page and come to check later ...");
+
+                        window.generationScheduleInProgress = false;
+                        window.reLoadFeedGenerationStatus();
+                    },
+                    fail: function(xhr, textStatus, errorThrown){
+                        alert('request failed');
+                    }
+                });
+            });
+
+            window.feedStoresData = {};
+            <?php foreach($block->getStores() as $store): ?>
+                window.feedStoresData['<?php echo $store->getId() ?>'] = {};
+                window.feedStoresData['<?php echo $store->getId() ?>']['feed_id'] = "<?php echo $block->getFeedId($store) ?>";
+                window.feedStoresData['<?php echo $store->getId() ?>']['is_append_feed_id'] = "<?php echo $block->getIsAppendFeedId($store) ?>";
+                window.feedStoresData['<?php echo $store->getId() ?>']['feed_file_url'] = "<?php echo $block->getFeedFileUrl($store) ?>";
+                window.feedStoresData['<?php echo $store->getId() ?>']['feed_file_exists'] = <?php echo ($block->getIsFeedFileExists($store->getCode()) ? "true" : "false") ?>;
+            <?php endforeach; ?>
+
+            $("#feed_actions_store").change(function(){
+                window.currentSelectedStoreId = $("#feed_actions_store").val();
+                window.reloadFeedViewByCurrentStoreAndProgress();
+            });
+
+            window.reLoadFeedGenerationStatus = function(){
+                $.ajax({
+                    url: "<?php echo $this->getUrl('fbshop/feed/getFeedGenerationStatus', ['_secure' => $this->getRequest()->isSecure()]) ?>",
+                    data: {form_key : "<?php echo $block->getFormKey(); ?>"},
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (response) {
+                        if(!$.isEmptyObject(response)){
+                            if(response.hasOwnProperty('statusMessage')){
+                                var textArea = $("#feed-generation-status-message");
+                                textArea.val(response['statusMessage']);
+                            }
+                            if(response.hasOwnProperty('feed_stores_data')){
+                                window.feedStoresData = response['feed_stores_data'];
+                            }
+                            if(response.hasOwnProperty('is_generation_in_progress')){
+                                if(response['is_generation_in_progress']){
+                                    window.generationIsInProgress = true;
+                                }else{
+                                    window.generationIsInProgress = false;
+                                }
+                            }
+
+                            if(response.hasOwnProperty('is_generation_scheduled')){
+                                if(response['is_generation_scheduled']){
+                                    window.generationScheduleInProgress = true;
+                                }else{
+                                    window.generationScheduleInProgress = false;
+                                }
+                            }
+                            window.reloadFeedViewByCurrentStoreAndProgress();
+
+                            window.setTimeout(window.reLoadFeedGenerationStatus, 500);
+                        }
+                    }
+                });
+            };
+
+            window.reloadFeedViewByCurrentStoreAndProgress = function(){
+                if(window.generationIsInProgress || window.generationScheduleInProgress){
+                    $("button.generate-feed").attr("disabled", true);
+                    if(window.generationIsInProgress){
+                        $(".download-feed-file").hide();
+                    }
+                }else{
+                    if(window.feedStoresData[window.currentSelectedStoreId]['feed_file_exists']){
+                        $(".download-feed-file a").attr("href", window.feedStoresData[window.currentSelectedStoreId]['feed_file_url']);
+                        $(".download-feed-file").show();
+
+                        $("button.generate-feed").attr("disabled", false);
+                    }
+                    if((window.feedStoresData[window.currentSelectedStoreId]['is_append_feed_id'] == "1") && (window.feedStoresData[window.currentSelectedStoreId]['feed_id'] == '')){
+                        $(".missing-configurations-error").show();
+                        $("button.generate-feed").attr("disabled", true);
+                    }else{
+                        $("button.generate-feed").attr("disabled", false);
+                    }
+                }
+
+            };
+
+            $(document).ready(function(){
+                window.currentSelectedStoreId = $("#feed_actions_store").val();
+                window.reloadFeedViewByCurrentStoreAndProgress();
+
+                window.reLoadFeedGenerationStatus();
+            });
+        }
+    );
+</script>
+<?php
+    if($missingFieldsErrorMessage):
+    ?>
+<div class="missing-mappings-error">
+    <?php echo $missingFieldsErrorMessage ?>
+</div>
+<?php endif; ?>
+<div class="missing-configurations-error" style="display:none;">
+    Please fill in the Feed ID in Stores -> Configuration -> General -> Facebook Shop Integration, or set the configuration "Append the Feed ID to the product IDs" to "No"
+</div>
+<div class="feed-generation-status-title">Feed Generation Log</div>
+<div class="feed-generation-status">
+    <textarea id="feed-generation-status-message" style="margin: 0; width: 50%; height: 200px;">Loading the last feed generation console log...</textarea>
+</div>
+<div class="download-feed-file" style="display:none;">
+    <a href="">Download the feed file</a>
+</div>

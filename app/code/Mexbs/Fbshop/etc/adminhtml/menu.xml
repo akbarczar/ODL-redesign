@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Mexbs_Fbshop::fbshop" title="Facebook Shop Integration" module="Mexbs_Fbshop" sortOrder="110" parent="Magento_Backend::marketing" resource="Mexbs_Fbshop::fbshop"/>
+        <add id="Mexbs_Fbshop::product_attribute_mapping" title="Product Attributes Mapping" module="Mexbs_Fbshop" sortOrder="10" parent="Mexbs_Fbshop::fbshop" action="fbshop/attributesmapping" resource="Mexbs_Fbshop::product_attribute_mapping"/>
+        <add id="Mexbs_Fbshop::product_custom_options_mapping" title="Custom Options Mapping" module="Mexbs_Fbshop" sortOrder="15" parent="Mexbs_Fbshop::fbshop" action="fbshop/customoptionsmapping" resource="Mexbs_Fbshop::product_custom_options_mapping"/>
+        <add id="Mexbs_Fbshop::update_logs" title="Feed Generation Logs" module="Mexbs_Fbshop" sortOrder="20" parent="Mexbs_Fbshop::fbshop" action="fbshop/logs" resource="Mexbs_Fbshop::logs"/>
+        <add id="Mexbs_Fbshop::feed_actions" title="Feed Actions" module="Mexbs_Fbshop" sortOrder="30" parent="Mexbs_Fbshop::fbshop" action="fbshop/feed/feedActions" resource="Mexbs_Fbshop::feed_actions"/>
+    </menu>
+</config>

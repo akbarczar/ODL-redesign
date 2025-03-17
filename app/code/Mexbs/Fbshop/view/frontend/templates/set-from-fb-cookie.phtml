@@ -1,0 +1,49 @@
+<?php
+/**
+ * @var \Mexbs\Fbshop\Helper\Data $fbHelper
+ */
+$fbHelper = $this->helper('Mexbs\Fbshop\Helper\Data');
+?>
+<script type="text/javascript">
+    require([
+        "jquery"
+    ], function($){
+
+        var setCookie = function(name,value,days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days*24*60*60*1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        };
+        var getCookie = function(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        };
+
+        var setIsFromFbCookieIfSetInUrl = function(){
+            var urlParamsString = window.location.search;
+            var result = urlParamsString.match(/<?php echo \Mexbs\Fbshop\Helper\Data::FROMFB_PARAM_NAME ?>=([^&]*)/g);
+
+            if(result instanceof Array){
+                var isFromFb = result[0].replace("<?php echo \Mexbs\Fbshop\Helper\Data::FROMFB_PARAM_NAME ?>=", "");
+
+                if(isFromFb === '1'){
+                    setCookie('<?php echo \Mexbs\Fbshop\Helper\Data::FROMFB_PARAM_NAME ?>', '1', 90);
+                }
+            }
+        };
+
+        $(document).ready(function(){
+            setIsFromFbCookieIfSetInUrl();
+        });
+    });
+</script>

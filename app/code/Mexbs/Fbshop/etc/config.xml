@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <fbshop>
+            <feed>
+                <feed_generation_schedule_enabled>0</feed_generation_schedule_enabled>
+                <feed_generation_schedule>0 */2 * * *</feed_generation_schedule>
+                <append_feed_id_to_product_ids>1</append_feed_id_to_product_ids>
+                <append_parent_id_to_product_ids>1</append_parent_id_to_product_ids>
+				<remove_out_of_stock_products_from_feed>0</remove_out_of_stock_products_from_feed>
+				<is_price_incl_tax>0</is_price_incl_tax>
+				<customer_group_id_for_tax>0</customer_group_id_for_tax>
+				<include_nonvisible_products>0</include_nonvisible_products>
+				<inherit_image_from_parent>0</inherit_image_from_parent>
+				<field_to_construct_id>id</field_to_construct_id>
+				<enable_tracking>0</enable_tracking>
+				<all_products_in_feed>0</all_products_in_feed>
+				<product_redirect>0</product_redirect>
+				<add_custom_options>1</add_custom_options>
+				<feed_file_location>static</feed_file_location>
+            </feed>
+        </fbshop>
+    </default>
+</config>
