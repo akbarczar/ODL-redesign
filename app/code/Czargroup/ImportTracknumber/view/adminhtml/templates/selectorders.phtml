@@ -72,7 +72,7 @@ require([
 					//jQuery(".admin__data-grid-loading-mask").css("height","300px");
 					jQuery.ajax({
 						type: "POST",
-						url: "<?php echo $block->getBaseUrl().'admin_1bjokq/importtracknumber/ordersexport/ordersget'; ?>?isAjax=true",
+						url: "<?php echo $block->getBaseUrl().'admin/importtracknumber/ordersexport/ordersget'; ?>?isAjax=true",
 						data: {dateFrom:datepickerFrom,dateTo:datepickerTo,filterBy:filteredBy},
 						success: function(data) {			
 							if(data){	

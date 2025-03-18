@@ -4,6 +4,8 @@
    <event name="sales_order_creditmemo_save_before">
        <observer name="czargroup_refund_observer_refundreason" instance="Czargroup\Refund\Observer\Refundreason" />
    </event>
-
+<event name="sales_order_creditmemo_save_after">
+       <observer name="czargroup_update_order_grid" instance="Czargroup\Refund\Observer\UpdateOrderGrid" />
+   </event>
 
 </config>
