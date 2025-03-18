@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework/Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="sales_order_grid" resource="sales">
+        <column name="refund_reasons" xsi:type="varchar" length="255" nullable="true" comment="Refund Reasons"/>
+    </table>
+</schema>

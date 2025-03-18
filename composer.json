@@ -24,6 +24,7 @@
         "amasty/module-pre-order-lite": "^2.1",
         "bsscommerce/magento-2-custom-product-attribute-export-extension": "^1.0",
         "ghoster/module-outofstockatlast": "^1.1",
+        "hgati/change-attribute-set": "dev-master",
         "magento/composer-dependency-version-audit-plugin": "~0.1",
         "magento/composer-root-update-plugin": "^2.0.4",
         "magento/product-community-edition": "2.4.7-p2",
@@ -31,7 +32,8 @@
         "mageplaza/module-backend-reindex": "^4.0",
         "mageplaza/module-banner-slider": "^4.0",
         "mageplaza/module-smtp": "^4.7",
-        "mageworx/module-searchsuiteautocomplete": "^2.2"
+        "mageworx/module-searchsuiteautocomplete": "^2.2",
+        "webshopapps/module-matrixrate": "^20.4"
     },
     "autoload": {
         "exclude-from-classmap": [
