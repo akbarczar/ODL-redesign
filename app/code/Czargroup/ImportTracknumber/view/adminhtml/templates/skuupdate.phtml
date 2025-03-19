@@ -1,0 +1,21 @@
+<form action="<?= $block->getUrl('importtracknumber/skuupdate/index') ?>" method="post" enctype="multipart/form-data">
+<?= $block->getBlockHtml('formkey') ?>
+    <fieldset>
+        <legend><?= __('SKU Update') ?></legend>
+
+        <div class="admin__field">
+            <label class="admin__field-label" for="sku_file">
+                <?= __('Upload CSV file') ?>
+            </label>
+            <div class="admin__field-control">
+                <input type="file" name="sku_file" id="sku_file" required />
+            </div>
+        </div>
+
+        <div class="admin__field">
+            <button type="submit" class="action-default primary">
+                <?= __('Update SKUs') ?>
+            </button>
+        </div>
+    </fieldset>
+</form>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="order_export_listing_data_source" xsi:type="string">Czargroup\ImportTracknumber\Model\ResourceModel\Orderindex\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Czargroup\ImportTracknumber\Model\ResourceModel\Orderindex\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">czargroup_exported_files</argument>
+            <argument name="eventPrefix" xsi:type="string">czargroup_exported_files_collection</argument>
+            <argument name="eventObject" xsi:type="string">czargroup_exported_files</argument>
+            <argument name="resourceModel" xsi:type="string">Czargroup\ImportTracknumber\Model\ResourceModel\Orderindex</argument>
+        </arguments>
+    </virtualType>
+</config>

@@ -1,11 +1,14 @@
 <?php
+
 /**
  * Copyright (c) 2025 Czargroup Technologies. All rights reserved.
  *
  * @package Czargroup_ImportTracknumber
  * @author Czargroup Technologies
  */
+
 namespace Czargroup\ImportTracknumber\Controller\Adminhtml\Index;
+
 use Magento\Backend\App\Action;
 use Magento\Framework\File\Csv;
 
@@ -26,7 +29,7 @@ class Importdata extends \Magento\Backend\App\Action
      */
     protected $_fileCsv;
 
-     /**
+    /**
      * @var \Magento\Framework\Controller\Result\JsonFactory
      */
     protected $resultJsonFactory;
@@ -77,18 +80,18 @@ class Importdata extends \Magento\Backend\App\Action
      * @param \Magento\Shipping\Model\ShipmentNotifier $shipmentNotifier
      */
     public function __construct(
-    	\Magento\Backend\App\Action\Context $context, 
-    	\Magento\Framework\View\Result\PageFactory $resultPageFactory, 
-    	\Magento\Framework\App\ResourceConnection $resource, 
-    	\Magento\Framework\File\Csv $fileCsv, 
-    	\Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory, 
-    	\Magento\Sales\Model\Order\Shipment\TrackFactory $shipmentTrackFactory, 
-    	\Magento\Sales\Model\Order\ShipmentFactory $shipmentFactory, 
-    	\Magento\Framework\DB\TransactionFactory $transactionFactory, 
-    	\Magento\Sales\Api\OrderRepositoryInterface $orderRepository, 
-    	\Magento\Sales\Model\Order\Email\Sender\ShipmentSender $shipmentSender, 
-    	\Magento\Shipping\Model\ShipmentNotifier $shipmentNotifier
-    ){
+        \Magento\Backend\App\Action\Context $context,
+        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
+        \Magento\Framework\App\ResourceConnection $resource,
+        \Magento\Framework\File\Csv $fileCsv,
+        \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
+        \Magento\Sales\Model\Order\Shipment\TrackFactory $shipmentTrackFactory,
+        \Magento\Sales\Model\Order\ShipmentFactory $shipmentFactory,
+        \Magento\Framework\DB\TransactionFactory $transactionFactory,
+        \Magento\Sales\Api\OrderRepositoryInterface $orderRepository,
+        \Magento\Sales\Model\Order\Email\Sender\ShipmentSender $shipmentSender,
+        \Magento\Shipping\Model\ShipmentNotifier $shipmentNotifier
+    ) {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
         $this->resource = $resource;
@@ -108,19 +111,17 @@ class Importdata extends \Magento\Backend\App\Action
     public function execute()
     {
         if ($this->getRequest()
-            ->isAjax())
-        {
+            ->isAjax()
+        ) {
             $connection = $this
                 ->resource
                 ->getConnection(\Magento\Framework\App\ResourceConnection::DEFAULT_CONNECTION);
             $tblSalesOrder = $connection->getTableName('sales_order_item');
             $import_message = '';
-            try
-            {
+            try {
                 $csvfile = $this->getRequest()
                     ->getParam('filepath');
-                if (file_exists($csvfile))
-                {
+                if (file_exists($csvfile)) {
                     $data = $this
                         ->_fileCsv
                         ->getData($csvfile);
@@ -130,9 +131,7 @@ class Importdata extends \Magento\Backend\App\Action
                     ->resultJsonFactory
                     ->create();
                 return $resultJson->setData(['importmsg' => $import_message]);
-            }
-            catch(\Exception $e)
-            {
+            } catch (\Exception $e) {
                 throw new \Magento\Framework\Exception\LocalizedException(__($e->getMessage()));
             }
         }
@@ -157,57 +156,37 @@ class Importdata extends \Magento\Backend\App\Action
         $successflag = 0;
         $success_num = 0;
         $cancelflag = 0;
-        for ($i = 1;$i < count($data);$i++)
-        {
+        for ($i = 1; $i < count($data); $i++) {
             $incr_id = $data[$i][0];
             $orderid = $connection->fetchOne("SELECT entity_id FROM $tblSalesOrder WHERE increment_id = $incr_id");
-            //$orderid = $orderid[0];
             $title = $data[$i][1];
             $tracknum = $data[$i][2];
             $ship_status_temp = $this->createShipment($orderid, $title, $tracknum);
-            if ($ship_status_temp === true)
-            {
+            if ($ship_status_temp === true) {
                 $successflag = 1;
                 $success_num++;
-            }
-            elseif ($ship_status_temp == "Canceled")
-            {
+            } elseif ($ship_status_temp == "Canceled") {
                 $cancelflag = 1;
                 $cancel_message .= $incr_id . " ";
-            }
-            elseif (!$ship_status_temp)
-            {
+            } elseif (!$ship_status_temp) {
                 $existflag = 1;
                 $shipment_exist .= $incr_id . " ";
             }
         }
         $import_msgs = '';
-        if ($existflag == 1 && $successflag == 1 && $cancelflag == 1)
-        {
+        if ($existflag == 1 && $successflag == 1 && $cancelflag == 1) {
             $import_msgs = $shipment_success . $success_num . " records..!" . "</br>" . $shipment_exist . "</br>" . $cancel_message;
-        }
-        elseif ($existflag == 1 && $successflag == 1)
-        {
+        } elseif ($existflag == 1 && $successflag == 1) {
             $import_msgs = $shipment_success . $success_num . " records..!" . "</br>" . $shipment_exist;
-        }
-        elseif ($existflag == 1 && $cancelflag == 1)
-        {
+        } elseif ($existflag == 1 && $cancelflag == 1) {
             $import_msgs = $shipment_exist . "</br>" . $cancel_message;
-        }
-        elseif ($successflag == 1 && $cancelflag == 1)
-        {
+        } elseif ($successflag == 1 && $cancelflag == 1) {
             $import_msgs = $shipment_success . $success_num . " records..!" . "</br>" . $cancel_message;
-        }
-        elseif ($existflag == 1)
-        {
+        } elseif ($existflag == 1) {
             $import_msgs = $shipment_exist;
-        }
-        elseif ($cancelflag == 1)
-        {
+        } elseif ($cancelflag == 1) {
             $import_msgs = $cancel_message;
-        }
-        else
-        {
+        } else {
             $import_msgs = $shipment_success . $success_num . " records..!";
         }
         return $import_msgs;
@@ -223,26 +202,19 @@ class Importdata extends \Magento\Backend\App\Action
      */
     protected function createShipment($orderId, $title, $trackingNumber)
     {
-        try
-        {
+        try {
             $order = $this
                 ->_orderRepository
                 ->get($orderId);
             $shipment_exist = '';
-            if ($order)
-            {
-                if ($order->hasShipments())
-                {
+            if ($order) {
+                if ($order->hasShipments()) {
                     return false;
-                }
-                else
-                {
-                    $data = [['carrier_code' => 'custom', 'title' => $title, 'number' => $trackingNumber, ], ];
-                    if ($order->canShip())
-                    {
+                } else {
+                    $data = [['carrier_code' => 'custom', 'title' => $title, 'number' => $trackingNumber,],];
+                    if ($order->canShip()) {
                         $shipment = $this->prepareShipment($order, $data);
-                        if ($shipment)
-                        {
+                        if ($shipment) {
                             $order->setIsInProcess(true);
                             $order->addStatusHistoryComment('Shipment created by Import', false);
                             $transactionSave = $this
@@ -256,16 +228,12 @@ class Importdata extends \Magento\Backend\App\Action
                             $shipment_success = true;
                         }
                         return $shipment_success;
-                    }
-                    else
-                    {
+                    } else {
                         return "Canceled";
                     }
                 }
             }
-        }
-        catch(\Exception $e)
-        {
+        } catch (\Exception $e) {
             throw new \Magento\Framework\Exception\LocalizedException(__($e->getMessage()));
         }
     }
@@ -281,7 +249,7 @@ class Importdata extends \Magento\Backend\App\Action
     {
         $shipment = $this
             ->_shipmentFactory
-            ->create($order, $this->prepareShipmentItems($order) , $track);
+            ->create($order, $this->prepareShipmentItems($order), $track);
         return $shipment->getTotalQty() ? $shipment->register() : false;
     }
 
@@ -294,11 +262,9 @@ class Importdata extends \Magento\Backend\App\Action
     protected function prepareShipmentItems($order)
     {
         $items = [];
-        foreach ($order->getAllItems() as $item)
-        {
-            $items[$item->getItemId() ] = $item->getQtyOrdered();
+        foreach ($order->getAllItems() as $item) {
+            $items[$item->getItemId()] = $item->getQtyOrdered();
         }
         return $items;
     }
 }
-
