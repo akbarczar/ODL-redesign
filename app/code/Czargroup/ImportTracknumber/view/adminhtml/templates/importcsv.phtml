@@ -58,7 +58,8 @@ require([
 				jQuery(".custom_spin").show();
 				jQuery.ajax({
 					type: "POST",
-					url: "<?php echo $block->getBaseUrl() . "odladminM2/importtracknumber/index/checkdata"; ?>?isAjax=true",
+					url: "<?php echo $block->getBaseUrl() . "admin/importtracknumber/index/checkdata"; ?>?isAjax=true",
+					// url: "<?php echo $block->getBaseUrl() . "odladminM2/importtracknumber/index/checkdata"; ?>?isAjax=true",
 					data: new FormData(this),
 					processData: false,
 					contentType: false,
@@ -72,7 +73,6 @@ require([
 							}
 							else
 							{
-								/*console.log(data["errormsg"]);*/
 								jQuery('.msg_span').html('<span style="color: red;">'+data["errormsg"]+'</span>');
 								jQuery(".message-notice").show();
 								jQuery('#fileimport') [0].reset();
@@ -81,7 +81,6 @@ require([
 							{
 								jQuery('.msg_span').html('');
 								file_to_import = data["filetoimport"];
-								//console.log(file_to_import);
 								jQuery(".message-notice").show();
 								jQuery("#import_div").show();
 							}
@@ -101,7 +100,8 @@ require([
 				jQuery(".custom_spin").show();
 				jQuery.ajax({
 					type: "POST",
-					url: "<?php echo $block->getBaseUrl() . "odladminM2/importtracknumber/index/importdata"; ?>?isAjax=true",
+					url: "<?php echo $block->getBaseUrl() . "admin/importtracknumber/index/checkdata"; ?>?isAjax=true",
+					// url: "<?php echo $block->getBaseUrl() . "odladminM2/importtracknumber/index/importdata"; ?>?isAjax=true",
 					data: {filepath:file_to_import},
 					success: function(data) {
 						jQuery(".custom_spin").hide();

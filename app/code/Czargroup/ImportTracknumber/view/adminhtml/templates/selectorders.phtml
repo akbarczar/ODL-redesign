@@ -2,8 +2,18 @@
 input, select {
 	padding:5px;
 }
+div#page\:main-container th.cell-position {
+    text-align: left;
+    padding-bottom: 5px;
+}
+button#scalable_add {
+    background-color: #eb5202;
+    border-color: #eb5202;
+    color: #ffffff;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.25);
+}
 </style>
-<div id="page:main-container" style="min-height:500px;">
+<div id="page:main-container" style="min-height:200px;">
 			<table width="55%" cellspacing="0" class="data border" id="question_grid" style="padding: 0px 20px;">
 			<thead>
 				<tr class="headings">
@@ -49,11 +59,8 @@ require([
 		jQuery( "#datepickerFrom" ).datepicker();jQuery( "#datepickerTo" ).datepicker();
 		jQuery('#scalable_add').click(function(){				
 			var datepickerFrom = jQuery('#trgrid1 #datepickerFrom').val();
-			console.log("datepickerFrom is "+datepickerFrom);
 			var datepickerTo = jQuery('#trgrid1 #datepickerTo').val();
-			console.log("datepickerTo is "+datepickerTo);
 			var filteredBy = jQuery('#trgrid1 #filteredBy').val();
-			console.log("filteredBy is "+filteredBy);
 			var mydatepickerFrom = new Date(datepickerFrom);
 			var mydatepickerTo = new Date(datepickerTo);
 			var cur_date = new Date();
@@ -67,36 +74,16 @@ require([
 					alert('You cannot enter a to-date in the future!');
 				}
 				else{
-					//alert(datepickerFrom+' '+datepickerTo);
 					jQuery(".custom_spin").show();
-					//jQuery(".admin__data-grid-loading-mask").css("height","300px");
 					jQuery.ajax({
 						type: "POST",
-						url: "<?php echo $block->getBaseUrl().'admin/importtracknumber/ordersexport/ordersget'; ?>?isAjax=true",
+						url: "<?php echo $block->getBaseUrl().'admin/importtracknumber/orderindex/ordersget'; ?>?isAjax=true",
 						data: {dateFrom:datepickerFrom,dateTo:datepickerTo,filterBy:filteredBy},
-						success: function(data) {			
-							if(data){	
-								jQuery('#messages span').html('');
-								console.log(data);
-								//jQuery('#messages span').html(data);
-								var cdate = new Date();
-								var datetime = cdate.getFullYear() + "-" + (cdate.getMonth()+1)  + "-" + cdate.getDate() + "-"  + cdate.getHours() + "-" + cdate.getMinutes() + "-" + cdate.getSeconds();
-								var file_name = "orders_exported_on_"+datetime+".csv";
-								var blob = new Blob([data], { type: 'text/csv;charset=utf-8;' });
-								var link = document.createElement("a");
-								if (link.download !== undefined) { // feature detection
-									// Browsers that support HTML5 download attribute
-									var url = URL.createObjectURL(blob);
-									link.setAttribute("href", url);
-									link.setAttribute("download", file_name);
-									link.style.visibility = 'hidden';
-									document.body.appendChild(link);
-									link.click();
-									document.body.removeChild(link);
-								}
-							}else{
-								jQuery('#messages span').html('<span style="color: red;">Sorry, No record found</span>');
-							}		
+						success: function(data) {
+							if(data) 
+							{
+								location.reload();
+							}	
 							jQuery(".custom_spin").hide();
 						}
 					});

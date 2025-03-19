@@ -1,13 +1,11 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <!-- Parent menu for Czargroup_ImportTracknumber -->
-        <add id="Czargroup_ImportTracknumber::importtracknumber" title="Czargroup Import" module="Czargroup_ImportTracknumber" sortOrder="52" resource="Czargroup_ImportTracknumber::importtracknumber"/>
+        <add id="Czargroup_ImportTracknumber::importtracknumber" title="Czargroup" module="Czargroup_ImportTracknumber" sortOrder="52" resource="Czargroup_ImportTracknumber::importtracknumber"/>
 
-        <!-- Submenu for Import Track Number -->
-        <add id="Czargroup_ImportTracknumber::index" title="Import Track Number" module="Czargroup_ImportTracknumber" action="importtracknumber/index" parent="Czargroup_ImportTracknumber::importtracknumber" sortOrder="10" resource="Czargroup_ImportTracknumber::index"/>
+        <add id="Czargroup_ImportTracknumber::index" title="Import Track number" module="Czargroup_ImportTracknumber" action="importtracknumber/index" parent="Czargroup_ImportTracknumber::importtracknumber" sortOrder="10" dependsOnModule="Czargroup_ImportTracknumber" resource="Czargroup_ImportTracknumber::index"/>
 
-        <!-- Submenu for Orders Export (combined under Czargroup_ImportTracknumber) -->
-        <add id="Czargroup_ImportTracknumber::ordersexport" title="Orders Export" module="Czargroup_ImportTracknumber" action="importtracknumber/ordersexport" parent="Czargroup_ImportTracknumber::importtracknumber" sortOrder="20" resource="Czargroup_ImportTracknumber::ordersexport"/>
+        <add id="Czargroup_ImportTracknumber::orderindex" title="Orders export" module="Czargroup_ImportTracknumber" action="importtracknumber/orderindex" parent="Czargroup_ImportTracknumber::importtracknumber" sortOrder="20" resource="Czargroup_ImportTracknumber::orderindex"/>
+        <add id="Czargroup_ImportTracknumber::skuupdate" title="SKU Update" module="Czargroup_ImportTracknumber" action="importtracknumber/skuupdate" parent="Czargroup_ImportTracknumber::importtracknumber" sortOrder="30" resource="Czargroup_ImportTracknumber::skuupdate"/>
     </menu>
 </config>
