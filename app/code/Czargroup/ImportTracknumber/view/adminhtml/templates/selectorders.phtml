@@ -77,7 +77,7 @@ require([
 					jQuery(".custom_spin").show();
 					jQuery.ajax({
 						type: "POST",
-						url: "<?php echo $block->getBaseUrl().'admin/importtracknumber/orderindex/ordersget'; ?>?isAjax=true",
+						url: "<?php echo $block->getUrl('importtracknumber/orderindex/ordersget', ['_secure' => true]); ?>",
 						data: {dateFrom:datepickerFrom,dateTo:datepickerTo,filterBy:filteredBy},
 						success: function(data) {
 							if(data) 
