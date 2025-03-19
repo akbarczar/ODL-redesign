@@ -1085,9 +1085,6 @@ div[name="Resin Water Features"], div[name="Solar Powered Water Features"] {
 .checkout-index-index .checkout-container .opc-progress-bar .opc-progress-bar-item>span:before {
   counter-increment: i;
 }
-.checkout-index-index .checkout-container .opc-progress-bar .opc-progress-bar-item._active>span:before {
-   counter-increment: i;
-}
 .checkout-index-index .opc-progress-bar-item > span:after {
   counter-increment: none;
 }
@@ -2208,7 +2205,7 @@ fieldset#customer-email-fieldset input {
   background-color: #004000;
   color: #fff;
   content: counter(i);
-  counter-increment: none;
+  counter-increment: i;
   font-weight: 600;
   font-size: 18px;
   height: 32px;
