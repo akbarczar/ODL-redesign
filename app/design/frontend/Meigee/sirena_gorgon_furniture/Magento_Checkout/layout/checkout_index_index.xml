@@ -3,6 +3,6 @@
     <body>
         <!-- Remove header and footer -->
         <referenceContainer name="header.container" remove="true"/>
-        <referenceContainer name="footer.container" remove="true"/>
+        <referenceContainer name="custom.footer.container" remove="true"/>
     </body>
 </page>
