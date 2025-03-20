@@ -1,0 +1,11 @@
+<script type="text/javascript">
+	window.customContent = '<?php
+							$carriers = $block->getShippingMethods();
+							foreach ($carriers as $carrier):
+								/* @escapeNotVerified */ echo $carrier['label'];
+								foreach ($carrier['value'] as $child):
+									/* @escapeNotVerified */ echo $child['label'];
+								endforeach;
+							endforeach;
+							echo __('Please add your Custom test'); ?>';
+</script>

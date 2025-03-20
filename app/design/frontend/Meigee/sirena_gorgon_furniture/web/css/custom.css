@@ -1078,9 +1078,42 @@ div[name="Resin Water Features"], div[name="Solar Powered Water Features"] {
 /* global css start */
 /* checkout farhan css */
 /*checkout*/
- 
+.checkout-index-index .page-wrapper #maincontent .opc-summary-wrapper .opc-block-shipping-information .ship-to {
+  border-bottom: 1px solid rgba(159,159,159,.33);
+}
+.checkout-index-index .checkout-container .opc-sidebar .opc-block-shipping-information .ship-to, .checkout-index-index .checkout-container .opc-sidebar .opc-block-shipping-information .ship-via {
+  margin: 0;
+  padding: 0 0 20px;
+}
+.checkout-index-index .checkout-container .opc-sidebar .opc-block-shipping-information .ship-to, .checkout-index-index .checkout-container .opc-sidebar .opc-block-shipping-information .ship-via {
+  margin: 0 0 20px !important;
+}
+
+.checkout-index-index .checkout-container .opc-sidebar .opc-block-shipping-information .ship-to .shipping-information-content a {
+  color: #000;
+}
+
+.checkout-index-index .checkout-container .opc-sidebar .opc-block-shipping-information .ship-to .shipping-information-content a:hover {
+  text-decoration: none;
+  color: #000;
+}
+.checkout-index-index .checkout-container .opc-sidebar .opc-block-shipping-information .shipping-information-title .action-edit:before {
+  line-height: 20px;
+  font-size: 14px;
+  content: '\e907';
+  font-weight: 400;
+}
+
+.fieldset > .field:not(.choice) > .label {
+  width: 100%;
+  text-align: left;
+}
 .checkout-index-index .checkout-payment-method .ccard .cvv .input-text {
-  width: 55px;
+  width: 64px !important;
+}
+.checkout-cart-index .cart-container .product-block.clearfix span.update-qty {
+  cursor: pointer;
+  padding: 5px;
 }
 .checkout-index-index .checkout-container .opc-progress-bar .opc-progress-bar-item>span:before {
   counter-increment: i;
@@ -1322,6 +1355,35 @@ div[name="Resin Water Features"], div[name="Solar Powered Water Features"] {
 }
 /* checkout farhan css end */
 /* checkout dipti css */
+/*faq page hand icon*/
+.cms-faq-page .fa {
+  color: #004000;
+}
+
+body.cms-faq-page a:hover {
+  text-decoration: none;
+}
+
+/*faq grid */
+body.cms-faq-page *{
+  box-sizing: inherit;
+}
+
+/*faq page plus icon*/
+.cms-faq-page .accordion-main button.accordion:after {
+  font-family: FontAwesome;
+  content: "\f067";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 15px;
+}
+.cms-faq-page.accordion-main .accordion.active:after {
+  content: "\f068";
+   color: #fff;
+}
+.cms-faq-page button{position: relative;}
+ 
 .checkout-index-index div#tocart-checkout a {
   color: #183e0c;
   text-decoration: none;
