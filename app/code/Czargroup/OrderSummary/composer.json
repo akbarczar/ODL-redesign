@@ -1,0 +1,26 @@
+{
+    "name": "czargroup/module-ordersummary",
+    "description": "Order Summary for shipping step",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mage2Gen",
+            "email": "info@mage2gen.com"
+        },
+        {
+            "name": "Akbar Pappuwale",
+            "email": "akbarexinent@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Czargroup\\OrderSummary\\": ""
+        }
+    }
+}
