@@ -33,7 +33,9 @@
         "mageplaza/module-banner-slider": "^4.0",
         "mageplaza/module-smtp": "^4.7",
         "mageworx/module-searchsuiteautocomplete": "^2.2",
-        "webshopapps/module-matrixrate": "^20.4"
+        "webshopapps/module-matrixrate": "^20.4",
+        "wyomind/cronscheduler": "^4.0",
+        "wyomind/watchlog": "^5.0"
     },
     "autoload": {
         "exclude-from-classmap": [
@@ -85,6 +87,10 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "repositories": {
+        "wyomind": {
+            "type": "composer",
+            "url": "https://sales_westburyproducts_co_uk:b2f85daa170d676493b30d47@repo.wyomind.com"
+        },
         "0": {
             "type": "composer",
             "url": "https://repo.magento.com/"
