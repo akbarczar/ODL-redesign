@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Shiptheory_Shippingx::shiptheory" title="Shiptheory" translate="title" module="Shiptheory_Shippingx"
+             sortOrder="50" parent="Magento_Sales::sales" resource="Shiptheory_Shippingx::shiptheory"/>
+        <add id="Shiptheory_Shippingx::shiptheory_config" title="Configuration" translate="title"
+             module="Shiptheory_Shippingx" sortOrder="10" parent="Shiptheory_Shippingx::shiptheory"
+             action="adminhtml/system_config/edit/section/shiptheory" resource="Shiptheory_Shippingx::shiptheory_config"/>
+        <add id="Shiptheory_Shippingx::shiptheory_history" title=" Shiptheory History" translate="title"
+             module="Shiptheory_Shippingx" sortOrder="20" parent="Shiptheory_Shippingx::shiptheory"
+             action="shiptheory/history/index" resource="Shiptheory_Shippingx::shiptheory_history"/>
+    </menu>
+</config>

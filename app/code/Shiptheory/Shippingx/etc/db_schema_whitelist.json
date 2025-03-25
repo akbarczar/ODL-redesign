@@ -1,0 +1,27 @@
+{
+    "shiptheory_shipment": {
+        "column": {
+            "id": true,
+            "created_at": true,
+            "shipment_id": true,
+            "success": true,
+            "message": true
+        },
+        "index": {
+            "SHIPTHEORY_SHIPMENT_SHIPMENT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "shiptheory_shipment_user": {
+        "column": {
+            "id": true,
+            "shipment_id": true,
+            "user_id": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
