@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="shiptheory" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1"
+                 showInStore="0">
+            <label>Shiptheory</label>
+            <tab>sales</tab>
+            <resource>Shiptheory_Shippingx::shiptheory_config</resource>
+            <group id="setting" translate="label, comment" type="text" sortOrder="5" showInDefault="1" showInWebsite="1"
+                   showInStore="0">
+                <label>Shiptheory Settings</label>
+                <comment>
+                    <![CDATA[  <img src="https://shiptheory.com/img/logo.png" width="" alt="Ship Theory" style="background-color: #000;padding: 5px;width: 10%;float: left;"> <a href="https://shiptheory.com/register" target="_blank" style="float: left;margin-top: 5px;margin-left: 5px;"> Don’t have a Shiptheory account yet?</a>]]>
+                </comment>
+                <field id="api_key" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <label>Api key</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="webhook" translate="label" sortOrder="5" type="select" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <label>Enable Webhooks</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <backend_model>Shiptheory\Shippingx\Model\Config\Backend\EnableWebhook</backend_model>
+                </field>
+                <field id="version" sortOrder="6" translate="label, comment" type="label" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>Shiptheory version</label>
+                    <backend_model>Shiptheory\Shippingx\Model\Config\Source\Version</backend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

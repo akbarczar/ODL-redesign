@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="shiptheory_shipment" resource="default" engine="innodb" comment="Shiptheory Shipment Table">
+        <column xsi:type="int" name="id" unsigned="true" nullable="false" identity="true" comment="ID" />
+        <column xsi:type="datetime" name="created_at" comment="Created At" nullable="false"/>
+        <column xsi:type="int" name="shipment_id" comment="Shipment Id" nullable="false"/>
+        <column xsi:type="int" name="success" comment="Success" nullable="false" default="1"/>
+        <column xsi:type="int" name="message" comment="Message" nullable="false"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="SHIPTHEORY_SHIPMENT_SHIPMENT_ID" indexType="btree">
+            <column name="shipment_id"/>
+        </index>
+    </table>
+
+    <table name="shiptheory_shipment_user" resource="default" engine="innodb" comment="Shiptheory Shipment Table">
+        <column xsi:type="int" name="id" unsigned="true" nullable="false" identity="true" comment="ID" />
+        <column xsi:type="int" name="shipment_id" unsigned="true" nullable="false" comment="Shipment ID" />
+        <column xsi:type="int" name="user_id" unsigned="true" nullable="false" comment="User ID" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+
+</schema>
