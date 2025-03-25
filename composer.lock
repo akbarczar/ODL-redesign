@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4aee25ba147f8efc65e50f2be19bd192",
+    "content-hash": "cd652dc163690f19820b5227a885bb3e",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -498,6 +498,117 @@
             "description": "Pre Order By Amasty"
         },
         {
+            "name": "amzn/amazon-pay-api-sdk-php",
+            "version": "2.6.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amzn/amazon-pay-api-sdk-php.git",
+                "reference": "15c0193ca07faad2a3c6af8250fef345263bc1ad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/amzn/amazon-pay-api-sdk-php/zipball/15c0193ca07faad2a3c6af8250fef345263bc1ad",
+                "reference": "15c0193ca07faad2a3c6af8250fef345263bc1ad",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.6.1",
+                "phpseclib/phpseclib": ">=3.0.34"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Amazon\\Pay\\API\\": "Amazon/Pay/API/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Amazon Pay API SDK",
+                    "email": "amazon-pay-sdk@amazon.com"
+                }
+            ],
+            "description": "Amazon Pay API SDK (PHP)",
+            "homepage": "https://github.com/amzn/amazon-pay-api-sdk-php",
+            "keywords": [
+                "amazon",
+                "amazon pay",
+                "amazon payments",
+                "pay",
+                "pay with amazon",
+                "payment",
+                "payments"
+            ],
+            "support": {
+                "issues": "https://github.com/amzn/amazon-pay-api-sdk-php/issues",
+                "source": "https://github.com/amzn/amazon-pay-api-sdk-php/tree/2.6.8"
+            },
+            "time": "2025-02-27T08:44:05+00:00"
+        },
+        {
+            "name": "amzn/amazon-pay-magento-2-module",
+            "version": "5.18.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/amzn/amazon-pay-magento-2-module/amzn-amazon-pay-magento-2-module-5.18.0.0.zip",
+                "shasum": "94236c3bba6ffb70572142cac5e5c03c815f4859"
+            },
+            "require": {
+                "amzn/amazon-pay-api-sdk-php": "^2.2",
+                "aws/aws-php-sns-message-validator": "^1.5",
+                "magento/framework": "^102.0||^103.0",
+                "magento/module-backend": "^101.0||^102.0",
+                "magento/module-catalog": "^103.0||^104.0",
+                "magento/module-checkout": "^100.0",
+                "magento/module-config": "^101.0",
+                "magento/module-configurable-product": "^100.0",
+                "magento/module-customer": "^102.0||^103.0",
+                "magento/module-developer": "^100.0",
+                "magento/module-directory": "^100.0",
+                "magento/module-eav": "^102.0",
+                "magento/module-media-storage": "^100.0",
+                "magento/module-payment": "^100.0",
+                "magento/module-paypal": "^100.0||^101.0",
+                "magento/module-quote": "^101.0",
+                "magento/module-sales": "^100.0||^101.0||^102.0||^103.0",
+                "magento/module-store": "^101.0",
+                "magento/module-vault": "^100.1||^101.2",
+                "php": "~7.0.13||~7.1.0||~7.2.0||~7.3.0||~7.4.0||~8.0.0||~8.1.0||~8.2.0||~8.3.0",
+                "phpseclib/phpseclib": "~2.0||~3.0"
+            },
+            "replace": {
+                "amzn/amazon-pay-and-login-magento-2-module": "*",
+                "amzn/amazon-pay-and-login-with-amazon-core-module": "*",
+                "amzn/amazon-pay-module": "*",
+                "amzn/amazon-pay-v2-magento-2-module": "*",
+                "amzn/amazon-payments-magento-2-plugin": "*",
+                "amzn/login-with-amazon-module": "*"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^6.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amazon\\Pay\\": ""
+                }
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Official Magento2 Plugin to integrate with Amazon Pay"
+        },
+        {
             "name": "astock/stock-api-libphp",
             "version": "1.1.6",
             "source": {
@@ -590,6 +701,65 @@
                 "source": "https://github.com/awslabs/aws-crt-php/tree/v1.2.7"
             },
             "time": "2024-10-18T22:15:13+00:00"
+        },
+        {
+            "name": "aws/aws-php-sns-message-validator",
+            "version": "1.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aws/aws-php-sns-message-validator.git",
+                "reference": "d92d199179cbbf4d99601d4f23f61b9b8cc5da28"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aws/aws-php-sns-message-validator/zipball/d92d199179cbbf4d99601d4f23f61b9b8cc5da28",
+                "reference": "d92d199179cbbf4d99601d4f23f61b9b8cc5da28",
+                "shasum": ""
+            },
+            "require": {
+                "ext-openssl": "*",
+                "php": ">=8.1",
+                "psr/http-message": "^2.0"
+            },
+            "require-dev": {
+                "guzzlehttp/psr7": "^2.4.5",
+                "phpunit/phpunit": "^5.6.3 || ^8.5 || ^9.5",
+                "squizlabs/php_codesniffer": "^2.3",
+                "yoast/phpunit-polyfills": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Aws\\Sns\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Amazon Web Services",
+                    "homepage": "http://aws.amazon.com"
+                }
+            ],
+            "description": "Amazon SNS message validation for PHP",
+            "homepage": "http://aws.amazon.com/sdkforphp",
+            "keywords": [
+                "SNS",
+                "amazon",
+                "aws",
+                "cloud",
+                "message",
+                "sdk",
+                "webhooks"
+            ],
+            "support": {
+                "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
+                "issues": "https://github.com/aws/aws-sns-message-validator/issues",
+                "source": "https://github.com/aws/aws-php-sns-message-validator/tree/1.10.0"
+            },
+            "time": "2025-03-05T22:22:58+00:00"
         },
         {
             "name": "aws/aws-sdk-php",
@@ -2780,6 +2950,454 @@
                 "source": "https://github.com/jsonrainbow/json-schema/tree/5.3.0"
             },
             "time": "2024-07-06T21:00:26+00:00"
+        },
+        {
+            "name": "klarna/m2-klarna",
+            "version": "3.1.9",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/klarna/m2-klarna/klarna-m2-klarna-3.1.9.0.zip",
+                "shasum": "e459d045a1f08e7dbc0000e19414679d4cb756d3"
+            },
+            "require": {
+                "klarna/module-admin-settings": "1.0.9",
+                "klarna/module-backend": "11.0.9",
+                "klarna/module-base": "11.0.8",
+                "klarna/module-kco": "12.0.11",
+                "klarna/module-kec": "2.0.12",
+                "klarna/module-kss": "3.0.10",
+                "klarna/module-logger": "3.0.6",
+                "klarna/module-orderlines": "3.0.10",
+                "klarna/module-osm": "4.0.10",
+                "klarna/module-payments": "10.0.12",
+                "klarna/module-payments-graph-ql": "3.0.12",
+                "klarna/module-siwk": "1.0.8",
+                "klarna/module-support": "3.0.10"
+            },
+            "replace": {
+                "klarna/m2-checkout": "*"
+            },
+            "type": "metapackage",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Klarna for Magento >= 2.4.4"
+        },
+        {
+            "name": "klarna/module-admin-settings",
+            "version": "1.0.9",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/klarna/module-admin-settings/klarna-module-admin-settings-1.0.9.0.zip",
+                "shasum": "acb47a8ad3656851cc6cb99857a1e73ba412110a"
+            },
+            "require": {
+                "klarna/module-base": "11.0.8",
+                "magento/framework": "^103",
+                "magento/module-payment": "^100.1|^100.4",
+                "magento/module-quote": "^101.0|^101.2",
+                "magento/module-sales": "^102.0|^103.0",
+                "magento/module-store": "^101.0|^101.1",
+                "php": "~7.4.0||~8.1.0||~8.2.0||~8.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "psr-4": {
+                    "Klarna\\AdminSettings\\": "."
+                },
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Klarna Admin Settings Magento 2 Extension"
+        },
+        {
+            "name": "klarna/module-backend",
+            "version": "11.0.9",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/klarna/module-backend/klarna-module-backend-11.0.9.0.zip",
+                "shasum": "481713035bd71254aa69cd67c7a54070abe4c3e3"
+            },
+            "require": {
+                "klarna/module-admin-settings": "1.0.9",
+                "klarna/module-base": "11.0.8",
+                "klarna/module-logger": "3.0.6",
+                "magento/framework": "^103",
+                "magento/module-payment": "^100.1|^100.4",
+                "magento/module-quote": "^101.0|^101.2",
+                "magento/module-sales": "^102.0|^103.0",
+                "magento/module-store": "^101.0|^101.1",
+                "php": "~7.4.0||~8.1.0||~8.2.0||~8.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "psr-4": {
+                    "Klarna\\Backend\\": "."
+                },
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Klarna Backend Magento 2 Extension"
+        },
+        {
+            "name": "klarna/module-base",
+            "version": "11.0.8",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/klarna/module-base/klarna-module-base-11.0.8.0.zip",
+                "shasum": "e7754e445fe3633c02f48d2d9b81561dfdb46169"
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.3.0",
+                "klarna/module-logger": "3.0.6",
+                "magento/framework": "^103",
+                "magento/module-bundle": "^100.1|^101.0",
+                "magento/module-catalog": "^103.0|^104.0",
+                "magento/module-config": "^101.0|^101.2",
+                "magento/module-customer": "^102.0|^103.0",
+                "magento/module-directory": "^100.1|^100.4",
+                "magento/module-payment": "^100.1|^100.4",
+                "magento/module-paypal": "^100.3|^101.0",
+                "magento/module-quote": "^101.0|^101.2",
+                "magento/module-sales": "^102.0|^103.0",
+                "magento/module-store": "^101.0|^101.1",
+                "magento/module-tax": "^100.1|^100.4",
+                "php": "~7.4.0||~8.1.0||~8.2.0||~8.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "psr-4": {
+                    "Klarna\\Base\\": "."
+                },
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Klarna Base Magento 2 Extension"
+        },
+        {
+            "name": "klarna/module-kco",
+            "version": "12.0.11",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/klarna/module-kco/klarna-module-kco-12.0.11.0.zip",
+                "shasum": "dccb988ed0bcf4051048484f638ddf611f316d57"
+            },
+            "require": {
+                "ext-json": "*",
+                "klarna/module-admin-settings": "1.0.9",
+                "klarna/module-base": "11.0.8",
+                "klarna/module-kss": "3.0.10",
+                "klarna/module-logger": "3.0.6",
+                "klarna/module-orderlines": "3.0.10",
+                "magento/framework": "^103",
+                "monolog/monolog": "^2.3",
+                "php": "~7.4.0||~8.1.0||~8.2.0||~8.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "psr-4": {
+                    "Klarna\\Kco\\": "."
+                },
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Klarna Checkout Magento 2 Extension"
+        },
+        {
+            "name": "klarna/module-kec",
+            "version": "2.0.12",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/klarna/module-kec/klarna-module-kec-2.0.12.0.zip",
+                "shasum": "18149eee09cf9049896e032ff279ca3b86797886"
+            },
+            "require": {
+                "klarna/module-admin-settings": "1.0.9",
+                "klarna/module-base": "11.0.8",
+                "klarna/module-logger": "3.0.6",
+                "klarna/module-payments": "10.0.12",
+                "magento/framework": "^103",
+                "php": "~7.4.0||~8.1.0||~8.2.0||~8.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "psr-4": {
+                    "Klarna\\Kec\\": "."
+                },
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Klarna Express Checkout Magento 2 Extension"
+        },
+        {
+            "name": "klarna/module-kss",
+            "version": "3.0.10",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/klarna/module-kss/klarna-module-kss-3.0.10.0.zip",
+                "shasum": "9c0f2312e21f95e0f1f4fa2cb4c544f30204e11c"
+            },
+            "require": {
+                "klarna/module-admin-settings": "1.0.9",
+                "klarna/module-base": "11.0.8",
+                "klarna/module-orderlines": "3.0.10",
+                "magento/framework": "^103",
+                "php": "~7.4.0||~8.1.0||~8.2.0||~8.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "psr-4": {
+                    "Klarna\\Kss\\": ""
+                },
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Klarna Shipping Service Magento 2 Extension"
+        },
+        {
+            "name": "klarna/module-logger",
+            "version": "3.0.6",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/klarna/module-logger/klarna-module-logger-3.0.6.0.zip",
+                "shasum": "43073cad4fe02c75123093915926fc1809e0223a"
+            },
+            "require": {
+                "ext-json": "*",
+                "magento/framework": "^103",
+                "monolog/monolog": "^2.3",
+                "php": "~7.4.0||~8.1.0||~8.2.0||~8.3.0",
+                "psr/log": "^1.0||^3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "psr-4": {
+                    "Klarna\\Logger\\": "."
+                },
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Klarna logging module"
+        },
+        {
+            "name": "klarna/module-orderlines",
+            "version": "3.0.10",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/klarna/module-orderlines/klarna-module-orderlines-3.0.10.0.zip",
+                "shasum": "b20bae49e6476dfffed884d1eb305ddc4b7b038d"
+            },
+            "require": {
+                "klarna/module-admin-settings": "1.0.9",
+                "klarna/module-base": "11.0.8",
+                "klarna/module-logger": "3.0.6",
+                "magento/framework": "^103",
+                "magento/module-payment": "^100.1|^100.4",
+                "magento/module-quote": "^101.0|^101.2",
+                "magento/module-sales": "^102.0|^103.0",
+                "magento/module-store": "^101.0|^101.1",
+                "php": "~7.4.0||~8.1.0||~8.2.0||~8.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "psr-4": {
+                    "Klarna\\Orderlines\\": "."
+                },
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Klarna Orderlines Magento 2 Extension"
+        },
+        {
+            "name": "klarna/module-osm",
+            "version": "4.0.10",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/klarna/module-osm/klarna-module-osm-4.0.10.0.zip",
+                "shasum": "6cf70beba7b26f542dc00829faf8a9d8649df144"
+            },
+            "require": {
+                "klarna/module-admin-settings": "1.0.9",
+                "klarna/module-base": "11.0.8",
+                "magento/framework": "^103",
+                "magento/module-catalog": "^103.0|^104.0",
+                "magento/module-checkout": "^100.1",
+                "magento/module-store": "^101.0",
+                "php": "~7.4.0||~8.1.0||~8.2.0||~8.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "psr-4": {
+                    "Klarna\\Onsitemessaging\\": "."
+                },
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Klarna OnSite Messaging Magento 2 Extension"
+        },
+        {
+            "name": "klarna/module-payments",
+            "version": "10.0.12",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/klarna/module-payments/klarna-module-payments-10.0.12.0.zip",
+                "shasum": "c6f6044febbe6b9d965cc00222aeb459afe33ca6"
+            },
+            "require": {
+                "klarna/module-admin-settings": "1.0.9",
+                "klarna/module-base": "11.0.8",
+                "klarna/module-logger": "3.0.6",
+                "klarna/module-siwk": "1.0.8",
+                "magento/framework": "^103",
+                "magento/module-backend": "^101.0|^102.0",
+                "magento/module-checkout": "^100.1",
+                "magento/module-config": "^101.0",
+                "magento/module-customer": "^102.0|^103.0",
+                "magento/module-directory": "100.4.*",
+                "magento/module-payment": "^100.1",
+                "magento/module-quote": "^101.0",
+                "magento/module-sales": "^102.0||^103.0",
+                "magento/module-sales-rule": "^101.0",
+                "magento/module-store": "^101.0",
+                "php": "~7.4.0||~8.1.0||~8.2.0||~8.3.0"
+            },
+            "suggest": {
+                "magento/module-advanced-sales-rule": "*"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "psr-4": {
+                    "Klarna\\Kp\\": ""
+                },
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Klarna Payments Magento 2 Extension"
+        },
+        {
+            "name": "klarna/module-payments-graph-ql",
+            "version": "3.0.12",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/klarna/module-payments-graph-ql/klarna-module-payments-graph-ql-3.0.12.0.zip",
+                "shasum": "11a835d40e7abb0a4408d34aaee0aa27624a40ca"
+            },
+            "require": {
+                "klarna/module-base": "11.0.8",
+                "klarna/module-payments": "10.0.12",
+                "magento/framework": "^103",
+                "magento/module-quote-graph-ql": "^100",
+                "magento/module-store": "^101.0",
+                "php": "~7.4.0||~8.1.0||~8.2.0||~8.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Klarna\\KpGraphQl\\": ""
+                }
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Klarna KpGraphQl Magento 2 Extension"
+        },
+        {
+            "name": "klarna/module-siwk",
+            "version": "1.0.8",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/klarna/module-siwk/klarna-module-siwk-1.0.8.0.zip",
+                "shasum": "bda0eee4b74915856991928e53aa2d7a906df811"
+            },
+            "require": {
+                "firebase/php-jwt": "^6.9.0",
+                "klarna/module-base": "11.0.8",
+                "magento/framework": "^103",
+                "php": "~7.4.0||~8.1.0||~8.2.0||~8.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "psr-4": {
+                    "Klarna\\Siwk\\": "."
+                },
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Sign in with Klarna Magento 2 Extension"
+        },
+        {
+            "name": "klarna/module-support",
+            "version": "3.0.10",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/klarna/module-support/klarna-module-support-3.0.10.0.zip",
+                "shasum": "85450eaf68b40219b1ef0098d4506bef912e242f"
+            },
+            "require": {
+                "klarna/module-base": "11.0.8",
+                "magento/framework": "^103",
+                "php": "~7.4.0||~8.1.0||~8.2.0||~8.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "psr-4": {
+                    "Klarna\\Support\\": "."
+                },
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Klarna Support Magento 2 Extension"
         },
         {
             "name": "laminas/laminas-captcha",
