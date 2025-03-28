@@ -14,12 +14,12 @@
     font-size: 20px;
     vertical-align: middle;
   }
-  header.page-header .header.content a.logo{
+  /* header.page-header .header.content a.logo{
     display: flex;
     align-items: center;
     margin: 0;
     height: 90px;
-  }
+  } */
   .header.content {
     width: 1920px;
     max-width: 100%;
@@ -1389,6 +1389,15 @@ body.cms-faq-page *{
   text-decoration: none;
 }
 @media only screen and (max-width: 768px) {
+  .catalog-category-view .column.main {
+    width: 100% ! IMPORTANT;
+}
+.catalog-category-view main#maincontent .columns {
+  display: flex;
+}
+.catalog-category-view .category-description div {
+  padding: 0px !important;
+}
   .page-wrapper header.checkout-page-header-child {
       padding: 0;
       flex-direction: column;
@@ -2976,9 +2985,9 @@ nav.navigation .ui-widget-content[role="menu"] {
 header.page-header .header.content a.logo {
   height: auto;
 }
-.header.content a.logo img{
+/* .header.content a.logo img{
   margin: 5px 0px 0px 80px;
-}
+} */
 .mobile-wrapper {
   display: flex;
   flex-direction: row;
