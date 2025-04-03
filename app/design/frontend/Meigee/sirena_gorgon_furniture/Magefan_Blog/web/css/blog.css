@@ -148,7 +148,7 @@ bodya{
 }
 @media (min-width: 769px){
     .blog-page .column.main {
-       width: 74%;
+       width: 74% !important;
     }
 }
 @media (min-width: 801px) {
@@ -285,7 +285,7 @@ body.blog-page .page-title, body.blog-page h2{
     font-weight: 400;
 }
 .blog-page .column.main {
-    width: 74%;
+    width: 74% !important;
     margin-right: 3px;
     padding-bottom: 0;
 }
