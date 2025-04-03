@@ -147,8 +147,8 @@ bodya{
     }
 }
 @media (min-width: 769px){
-    .blog-page .column.main {
-       width: 74% !important;
+    body.blog-page .column.main {
+       width: 74%;
     }
 }
 @media (min-width: 801px) {
