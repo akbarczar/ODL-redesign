@@ -182,6 +182,12 @@
   }
   
   @media only screen and (min-width: 1024px) {
+    header.page-header .header.content a.logo {
+      margin: 0;
+      height: 93px;
+      display: flex;
+      align-items: center;
+  }
     nav.navigation.sticky,.sections.nav-sections.sticky{
       background: #004213 none repeat scroll 0 0;
       margin: 0 auto;
@@ -2888,9 +2894,9 @@ border-top: none;
 /* dipti css for toggle x end  */
   .nav-toggle:before{
     content: '\e90d';
-    color:rgba(0,0,0,.8);
-    font-size:25px;
-    line-height:42px;
+    color: rgba(0, 0, 0, .8);
+    font-size: 25px;
+    line-height: 28px;
     }
     .sections.nav-sections .section-item-content .navigation .parent .level-top:after {
       content: '\e901';
@@ -2984,6 +2990,8 @@ nav.navigation .ui-widget-content[role="menu"] {
 }
 header.page-header .header.content a.logo {
   height: auto;
+  margin-left: 55px;
+  margin-bottom: 0;
 }
 /* .header.content a.logo img{
   margin: 5px 0px 0px 80px;

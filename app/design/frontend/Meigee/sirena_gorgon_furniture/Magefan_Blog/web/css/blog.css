@@ -285,7 +285,6 @@ body.blog-page .page-title, body.blog-page h2{
     font-weight: 400;
 }
 .blog-page .column.main {
-    width: 74% !important;
     margin-right: 3px;
     padding-bottom: 0;
 }
