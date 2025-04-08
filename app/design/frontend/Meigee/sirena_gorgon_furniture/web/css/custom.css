@@ -1082,6 +1082,9 @@ div[name="Resin Water Features"], div[name="Solar Powered Water Features"] {
 
 
 /* global css start */
+ol.products.list.items.product-items .product-item-info span.image-parent img {
+  width: 100%;
+}
 .cart-container .totals-inner {
   display: flex;
   flex-direction: column;
