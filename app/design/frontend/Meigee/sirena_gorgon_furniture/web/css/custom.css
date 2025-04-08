@@ -1082,6 +1082,26 @@ div[name="Resin Water Features"], div[name="Solar Powered Water Features"] {
 
 
 /* global css start */
+.cart-container .totals-inner {
+  display: flex;
+  flex-direction: column;
+}
+.cart-container .totals-inner ul.checkout.methods.items.checkout-methods-items {
+  order: 3;
+}
+
+.cart-container .totals-inner .opc-payment-text {
+  order: 4;
+}
+.cart-container .totals-inner .summary-credit-card {
+  order: 5;
+}
+.cart-container .totals-inner div#cart-totals {
+  order: 1;
+}
+.cart-container .totals-inner div#block-discount {
+  order: 2;
+}
 /* checkout farhan css */
 /*checkout*/
 .checkout-index-index .page-wrapper #maincontent .opc-summary-wrapper .opc-block-shipping-information .ship-to {
@@ -3062,6 +3082,7 @@ header.page-header .header.content a.logo {
 }
   /* checkout page responsive end */
   /* cart page responsive start */
+  
 .checkout-cart-index .cart-container .cart-summary {
     WIDTH: 100%;
 }
