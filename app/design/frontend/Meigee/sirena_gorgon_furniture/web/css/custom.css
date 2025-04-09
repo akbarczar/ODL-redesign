@@ -182,6 +182,12 @@
   }
   
   @media only screen and (min-width: 1024px) {
+    .bestseller-products .products-grid{
+      column-gap: 20px;
+    }
+    .catalog-category-view .bestseller-products .products-grid li.item.product.product-item {
+      width: calc(25% - 15px);
+  }
     header.page-header .header.content a.logo {
       margin: 0;
       height: 93px;
