@@ -1100,6 +1100,33 @@ div[name="Resin Water Features"], div[name="Solar Powered Water Features"] {
 
 
 /* global css start */
+/* brands pags css */
+.category-brands .col-xs-6.col-sm-6.col-md-3.col-lg-3.items-categry-width {
+  width: calc(25% - 15px);
+  margin: 0;
+  padding: 0;
+}
+.category-brands .col-xs-12.col-sm-12.col-md-12.col-lg-12 .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 1440px;
+  margin: 0px auto;
+}
+.category-brands .col-xs-12.col-sm-12.col-md-12.col-lg-12 .row:before {
+  content: none;
+}
+.category-brands .list-product-linkk > button {
+  background-color: #183e0c;
+  height: 40px;
+}
+/* brads css end  */
+body.cms-show {
+  padding: 0px !important;
+}
+.product.attribute.videoscript iframe {
+  max-width: 100%;
+}
 .breadcrumbs .item:not(:last-child):after{
   content: '\e901';
   font-size: 10px;
@@ -1338,6 +1365,15 @@ ol.products.list.items.product-items .product-item-info span.image-parent img {
   }
 }
 @media  only screen and (max-width: 768px) {
+  .top-toolbar p#toolbar-amount {
+    padding: 0;
+}
+.top-toolbar .toolbar-sorter.sorter {
+    padding: 0;
+    display: flex;
+    column-gap: 15px;
+    align-items: center;
+}
 .checkout-index-index .custom-slide .modal-inner-wrap{
   box-shadow: none;
 }
@@ -3076,7 +3112,7 @@ header.page-header .header.content a.logo {
     width:33.33% ;
 }
   .nav-toggle:before{
-    line-height: 28px;
+    line-height: 20px;
   }
   .mobile-wrapper .block-search .label:before{
     content: '\e915';
@@ -3153,9 +3189,14 @@ select.cartqty {
   display: flex
 ;
   align-items: center;
-  margin-top: 18px;
+  margin-top: 0px;
 }
-
+.bottom-toolbar .toolbar-products {
+  padding: 0;
+}
+.bottom-toolbar .toolbar.toolbar-products .pages {
+  padding: 0;
+}
   .block.filter ,.filter-options .filter-options-content .item{
     margin-bottom: 0;
 }
@@ -3225,6 +3266,12 @@ select.cartqty {
   width: 100% ! IMPORTANT;
   padding: 0;
   margin: 0;
+  }
+}
+@media only screen and (max-width: 380px) {
+  .header.content a.logo img{
+    position: relative;
+    top: 5px;
   }
 }
 @media only screen and (max-width: 768px) {
