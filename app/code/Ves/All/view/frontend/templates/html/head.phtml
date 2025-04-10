@@ -1,8 +1,8 @@
 <?php
 $data = $this->helper("Ves\All\Helper\Data");
 $customCss = $data->getConfig('custom_css');
-$customCss = strip_tags((string)$customCss);
-$customCss = trim($customCss ?? '');
+$customCss = strip_tags(is_string($customCss) ? $customCss : '');
+$customCss = trim($customCss);
 ?>
 
 <?php if ($customCss) { ?>

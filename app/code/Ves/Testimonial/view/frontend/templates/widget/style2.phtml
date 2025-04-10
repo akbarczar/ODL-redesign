@@ -82,10 +82,10 @@ foreach ($_postCollection as $_columnCollection) {
     }
 }
 ?>
-<div id="<?php echo $tabId;?>" class="block widget block-products-list  tmls-widget <?php echo $blockClass ?> tmls-topmeta tmls-style2 <?php echo $widget_class; ?>" style="padding: 0;">
+<div id="<?php echo $tabId;?>" class="block widget tmls-widget <?php echo $blockClass ?> tmls-topmeta tmls-style2 <?php echo $widget_class; ?>">
     <?php if($widget_title || $tmls_pretext){ ?>
-    <div class="content-heading">
-        <?php if($widget_title){ ?><div class="block-title testimonial" style="color: #fff;text-align: left;margin-top:0;"><strong><?php echo $widget_title ?></strong></div><?php } ?>
+    <div class="block-title content-heading">
+        <?php if($widget_title){ ?><h2 class="title"><span><?php echo $widget_title ?></span></h2><?php } ?>
         <?php if($tmls_pretext){ ?><p class="info"><?php echo $tmls_pretext; ?></p><?php } ?>
     </div>
     <?php } ?>
@@ -121,8 +121,6 @@ foreach ($_postCollection as $_columnCollection) {
                 <div class="tmls-item <?php if($x>0 && $x == ( $count-1 )){ ?>last<?php } ?>" <?php if($custom_height){ ?>style="height: <?php echo $custom_height ?>px"<?php } ?>>
 
                     <div class="tmls-left">
-					
-					<i class="fas fa-quote-left"></i>
                         <?php // Image ?>
                         <?php if($show_image && ($imgSrc = $obj->getImage())): ?>
                             <div class="tmls-image">

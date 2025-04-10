@@ -23,6 +23,7 @@ namespace Ves\Testimonial\Helper;
 
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
+    protected $_filterProvider;
     /**
      * @var \Magento\Framework\ObjectManagerInterface
      */
@@ -37,7 +38,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     protected $_storeManager;
 
     protected $_scopeConfig;
-	private $_filterProvider;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\TimezoneInterface
