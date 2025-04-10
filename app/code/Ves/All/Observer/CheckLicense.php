@@ -26,6 +26,8 @@ use Magento\Framework\Module\Dir;
 
 class CheckLicense implements ObserverInterface
 {
+	protected $_storeManager;
+	protected $licenseHelper;
 	/**
      * @var \Ves\All\Model\License
      */
@@ -45,8 +47,6 @@ class CheckLicense implements ObserverInterface
      * @var \Magento\Framework\HTTP\PhpEnvironment\RemoteAddress
      */
 	protected $_remoteAddress;
-	private $_storeManager;
-	private $licenseHelper;
 
 	/**
 	 * @param \Ves\All\Model\License                               $licnese        

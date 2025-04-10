@@ -26,6 +26,9 @@ use Magento\Framework\Module\Dir;
 
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
+    protected $_license;
+    protected $_moduleReader;
+    protected $_remoteAddress;
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
      */
@@ -57,8 +60,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @var \Magento\Framework\Registry
      */
     protected $_coreRegistry;
-	private $_license;
-	private $_moduleReader;
 
     /**
      * @param \Magento\Framework\App\Helper\Context      $context        
