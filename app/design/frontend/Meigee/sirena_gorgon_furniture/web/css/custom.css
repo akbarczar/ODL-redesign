@@ -3275,7 +3275,7 @@ select.cartqty {
 }
 @media only screen and (max-width: 767px) {
   .block-minicart div#bottom-content {
-    margin: 0;
+    margin-left: 0px !important;
 }
 
   .product .product.data.items>.item.title {
@@ -3381,6 +3381,9 @@ dd.filter-options-content ol.items {
   }
 }
 @media screen and (max-width: 1024px) {
+  .products.wrapper.grid.products-grid li.product-item:hover a.weltpixel-quickview.weltpixel_quickview_button_v2 {
+    display: none;
+}
   .navigation .level0.active > a:not(.ui-state-active) span:not(.ui-menu-icon) {
       margin-left: 0;
   }
