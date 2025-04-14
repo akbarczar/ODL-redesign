@@ -10,12 +10,12 @@
 <?php if ($block->displayProductStockStatus()) :?>
     <?php if ($_product->isAvailable()) :?>
         <div class="stock available" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
-            <img src="<?php echo $this->getViewFileUrl('images/right-mark.png'); ?>" />
+            <img height="20" width="20" src="<?php echo $this->getViewFileUrl('images/right-mark.png'); ?>" />
             <?php echo "Availability:"; ?> <span><?= $block->escapeHtml(__('In stock')) ?></span>
         </div>
     <?php else :?>
         <div class="stock unavailable" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
-            <img src="<?php echo $this->getViewFileUrl('images/wrong-mark.png'); ?>" />
+            <img height="20" width="20" src="<?php echo $this->getViewFileUrl('images/wrong-mark.png'); ?>" />
             <?php echo "Availability:"; ?><span><?= $block->escapeHtml(__('Out of stock')) ?></span>
         </div>
     <?php endif; ?>
