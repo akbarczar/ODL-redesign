@@ -1107,6 +1107,57 @@ div[name="Resin Water Features"], div[name="Solar Powered Water Features"] {
 
 
 /* global css start */
+.to-top {
+  z-index: 999;
+  display: inline-block;
+  visibility: hidden;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 40px;
+  height: 80px;
+  font-size: 24px;
+  color: rgba(0, 0, 0, .2);
+  text-align: center;
+  opacity: 0;
+  -webkit-transition: opacity .3s ease-out;
+  -moz-transition: opacity .3s ease-out;
+  -ms-transition: opacity .3s ease-out;
+  -o-transition: opacity .3s ease-out;
+  transition: opacity .3s ease-out;
+}
+.to-top {
+  z-index: 999;
+  display: inline-block;
+  visibility: hidden;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 40px;
+  height: 80px;
+  font-size: 24px;
+  color: rgba(0, 0, 0, .2);
+  text-align: center;
+  opacity: 0;
+  -webkit-transition: opacity .3s ease-out;
+  -moz-transition: opacity .3s ease-out;
+  -ms-transition: opacity .3s ease-out;
+  -o-transition: opacity .3s ease-out;
+  transition: opacity .3s ease-out;
+}
+.to-top:after {
+  display: inline-block;
+  content: attr(data-btn-text);
+  font-size: 11px;
+  color: rgba(0, 0, 0, .8);
+  text-transform: uppercase;
+}
+.to-top.top-is-visible {
+  opacity: 1;
+  visibility: visible;
+  color: #000;
+  border-radius: 10px;
+}
 .minicart-wrapper .action.showcart{
   min-height: 40px;
   min-width: 40px;
