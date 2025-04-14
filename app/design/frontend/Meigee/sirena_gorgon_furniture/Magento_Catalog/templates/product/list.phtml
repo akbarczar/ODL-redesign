@@ -82,11 +82,11 @@ $_helper = $block->getData('outputHelper');
                         tabindex="-1">
                         <span class="image-parent">
                             <img src="<?= $escaper->escapeUrl($productImage->getImageUrl()) ?>"
-                                class="product-main-image"
+                                class="product-main-image" width="405" height="405"
                                 alt="<?= $escaper->escapeHtmlAttr($_product->getName()) ?>" />
                         <?php if($hoverImage){ ?>
                             <img src="<?= $escaper->escapeUrl($hoverImage->getImageUrl()) ?>"
-                                class="product-hover-image"
+                                class="product-hover-image" width="405" height="405"
                                 alt="<?= $escaper->escapeHtmlAttr($_product->getName()) ?>" />
                                 <?php } ?>
                         </span>

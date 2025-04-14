@@ -182,6 +182,9 @@
   }
   
   @media only screen and (min-width: 1024px) {
+    .page-products .product-item-info{
+      min-height: 420px;
+    }
     .bestseller-products .products-grid{
       gap: 20px;
     }
@@ -325,6 +328,9 @@ span.boder-menu {
 }
 }
   @media only screen and (max-width: 1024px) {
+    .page-products .product-item-info{
+      min-height: 300px;
+    }
     .product.attribute.description .box-des .row{
       padding: 0px 20px;
     }
@@ -1101,6 +1107,10 @@ div[name="Resin Water Features"], div[name="Solar Powered Water Features"] {
 
 
 /* global css start */
+.minicart-wrapper .action.showcart{
+  min-height: 40px;
+  min-width: 40px;
+}
 .toolbar.toolbar-products .sorter .sort-desc:before{
   content: '\e91f';
 }
