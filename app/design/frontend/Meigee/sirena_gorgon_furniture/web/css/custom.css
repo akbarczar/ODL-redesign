@@ -2601,6 +2601,84 @@ body .block.widget.block-products-list .block-title h3 {
 .block.related .product-item {
   box-shadow: 2px 10px 34px #a5aaad;
 }
+/* my account css */
+body.account .column.main .block:not(.widget) .block-content .box {
+  float: left;
+  width: calc(44% - 20px);
+  margin: 0 10px;
+  border: 1px solid rgba(0, 0, 0, .1);
+  padding: 20px;
+}
+@media screen and (max-width: 768px) {
+body.account .column.main .block:not(.widget) .block-content .box{
+    width: 90%;
+    margin-bottom: 20px;
+    margin-left:0px;
+  }    
+}
+@media screen and (min-width: 1024px) {
+  .page-layout-2columns-left .column.main {
+      /* width: 75% !important; */
+      padding: 0;
+  }
+  .block.block-dashboard-info {
+    width: 75%;
+  }
+
+  .block.block-dashboard-addresses {
+    width: 75%;
+  }
+}
+body.account .column.main .block:not(.widget) {
+  padding-bottom: 30px;
+}
+
+body.account .column.main .block:not(.widget) .block-title strong {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  color: rgba(0, 0, 0, .8);
+  font-size: 24px;
+}
+body.account .column.main .block:not(.widget) .block-title .action {
+  float: right;
+  font-size: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  margin-top: 11px;
+  text-transform: uppercase;
+  min-height: auto;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  background-color: transparent;
+}
+body.account .column.main a {
+  color:#a6c722;
+}
+
+body.account .column.main .block:not(.widget) .block-content .box .box-title {
+  margin: -20px -20px 15px;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, .04);
+  display: block;
+  font-weight: 400;
+  color: rgba(0, 0, 0, .8);
+}
+body.account .column.main {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 14px;
+  line-height: 24px;
+  color: rgba(0,0,0,.6);
+}
+.logout_cls a:before {
+  content: "\f08b ";
+  font-size: 20px;
+  margin-right: 5px;
+  font-family: 'FontAwesome';
+}
+
+.header-item.account-links li.logout_cls {margin-left: 10px;}
+/* my account css end  */
 /* global css end  */
 
 

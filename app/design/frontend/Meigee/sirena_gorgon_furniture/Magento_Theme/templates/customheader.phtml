@@ -29,18 +29,12 @@
                 $block->getAccountUrl()
             ) ?>"><i class="fa fa-user"></i></span>
             <li class="my-account">My Account</a></li>
+
   
-            <!-- <?php
-//if ($block->isLoggedIn()):
-?>
-                <li><a href="<//?= $block->escapeUrl($block->getLogoutUrl()); ?>">Logout</a></li>
-            <?php
-// else:
-?>
-                <li><a href="<?//= $block->escapeUrl($block->getLoginUrl()); ?>">Login</a></li>
-            <?php
-//endif;
-?> -->
+             <?php
+            if ($block->isLoggedIn()): ?>
+                <li class="logout_cls"><a href="<?= $block->escapeUrl($block->getLogoutUrl()); ?>">Logout</a></li>
+            <?php endif; ?>
             <!-- <li><a href="<?//= $block->escapeUrl($block->getWishlistUrl()); ?>">Wishlist</a></li>
             <li><a href="<?//= $block->escapeUrl($block->getCompareUrl()); ?>">Compare</a></li> -->
         </ul>
