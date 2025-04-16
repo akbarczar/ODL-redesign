@@ -182,9 +182,9 @@
   }
   
   @media only screen and (min-width: 1024px) {
-    .page-products .product-item-info{
+    /* .page-products .product-item-info{
       min-height: 420px;
-    }
+    } */
     .bestseller-products .products-grid{
       gap: 20px;
     }
