@@ -114,6 +114,21 @@ foreach ($allParentIds as $parentId) {
 
         // Reindex stock status
         $stockIndexerProcessor->reindexRow($configProduct->getId());
+        $hasInStockChild = $this->checkConfigurableStock($configProduct);
+
+        // Reload stock item after reindexing
+        $stockItem = $stockRegistry->getStockItem($configProduct->getId());
+
+        if (!$stockItem->getIsInStock()) {
+            $logger->info("Product {$configProduct->getSku()} is still OUT OF STOCK after reindex.");
+            if ($hasInStockChild) {
+                $stockItem->setIsInStock(true);
+                $stockRegistry->updateStockItemBySku($configProduct->getSku(), $stockItem);
+                $logger->info("Forced IN STOCK for product: " . $configProduct->getSku());
+            }
+        } else {
+            $logger->info("Product {$configProduct->getSku()} is IN STOCK.");
+        }
 
         $logger->info('Stock reindexed for: ' . $parentId);
     } catch (\Exception $e) {
