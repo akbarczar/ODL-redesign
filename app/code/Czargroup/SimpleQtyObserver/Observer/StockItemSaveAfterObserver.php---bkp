@@ -1,0 +1,112 @@
+<?php
+
+namespace Czargroup\SimpleQtyObserver\Observer;
+
+use Magento\Framework\Event\Observer;
+use Magento\Framework\Event\ObserverInterface;
+use Magento\CatalogInventory\Model\Stock\StockItemRepository;
+use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\Configurable as ConfigurableType;
+use Psr\Log\LoggerInterface;
+
+class StockItemSaveAfterObserver implements ObserverInterface
+{
+    protected $stockItemRepository;
+    protected $productRepository;
+    protected $configurableType;
+    protected $logger;
+
+    public function __construct(
+        StockItemRepository $stockItemRepository,
+        ProductRepositoryInterface $productRepository,
+        ConfigurableType $configurableType,
+        LoggerInterface $logger
+    ) {
+        $this->stockItemRepository = $stockItemRepository;
+        $this->productRepository = $productRepository;
+        $this->configurableType = $configurableType;
+        $this->logger = $logger;
+    }
+
+    public function execute(Observer $observer)
+    {
+        $writer = new \Zend_Log_Writer_Stream(BP . '/var/log/config.log');
+        $logger = new \Zend_Log();
+        $logger->addWriter($writer);
+        $logger->info('Stock item save observer triggered.');
+
+        // Get the stock item and product data
+        $stockItem = $observer->getEvent()->getItem();
+        $productId = $stockItem->getProductId();
+        $qty = $stockItem->getQty();
+        $isInStock = $stockItem->getIsInStock();
+        $origData = $stockItem->getOrigData();
+
+        $logger->info('Stock item save detected for product ID: ' . $productId);
+        $configurableProduct = $this->productRepository->getById($productId);
+            // Load the configurable product
+            $configurableProduct = $this->productRepository->getById($productId);
+            if ($configurableProduct->getTypeId() === 'configurable') {
+                // Log configurable product stock status
+                $isInStock = $configurableProduct->getExtensionAttributes()->getStockItem()->getIsInStock();
+                $logger->info('Configurable product stock status: ' . ($isInStock ? 'In Stock' : 'Out of Stock'));
+                 $_children = $_product->getTypeInstance()->getUsedProducts($_product);
+                foreach ($_children as $child){
+                    $logger->info("Here are your child Product Ids ".$child->getID());
+                }
+                // $configurableProduct->setQuantityAndStockStatus(['is_in_stock' => 1]);
+                //                 $configurableProduct->save();
+                //          $logger->info('Configurable product saved as in stock: ' . $configurableProduct->getName());
+            }
+    }
+        // $logger->info('Original data: ' . print_r($origData, true));
+
+        // // Detect if the simple product quantity is updated to greater than 0
+        // if ($qty > 0) {
+        //     try {
+        //         // Load the simple product
+        //         $simpleProduct = $this->productRepository->getById($productId);
+
+        //         if ($simpleProduct->getTypeId() === 'simple') {
+        //             // Get parent configurable product(s)
+        //             $parentIds = $this->configurableType->getParentIdsByChild($productId);
+
+        //             if (!empty($parentIds)) {
+        //                 foreach ($parentIds as $parentId) {
+        //                     // Load the configurable product
+        //                     $configurableProduct = $this->productRepository->getById($parentId);
+
+        //                     // Check if any of its child products are in stock
+        //                     $childIds = $this->configurableType->getChildrenIds($parentId);
+        //                     $isConfigurableInStock = false;
+
+        //                     foreach ($childIds as $childIdArray) {
+        //                         foreach ($childIdArray as $childId) {
+        //                             $childStockItem = $this->stockItemRepository->get($childId);
+        //                             if ($childStockItem->getQty() > 0) {
+        //                                 $isConfigurableInStock = true;
+        //                                 break 2; // Exit both loops if one child is in stock
+        //                             }
+        //                         }
+        //                     }
+
+        //                     // Update the configurable product stock status if necessary
+        //                     if ($isConfigurableInStock) {
+        //                         $logger->info('Configurable product will be marked as in stock: ' . $configurableProduct->getName());
+        //                         $configurableProduct->setQuantityAndStockStatus(['is_in_stock' => 1]);
+        //                         $configurableProduct->save();
+        //                         $logger->info('Configurable product saved as in stock: ' . $configurableProduct->getName());
+        //                     } else {
+        //                         $logger->info('No simple products are in stock for configurable product: ' . $configurableProduct->getName());
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     } catch (\Exception $e) {
+        //         $this->logger->error('Error updating configurable product stock status: ' . $e->getMessage());
+        //     }
+        // } else {
+        //     $logger->info('Simple product quantity is not greater than 0. No action taken.');
+        // }
+   // }
+}
