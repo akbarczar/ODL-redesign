@@ -828,7 +828,7 @@ li.item.product.product-item .product-item-info.sold-out .sold-out-label span {
 .filter-current ol.items li {
     white-space: normal;
     height: 40px;
-    width: auto;
+    width: fit-content;
     background-color: #bdbdbd ! IMPORTANT;
     border: 1px solid beige !important;
     border-radius: 10px;
@@ -841,7 +841,7 @@ li.item.product.product-item .product-item-info.sold-out .sold-out-label span {
     display: inline-block;
     font-family: 'icons-blank-theme';
     content: '\e616';
-    margin-left: 30px;
+    margin-left: 10px;
     color: #000;
 }
 .filter-current a.action.remove span {
@@ -1107,6 +1107,35 @@ div[name="Resin Water Features"], div[name="Solar Powered Water Features"] {
 
 
 /* global css start */
+.catalog-category-view .category-description p {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.cms-show h1 {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+.breadcrumbs .items>li:last-child strong {
+  font-weight: 600;
+  color: #183e0c;
+}
+.nav-sections-item-content .magicmenu .nav-desktop .level0 .level-top {
+  padding: 10px 13px;
+}
+.testimonials .tmls-widget h2.title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #fff;
+  background-color: #183e0c;
+  width: 100%;
+  padding: 15px 0 15px 15px;
+}
+.testimonials .tmls-widget h2.title span {
+  background: inherit;
+}
+.testimonials .tmls-widget h2.title:after {
+  content:none;
+}
 .to-top {
   z-index: 999;
   display: inline-block;
@@ -1212,6 +1241,8 @@ body.cms-show {
 .breadcrumbs .item:not(:last-child):after{
   content: '\e901';
   font-size: 10px;
+  margin-top: 4px;
+  color:#000;
 }
 ol.products.list.items.product-items .product-item-info span.image-parent img {
   width: 100%;
@@ -1447,6 +1478,9 @@ ol.products.list.items.product-items .product-item-info span.image-parent img {
   }
 }
 @media  only screen and (max-width: 768px) {
+  #layered-filter-block .filter-options-item[name=Price] .ui-slider-horizontal{
+    width: 300px;
+  }
   .checkout-cart-index .actions-toolbar a.action.action-delete span {
     top: 0;
 }
@@ -2617,6 +2651,10 @@ body.account .column.main .block:not(.widget) .block-content .box{
   }    
 }
 @media screen and (min-width: 1024px) {
+  .cms-show .column.main,.cms-show .breadcrumbs {
+    max-width: 75%;
+    margin: 0px auto !important;
+  }
   .page-layout-2columns-left .column.main {
       /* width: 75% !important; */
       padding: 0;
@@ -2811,7 +2849,7 @@ span.price-block {
 .catalog-category-view li.item.product.product-item .product-item-inner {
   display: none;
 }
-.catalog-category-view ol.products.list.items.product-items li.item.product.product-item {
+/* .catalog-category-view ol.products.list.items.product-items li.item.product.product-item {
   -webkit-box-shadow: 2px 10px 34px #a5aaad;
     box-shadow: 2px 10px 34px #a5aaad;
     -webkit-backface-visibility: hidden;
@@ -2821,7 +2859,8 @@ span.price-block {
     height: 100%;
     margin-bottom: 20px;
     padding: 0px;
-}
+} */
+ 
 .product.details.product-item-details {
   display: flex;
   min-height: 108px;
@@ -2830,7 +2869,7 @@ span.price-block {
   padding: 0px 10px;
 }
 .products.wrapper.grid.products-grid a.weltpixel-quickview.weltpixel_quickview_button_v2{
-  top: -325px !IMPORTANT;
+  top: -316px !IMPORTANT;
   right: 5px;
   position: absolute;
   overflow: visible;
@@ -3022,6 +3061,10 @@ a.seventh-home img {
   }
 }
 @media only screen and (min-width: 768px) {
+  .catalog-category-view ol.products.list.items.product-items li.item.product.product-item:hover {
+    -webkit-box-shadow: 0 5px 20px 2px rgb(0 0 0 / 10%);
+    box-shadow: 0 5px 20px 2px rgb(0 0 0 / 10%);
+}
   .page-header .minicart-wrapper .block-minicart {
       width: 410px;
       padding: 30px;
@@ -3400,7 +3443,7 @@ select.cartqty {
       overflow: auto;
   }
   div#home_six_block .below_slider{
-      width: 49%;
+      width: 48%;
   }
 }
 @media screen and (min-width: 481) and (max-width: 768px) {
@@ -3437,6 +3480,13 @@ select.cartqty {
   }
 }
 @media only screen and (max-width: 768px) {
+  div#home_six_block .banner-content .title {
+    line-height: 17px;
+}
+
+div#home_six_block .banner-content span {
+    font-size: 16px;
+}
   .home-secone-one {
       width: 100%;
   }
