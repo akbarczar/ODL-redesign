@@ -115,7 +115,7 @@ class SpeedOptimizer extends \Magento\Framework\View\Element\Template
         }
 
         //by dev
-        //$body = $this->addBodyClass($body, $bodyClass);     
+        $body = $this->addBodyClass($body, $bodyClass);     
 
         if(!$noJs) {
             if ($deferJs){
@@ -369,6 +369,10 @@ class SpeedOptimizer extends \Magento\Framework\View\Element\Template
 
     public function addLoading($content)
     {
+        // $writer = new \Zend_Log_Writer_Stream(BP . '/var/log/opt.log');
+        // $logger = new \Zend_Log();
+        // $logger->addWriter($writer);
+        // $logger->info('text message');
         $style     = '';
         $preload   = '';
         $mediaUrl  = $this ->storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA );
@@ -389,6 +393,7 @@ class SpeedOptimizer extends \Magento\Framework\View\Element\Template
         $loadingBody = $this->helper->getConfigModule('general/loading_body_placeholder');
 
         $loadingBody = $loadingBody ? $mediaUrl . 'magepow/speedoptimizer/' . $loadingBody : $placeholder;
+        //$logger->info('text loadingBody'.$loadingBody);
         $style   .= 'body.loading_body .preloading .loading{background-image: url("' . $loadingBody . '")}';
 
         $loadingImg = $this->helper->getConfigModule('general/loading_img_placeholder');
@@ -399,8 +404,9 @@ class SpeedOptimizer extends \Magento\Framework\View\Element\Template
         $style .= 'body.loading_img img.loaded{background-image: none}';    
 
         if($style){
-           // $style = '<style type="text/css">' . $style . '</style>';
-            //$content = str_ireplace('</head>', $style . $preload . '</head>', $content);
+            //$logger->info('add css here');
+            $style = '<style type="text/css">' . $style . '</style>';
+            $content = str_ireplace('</head>', $style . $preload . '</head>', $content);
         }
 
         return $content;
