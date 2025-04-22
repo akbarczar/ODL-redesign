@@ -115,7 +115,13 @@ class SpeedOptimizer extends \Magento\Framework\View\Element\Template
         }
 
         //by dev
-        $body = $this->addBodyClass($body, $bodyClass);     
+        $fullActionName = $this->request->getFullActionName();
+        if($fullActionName === 'checkout_index_index'){
+            return;
+        }else{
+            $body = $this->addBodyClass($body, $bodyClass); 
+        }
+            
 
         if(!$noJs) {
             if ($deferJs){
