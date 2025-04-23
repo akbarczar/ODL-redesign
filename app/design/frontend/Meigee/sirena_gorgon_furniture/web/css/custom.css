@@ -3029,6 +3029,14 @@ main#maincontent .column.main .product .product.data.items>.item.title {
     float: left;
 }
 }
+@media screen and (min-width: 1025px) and (max-width: 1385px) {
+  .page-wrapper .navigation .level0.parent>.level-top>.ui-menu-icon:after, .magicmenu .nav-desktop .level0.hasChild .level-top:after{
+    padding: 10px 5px;
+  }
+  .magicmenu .nav-desktop .level0 .level-top>span{
+    padding-left: 10px;
+  }
+}
 @media screen and (min-width: 1025px) and (max-width: 1200px) {
   div#home_six_block .below_slider{
     width: 48%;
