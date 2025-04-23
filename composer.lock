@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cd652dc163690f19820b5227a885bb3e",
+    "content-hash": "b0b1634a2f712491ba622309e5d31680",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -19888,46 +19888,6 @@
                 "source": "https://github.com/magento/magento-zend-pdf/tree/1.16.4"
             },
             "time": "2024-12-18T14:59:28+00:00"
-        },
-        {
-            "name": "mageplaza/module-abandoned-cart-email",
-            "version": "4.3.0",
-            "source": {
-                "type": "git",
-                "url": "git@gitlab.com:mageplaza/uranus/module-abandoned-cart-email.git",
-                "reference": "f3c86d4271a189a6ede4f6481f9357f304ee3241"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://repo.mageplaza.com/public/dist/mageplaza/module-abandoned-cart-email/mageplaza-module-abandoned-cart-email-f3c86d4271a189a6ede4f6481f9357f304ee3241-zip-aa15ca.zip",
-                "reference": "f3c86d4271a189a6ede4f6481f9357f304ee3241",
-                "shasum": "2fbb54152e213d1734c5e40b6a71d7149dc689c8"
-            },
-            "require": {
-                "mageplaza/module-core": "^1.4.5"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "Mageplaza\\AbandonedCart\\": ""
-                }
-            },
-            "license": [
-                "proprietary"
-            ],
-            "authors": [
-                {
-                    "name": "Mageplaza",
-                    "email": "support@mageplaza.com",
-                    "homepage": "https://www.mageplaza.com",
-                    "role": "Technical Support"
-                }
-            ],
-            "description": "Magento 2 Abandoned Cart Email extension",
-            "time": "2022-02-24T02:41:48+00:00"
         },
         {
             "name": "mageplaza/module-backend-reindex",
