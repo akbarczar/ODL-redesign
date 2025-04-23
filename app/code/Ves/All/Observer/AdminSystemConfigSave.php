@@ -46,12 +46,25 @@ class AdminSystemConfigSave implements ObserverInterface
             if($groups && isset($groups['general']) && $groups['general']){
                 $modules = $groups['general']['fields'];
                 if($modules){
-                    foreach($modules as $key=>$item){
-                        $module_license_key = isset($item['value'])?$item['value']:'';
-                        if($module_license_key){
-                            $this->configWriter->save('veslicense/general/'.$key,  $module_license_key, ScopeConfigInterface::SCOPE_TYPE_DEFAULT, 0);
-                            $this->configWriter->save('loflicense/general/'.$key,  $module_license_key, ScopeConfigInterface::SCOPE_TYPE_DEFAULT, 0);
+                    foreach ($modules as $key => $item) {
+                        if (!isset($item['value'])) {
+                            continue;
                         }
+                    
+                        $module_license_key = $item['value'];
+                    
+                        // Safeguard: If it's an array, convert to JSON or skip
+                        if (is_array($module_license_key)) {
+                            // You can either skip or serialize:
+                            // Option 1: Skip
+                            // continue;
+                    
+                            // Option 2: Convert to string (preferred if intentional)
+                            $module_license_key = json_encode($module_license_key);
+                        }
+                    
+                        $this->configWriter->save('veslicense/general/' . $key, $module_license_key, ScopeConfigInterface::SCOPE_TYPE_DEFAULT, 0);
+                        $this->configWriter->save('loflicense/general/' . $key, $module_license_key, ScopeConfigInterface::SCOPE_TYPE_DEFAULT, 0);
                     }
                 }
             }
