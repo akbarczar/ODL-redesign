@@ -9,6 +9,14 @@ $storeManager = $objectManager->get('Magento\Store\Model\StoreManagerInterface')
     $mediaUrl = $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
 $categories = $blockObj->getCategories(); 
 //echo "count is ".count($categories);?>
+<script type="text/javascript">
+require(['jquery'], function($) {
+    $(document).ready(function() {
+		console.log("added jqueryyyyyyyyyyyyy");
+        $('img.no-lazyload').removeAttr('loading');
+    });
+});
+</script>
 <?php if (count($categories) > 0): ?>
     <div class="row" id="home-categories">
         
@@ -21,7 +29,7 @@ $categories = $blockObj->getCategories();
 				  <div class="column" name="<?php echo $block->escapeHtml($_category->getName()) ?>">
 					 <a class="list-product-imgk" href="<?php echo $block->escapeUrl($category->getUrl()) ?>" title="<?php echo $block->escapeHtml($_category->getName()) ?>">
 						<?php if($_category->getImageUrl()):?>
-							<img class="img-responsive" src="<?php echo $block->escapeUrl($_category->getImageUrl()) ?>" alt="<?php echo $block->escapeHtml($_category->getName()) ?>" />
+							<img class="img-responsive no-lazyload" src="<?php echo $block->escapeUrl($_category->getImageUrl()) ?>" alt="<?php echo $block->escapeHtml($_category->getName()) ?>" />
 						<?php endif;?>
 					</a>
 					<a class="list-product-linkk" href="<?php echo $block->escapeUrl($category->getUrl()) ?>" title="<?php echo $block->escapeHtml($category->getName()) ?>">
