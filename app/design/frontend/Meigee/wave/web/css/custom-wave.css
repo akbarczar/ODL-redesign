@@ -522,12 +522,49 @@ body .block.widget.block-products-list.meigee-widget.widget-slider .block-title{
     .page-header .page-header-inner {
       width: 1440px;
       padding: 0;
+      max-width: 100%;
     }
     .buttons-wrapper .header_rating_image {
       display: block;
     }
   }
-  
+  .checkout-index-index .page-title-wrapper {
+    text-align: center;
+}
+
+.checkout-index-index .page-header .checkout-header {
+    padding: 0 10px;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+
+.checkout-index-index .checkout-header .left-block .logo>img {
+    width: 100%;
+    height: auto;
+}
+.checkout-index-index .page-header .logo {
+    margin: 0;
+    max-width: 100%;
+    padding-left: 0;
+}
+
+.checkout-index-index header.page-header {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    padding: 20px 60px;
+}
+  .checkout-index-index .page-title-wrapper {
+    text-align: center;
+}
   .water-water-feature-home .box-width-content div#home-categories .column {
     flex: 21%;
   }
@@ -2054,6 +2091,7 @@ body .block.widget.block-products-list.meigee-widget.widget-slider .block-title{
 header.page-header .header.content {
     margin: 0;
     padding: 0;
+    max-width: 100%;
 }
 /* view cart responsive start  */
 .cart-container {
