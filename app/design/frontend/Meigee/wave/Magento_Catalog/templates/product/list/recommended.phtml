@@ -1,0 +1,97 @@
+<?php 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+//$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+$product = $block->getProduct();
+$procatids = $product->getCategoryIds();
+if(count($procatids)>0){
+$last_catid = $procatids[count($procatids)-1];
+$probrand = $product->getData('brand');
+//print_r($probrand);
+$categoryFactory = $objectManager->get('\Magento\Catalog\Model\CategoryFactory');
+$category = $categoryFactory->create()->load($last_catid);
+$helperImport   = $objectManager->get('\Magento\Catalog\Helper\Image');
+$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
+$categoryProducts = $productCollection->create()
+					->addCategoryFilter($category)
+                    ->addAttributeToSelect('*')
+					->addAttributeToFilter('visibility', \Magento\Catalog\Model\Product\Visibility::VISIBILITY_BOTH)
+					->addAttributeToFilter('status',\Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED)
+					->addAttributeToFilter('brand', array('eq' => $probrand));
+$categoryProducts->getSelect()->order(new Zend_Db_Expr('RAND()'));
+$categoryProducts->getSelect()->limit(4);
+?>
+<?php if(count($categoryProducts) > 0){ ?>
+
+	<div class="right-detail-relative">
+		<p class="reco-product"><?php echo __("Recommended Products"); ?></p>
+		<div class="row">
+		
+			<?php foreach($categoryProducts as $catpro){ 
+			$proname = $catpro->getName();
+			$prourl = $catpro->getProductUrl();
+			$imageUrl = $helperImport->init($catpro,'category_page_list')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(220)->getUrl();
+			//print_r($catpro->getData());
+			?>
+				<div class="col-md-3 col-sm-6 col-xs-6 bootCols">
+					<a href="<?php echo $prourl; ?>" title="<?php echo $proname; ?>" class="product-image">
+						<img class="rel_img" src="<?php echo $imageUrl; ?>" alt="<?php echo $proname; ?>" />
+						<?php //echo $block->getImage($catpro, 'related_products_list')->toHtml(); ?>
+					</a>
+					<div class="list-product-detaikl reco-pro-price">
+					    
+						<p class="list-product-name"><?php echo $proname; ?></p>
+						<?php
+						$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+						$priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data'); 
+						$msrpprice =   $catpro->getResource()->getAttribute('msrp')->getFrontend()->getValue($catpro); 
+						$formattedPrice = $priceHelper->currency($msrpprice, true, false); ?>
+						<p class="list-product-price-old"> <?php echo "RRP: "; ?><s><span class="price">
+								<?php echo $formattedPrice; ?>
+						</span></s></p>
+								<?php echo $block->getProductPrice($catpro); ?>
+					</div>
+					<button class="add-list-basket" onclick="window.location.href='<?= $prourl; ?>'"><span><span><?php echo "VIEW MORE"; ?></span></span></button>
+				</div>
+
+			<?php } ?>
+			
+		</div>
+	</div>
+<?php } ?>
+
+
+
+
+
+<style>
+.page-wrapper .swiper-container.releted1 .swiper-button-next.rel, .page-wrapper .swiper-container.releted1 .swiper-button-prev.rel{
+	width:30px;
+	opacity:1;
+	background-color:rgba(0, 0, 0, 0.4);
+	height:40px;top:25%;
+}
+
+.page-wrapper .swiper-container.releted1 .swiper-button-prev.rel{
+	left:27px;
+}
+
+.page-wrapper .swiper-button-prev.rel:before,.page-wrapper .swiper-button-next.rel:before{
+	position:relative;
+	bottom:20px;
+	color:#fff;
+}
+
+.sidebar .right-detail .reco-product{
+	font-size:16px;
+	color:#000;
+}
+
+.swiper-container.releted1 .swiper-slide img.rel_img{
+	width:auto;
+	margin:0 auto;
+}
+
+
+</style>
+<?php } ?>
+

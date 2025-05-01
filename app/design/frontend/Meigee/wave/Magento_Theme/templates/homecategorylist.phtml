@@ -1,0 +1,27 @@
+<?php 
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+//$categoryIds = array(207,1410,465,235,461,475,1430,1424,480,481,210,206);
+$categoryIds = array(207,208,465,235,461,475,476,1424,480,481,232,206);
+?>
+
+<div class="box-width-content">
+	<div class="row" id="home-categories">
+		<?php foreach ($categoryIds as $categoryId): ?>
+		<?php $_category = $_objectManager->create('Magento\Catalog\Model\Category')->load($categoryId); ?>
+		<div class="column" name="<?php echo $block->escapeHtml($_category->getName()) ?>">
+			<a class="list-product-imgk" href="<?php echo $block->escapeUrl($_category->getUrl()) ?>" title="<?php echo $block->escapeHtml($_category->getName()) ?>">
+				<?php if($_category->getImageUrl()):?>
+					<img class="img-responsive" src="<?php echo $block->escapeUrl($_category->getImageUrl()) ?>" alt="<?php echo $block->escapeHtml($_category->getName()) ?>" />
+							<?php endif;?>
+			</a>
+			<a class="list-product-linkk" href="<?php echo $block->escapeUrl($_category->getUrl()) ?>" title="<?php echo $block->escapeHtml($_category->getName()) ?>">
+				<span class="cat-title-name"><?php echo $block->escapeHtml($_category->getName()) ?>
+				</span>
+				<br>
+				<span class="cat-title-disc"><?php echo $block->escapeHtml($_category->getMeigeeCatLabeltext()) ?>
+				</span>
+			</a>
+		</div>
+	<?php endforeach; ?>
+	</div>
+</div>

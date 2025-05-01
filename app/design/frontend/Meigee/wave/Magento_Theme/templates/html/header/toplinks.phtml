@@ -1,0 +1,12 @@
+<?php
+$accountLink = $logoutLink = true;
+?>
+<?php echo $this->getChildHtml("sirena.header.top.links"); ?>
+<ul class="header links">
+    <?php if ($accountLink) { ?>
+        <?php echo $this->getChildHtml("my-account-link"); ?>
+    <?php } ?>
+    <?php if ($logoutLink) { ?>
+        <?php echo $this->getChildHtml("authorization-link"); ?>
+    <?php } ?>
+</ul>

@@ -1,0 +1,151 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/* @var $block \Magento\Catalog\Block\Product\AbstractProduct */
+?>
+
+<?php
+$type = $block->getType();
+        /** @var \Magento\Catalog\Block\Product\ProductList\Upsell $block */
+        if ($exist = count($block->getItemCollection()->getItems())) {
+            $type = 'upsell';
+            $class = $type;
+
+            $image = 'product_page_image_medium';
+            $title = __('We found other products you might like!');
+            $items = $block->getItemCollection()->getItems();
+            $limit = $block->getItemLimit('upsell');
+            $shuffle = 0;
+
+            $showAddTo = false;
+            $showCart = false;
+            $templateType = null;
+            $description = false;
+            $canItemsAddToCart = false;
+        }
+		$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+		$_helperGallery = $objectManager->get('\Magento\Catalog\Helper\Image');
+?>
+
+<?php if ($exist):?>
+<span class="upsell_close">X</span>
+<div class="block <?= /* @escapeNotVerified */ $class ?>">
+    <?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('upsell_title')->toHtml(); ?>
+    <div class="block-content content" aria-labelledby="block-<?= /* @escapeNotVerified */ $class ?>-heading">
+        <div class="products wrapper grid products-grid products-<?= /* @escapeNotVerified */ $type ?>">
+            <div class="products list items product-items multiple-items">
+                <?php foreach ($items as $_item): ?>
+                    <div class="item product product-item">
+						<div class="product-item-info ">
+						<?php 
+							$item_id = $_item["entity_id"];
+							$product = $objectManager->create('Magento\Catalog\Model\Product')->load($item_id);
+							$ProductImageUrl = $_helperGallery->init($product, 'product_base_image')->setImageFile($product->getImage())->getUrl();
+						 ?>
+						<div class="product_image_div">
+						<div class="main_image">
+							<img src="<?php echo $ProductImageUrl; ?>" />
+						</div>
+						<div class="more_images"><ul>
+							<?php $images = $product->getMediaGalleryImages();
+									foreach ($images as $image) {										
+										if($product->getImage() == $image->getFile()){ ?>
+										<li><img class="selected" src="<?php echo $_helperGallery->init($product, 'product_base_image')->setImageFile($image->getFile())->getUrl(); ?>" /></li>
+									<?php } else{ ?> 
+										<li><img src="<?php echo $_helperGallery->init($product, 'product_base_image')->setImageFile($image->getFile())->getUrl(); ?>" /></li>
+									<?php } }	?>
+						</ul></div>
+						</div>
+						<div class="product_info_div">
+							<div class="page-title-wrapper product">
+							<h1 class="page-title"><span class="base" data-ui-id="page-title-wrapper" itemprop="name"><?php echo $product->getName(); ?></span></h1>
+							</div>
+							<div class="product-info-stock-sku"><p class="product-code">Product Code : <?php echo $product->getSku(); ?></p>
+								<div class="stock available" title="Availability">
+								<span>Availability: 
+								<?php if ($_item->getIsSalable()): ?>
+									<img src="<?php echo $this->getViewFileUrl('images/right-mark.png'); ?>"><?= /* @escapeNotVerified */ __('In stock') ?>
+								<?php else: ?>
+									<img src="<?php echo $this->getViewFileUrl('images/wrong-mark.png'); ?>"><?= /* @escapeNotVerified */ __('Out of stock') ?>
+								<?php endif; ?>
+								</span>
+								</div>
+							</div>
+							<?= /* @escapeNotVerified */ $block->getProductPrice($_item) ?>
+							<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('upsell_content')->toHtml(); ?>
+							<div class="product_url"><a target="_blank" href="<?php echo $block->getProductUrl($_item); ?>">CLICK HERE TO SEE THIS ALTERNATIVE</a></div>
+							<div class="product_url mobile" style="display:none;"><a target="_blank" href="<?php echo $block->getProductUrl($_item); ?>">VIEW THIS ALTERNATIVE</a></div>
+						</div>
+						</div>
+                   </div>
+                <?php endforeach ?>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+require([
+        'jquery',
+		'slick'
+		], function ($) {
+			jQuery(document).ready(function(){
+				var winH = jQuery(window).height();
+				var winW = jQuery(window).width();
+				
+				setTimeout(function(){
+					if(jQuery(".upsell_popup").css("opacity") == 0){
+						var overlay = jQuery('<div id="upsell_overlay"> </div>');
+						overlay.appendTo(document.body);
+						
+						jQuery(".upsell_popup").css({
+							'opacity':1,
+							'top': parseInt((winH / 2) - (jQuery(".upsell_popup").height() / 2), 10),
+							'left': parseInt((winW / 2) - (jQuery(".upsell_popup").width() / 2), 10)
+						});
+						jQuery(".upsell_popup").show();
+						jQuery('body').css('overflow', 'hidden');
+					}
+				},5000);
+				
+				jQuery(".upsell_close").on("click",function(){
+					jQuery("#upsell_overlay").remove();
+					jQuery(".upsell_popup").hide();
+					jQuery('body').css('overflow', 'auto');
+				});
+				//console.log(winW);
+				/* if(winW > 768){
+					jQuery('.multiple-items').slick({
+					  infinite: true,
+					  slidesToShow: 3,
+					  slidesToScroll: 3
+					});
+
+				}else{ */
+					jQuery('.multiple-items').slick({
+					  infinite: true,
+					  slidesToShow: 1,
+					  slidesToScroll: 1
+					});
+					jQuery('.product_image_div .more_images ul').slick({
+					  infinite: true,
+					  slidesToShow: 4,
+					  slidesToScroll: 4
+					});
+				/* } */
+				jQuery(document).on("click",".upsell_popup .product_image_div .more_images ul li img",function(){
+					var li_img_src = jQuery(this).attr("src");
+					var parent_div = jQuery(this).closest(".product_image_div");
+					jQuery(".upsell_popup .product_image_div .more_images ul li img").removeClass("selected");
+					jQuery(this).addClass("selected");
+					jQuery(parent_div).find(".main_image img").attr("src",li_img_src);
+				});
+				
+			});
+		});
+</script>
+<?php endif;?>
