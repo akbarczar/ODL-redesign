@@ -1,0 +1,113 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product view template
+ *
+ * @see \Magento\Catalog\Block\Product\View\Description
+ */
+?>
+<?php
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$_product = $block->getProduct();
+$_call = $block->getAtCall();
+$_code = $block->getAtCode();
+$_className = $block->getCssClass();
+$_attributeLabel = $block->getAtLabel();
+$_attributeType = $block->getAtType();
+$_attributeAddAttribute = $block->getAddAttribute();
+
+$renderLabel = true;
+// if defined as 'none' in layout, do not render
+if ($_attributeLabel == 'none') {
+    $renderLabel = false;
+}
+
+if ($_attributeLabel && $_attributeLabel == 'default') {
+    $_attributeLabel = $_product->getResource()->getAttribute($_code)->getStoreLabel();
+}
+if ($_attributeType && $_attributeType == 'text') {
+    $_attributeValue = ($_helper->productAttribute($_product, $_product->$_call(), $_code)) ? $_product->getAttributeText($_code) : '';
+} else {
+    $_attributeValue = $_helper->productAttribute($_product, $_product->$_call(), $_code);
+}
+?>
+<?php if ($_attributeValue): ?>
+<?php if($_className == "sku") { ?>
+<div class="product attribute <?= /* @escapeNotVerified */ $_className ?>">
+    <p class="product-code"><?php echo "Product Code:" ; ?>
+    <span class="value" <?= /* @escapeNotVerified */ $_attributeAddAttribute ?>><?= /* @escapeNotVerified */ $_attributeValue ?></span></p>
+</div>
+<?php } elseif($_className == "description") { ?>
+	<div class="product attribute <?= /* @escapeNotVerified */ $_className ?>">                                    
+		<div class="box-des"> 
+			<div class="row">
+				<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 right-left-bordaer">
+					<div class="des-in-left value"  <?= /* @escapeNotVerified */ $_attributeAddAttribute ?>>
+						<?= $_product->getDescription(); ?>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 right-col ">
+					<div class="des-in-right">
+						<p class="specilation">Specification</p>
+						<p class="dimonion">Dimensions:</p>
+						<ul class="height-weght">
+							<li>Height:<span><?= (!empty($_product->getResource()->getAttribute('height')->getFrontend()->getValue($_product))) ? $_product->getResource()->getAttribute('height')->getFrontend()->getValue($_product) . " cm" : "n/a" ?> </span></li>
+							<li>Width:<span>
+									<?= (!empty($_product->getResource()->getAttribute('width')->getFrontend()->getValue($_product))) ? $_product->getResource()->getAttribute('width')->getFrontend()->getValue($_product) . " cm" : "n/a" ?>
+								</span></li>
+							<li>Depth:<span>
+									<?= (!empty($_product->getResource()->getAttribute('spec_depth')->getFrontend()->getValue($_product))) ? $_product->getResource()->getAttribute('spec_depth')->getFrontend()->getValue($_product) . " cm" : "n/a" ?>
+
+								</span></li>
+
+							<li>Brands:<span> <?php echo $_product->getResource()->getAttribute('brandp')->getFrontend()->getValue($_product); ?></span></li>
+							<li>Other:<span> <?php echo $_product->getResource()->getAttribute('spec_other')->getFrontend()->getValue($_product); ?></span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php } elseif($_className == "videoscript") { ?>
+<?php if(!empty($_product->getResource()->getAttribute('video_script')->getFrontend()->getValue($_product))) {?>
+<div role="tabpanel" class="tab-pane" id="vd1">
+	<?= $_product->getResource()->getAttribute('video_script')->getFrontend()->getValue($_product) ?> 
+</div>
+<?php } ?>
+<?php } elseif($_className == "pumpdesc") { echo "<div style='display:none'>pump:".$_product->getResource()->getAttribute('pump_desc')->getFrontend()->getValue($_product)."</div>"; ?>
+<?php if(!empty($_product->getResource()->getAttribute('pump_desc')->getFrontend()->getValue($_product))) {?>
+<div role="tabpanel" class="tab-pane" id="ppm">
+	<?= $_product->getResource()->getAttribute('pump_desc')->getFrontend()->getValue($_product) ?> 
+</div>
+<?php } ?>
+<?php } elseif($_className == "coverdesc") { echo "<div style='display:none'>cover:".$_product->getResource()->getAttribute('cover_desc')->getFrontend()->getValue($_product)."</div>"; ?>
+<?php if(!empty($_product->getResource()->getAttribute('cover_desc')->getFrontend()->getValue($_product))) {?>
+<div role="tabpanel" class="tab-pane" id="cvr">
+	<?= $_product->getResource()->getAttribute('cover_desc')->getFrontend()->getValue($_product) ?> 
+</div>
+<?php } ?>
+<?php } elseif($_className == "caredesc") { echo "<div style='display:none'>care:".$_product->getResource()->getAttribute('care_desc')->getFrontend()->getValue($_product)."</div>"; ?>
+<?php if(!empty($_product->getResource()->getAttribute('care_desc')->getFrontend()->getValue($_product))) {?>
+<div role="tabpanel" class="tab-pane" id="car">
+	<?= $_product->getResource()->getAttribute('care_desc')->getFrontend()->getValue($_product) ?> 
+</div>
+<?php } ?>
+<?php } elseif($_className == "otherdesc") { ?>
+<?php if(!empty($_product->getResource()->getAttribute('other_desc')->getFrontend()->getValue($_product))) {?>
+<div role="tabpanel" class="tab-pane" id="othr">
+	<?= $_product->getResource()->getAttribute('other_desc')->getFrontend()->getValue($_product) ?> 
+</div>
+<?php } ?>
+<?php } else { ?>
+<div class="product attribute <?= /* @escapeNotVerified */ $_className ?>">
+    <?php if ($renderLabel): ?><strong class="type"><?= /* @escapeNotVerified */ $_attributeLabel ?></strong><?php endif; ?>
+    <div class="value" <?= /* @escapeNotVerified */ $_attributeAddAttribute ?>><?= /* @escapeNotVerified */ $_attributeValue ?></div>
+</div>
+<?php } ?>
+<?php endif; ?>

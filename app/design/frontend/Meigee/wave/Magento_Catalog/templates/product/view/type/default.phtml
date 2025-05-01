@@ -1,0 +1,24 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php /* @var $block \Magento\Catalog\Block\Product\View\AbstractView */?>
+<?php $_product = $block->getProduct() ?>
+<meta itemprop="brand" content="product" />
+<meta itemprop="availability" content="offers" />
+<meta itemprop="price" content="product" />
+<?php if ($block->displayProductStockStatus()) :?>
+    <?php if ($_product->isAvailable()) :?>
+        <div itemprop="availability" content="product" class="stock available" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+           <img src="<?php echo $this->getViewFileUrl('images/right-mark.png'); ?>" />
+            <?php echo "Availability:"; ?><span><?= /* @escapeNotVerified */ __('In stock') ?></span>
+        </div>
+    <?php else :?>
+        <div itemprop="availability" content="product" class="stock unavailable" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+           <img src="<?php echo $this->getViewFileUrl('images/wrong-mark.png'); ?>" />
+            <?php echo "Availability:"; ?><span><?= /* @escapeNotVerified */ __('Out of stock') ?></span>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <!-- 1. Create your wrapper with toggler and inner wrapper -->
+        <referenceContainer name="columns">
+            <container name="sidebars.wrapper" htmlTag="div" htmlClass="sidebars-wrapper" before="sidebar.main">
+                <!-- Toggler block -->
+                <block class="Magento\Framework\View\Element\Template" name="mobile.sidebar.toggler" template="Magento_Theme::mobile-sidebar-toggler.phtml"/>
+                
+                <!-- Inner wrapper -->
+                <container name="sidebars.inner.wrapper" htmlTag="div" htmlClass="inner-wrapper"/>
+            </container>
+        </referenceContainer>
+
+        <!-- 2. Move sidebar.main outside and into the inner wrapper -->
+        <move element="sidebar.main" destination="sidebars.inner.wrapper"/>
+        
+    </body>
+</page>

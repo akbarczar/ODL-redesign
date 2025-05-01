@@ -1,0 +1,68 @@
+<?php
+/**
+ * Copyright © Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add to Cart'); ?>
+<?php if ($_product->isSaleable()) :?>
+    <div class="box-tocart">
+        <div class="fieldset">
+            <?php if ($block->shouldRenderQuantity()) :?>
+                <div class="field qty">
+                    <label class="label" for="qty"><span><?= $block->escapeHtml(__('Qty')); ?></span></label>
+                    <div class="control">
+                        <div class="quantity-decrease qty-button"><i class="meigee-icon-minus"></i></div>
+                        <input type="text"
+                               name="qty"
+                               id="qty"
+                               min="0"
+                               value="<?= $block->escapeHtmlAttr($block->getProductDefaultQty() * 1); ?>"
+                               title="<?= $block->escapeHtmlAttr(__('Qty')); ?>"
+                               class="input-text qty"
+                               data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                        />
+                        <div class="quantity-increase qty-button"><i class="meigee-icon-plus"></i></div>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <div class="actions">
+                <button type="submit"
+                        title="<?= $block->escapeHtmlAttr($buttonTitle); ?>"
+                        class="action primary tocart"
+                        id="product-addtocart-button" disabled>
+                    <span><?= $block->escapeHtml($buttonTitle); ?></span>
+                </button>
+                <?= $block->getChildHtml('', true) ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
+<div id="view-page-bar" class="label">
+    <div class="product_delivery_image">
+        <img height="40" width="150" loading="lazy" src="/media/wysiwyg/free-del.png" alt="">
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+        <?php if ($block->shouldRenderQuantity()): ?>
+        ,"#qty": {
+            "Meigee_Sirena/js/theme_qty_plus_minus": {}
+        }
+        <?php endif; ?>
+    }
+</script>
+<style>
+@media only screen and (min-width: 1024px) {
+#tab-label-product\.info\.video-title{min-height:65px;padding-top:20px;}
+}
+.catalog-product-view .product.info.detailed .product.data.items > .data.item.content{font-size: 16px;}
+</style>

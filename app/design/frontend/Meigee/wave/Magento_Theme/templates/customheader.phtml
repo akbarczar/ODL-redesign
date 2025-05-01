@@ -1,0 +1,405 @@
+<?php
+/**
+ * @var $themeConfigPhp \Meigee\Sirena\ViewModel\ThemeConfigPhp
+ */
+
+$themeConfigPhp = $block->getThemeConfigPhp();
+
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$base_url = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB);
+$mediaUrl = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA); 
+
+?>
+
+<header class="page-header header-wrapper">
+    <div class="page-header-inner container" style="position:unset;">
+    <?php /*if ($this->getChildHtml("header.welcome") && $this->getChildHtml("header.welcome")!='') { ?>
+        <div class="wellcome-text-wrapper">
+            <?php echo $this->getChildHtml("header.welcome"); ?>
+        </div>
+    <?php }*/ ?>
+    <div class="home-main-credit-card">
+       <ul class="list-inline footer-card">
+        <li>
+            <img src="<?php echo $this->getViewFileUrl('images/footer_cards.jpg'); ?>" alt="" />
+        
+            <img style="height: 31px; margin-right: 10px; width: auto;" 
+                src="<?php echo $mediaUrl.'images/FREE DELIVERY_75.jpg'; ?>" alt="" />
+        </li>
+        
+    </ul>
+    <div class="headder-top-center">
+        <p class="free-delivry">
+            <span><?php echo "Free"; ?></span> <?php echo "Delivery over"; ?> <span><?php echo "&#163;75"; ?></span> <span class="brc-text"></span>
+        </p>
+    </div>
+</div>
+<div class="top-links-wrapper">
+    <?php /*echo $this->getChildHtml('top.links');*/ ?>
+    <ul class="list-inline top-menu">
+        <li><a href="<?php echo $base_url; ?>"> Home </a></li>
+        <!--<li><a href="<?php echo $base_url .'brands.html'; ?>"> Brands </a></li>-->
+        <li><a href="<?php echo $base_url .'show'; ?>"> Shows </a></li>
+        <li><a href="<?php echo $base_url .'contacts'; ?>"> Contact Us </a></li>
+    </ul>
+</div>
+<div class="logo-wrapper" style="position:unset;">
+    <?php echo $this->getChildHtml("logo"); ?>
+</div>
+<div class="search-wrapper">
+    <?php echo $this->getChildHtml("topSearch"); ?>
+</div>
+<div class="buttons-wrapper">
+    <?php  if (strlen(trim($this->getChildHtml('store_language'))) > 0) { ?>
+        <div class="options-wrapper language-wrapper">
+            <div class="options-block">
+                <span class="title"><?php echo $block->escapeHtml(__('Language')); ?></span>
+            </div>
+            <div class="options-dropdown">
+                <?php echo $this->getChildHtml("store_language"); ?>
+            </div>
+        </div>
+    <?php } ?>
+    <?php  if (strlen(trim($this->getChildHtml('currency'))) > 0) { ?>
+        <div class="options-wrapper currency-wrapper">
+            <div class="options-block">
+                <span class="title"><?php echo $block->escapeHtml(__('Currency')); ?></span>
+            </div>
+            <div class="options-dropdown">
+                <?php echo $this->getChildHtml("currency"); ?>
+            </div>
+        </div>
+    <?php } ?>
+    <div class="header_rating_image">
+        <span class="text">Customer Experience</span>
+        <img width="115" src="<?php echo $this->getViewFileUrl('images/customer-experience.jpg'); ?>" alt="Customer Experience" />
+    </div>
+    <div class="account_link">
+        <a href="<?php echo $base_url .'customer/account/login/'; ?>">
+          <span class="icon">
+           <i class="fa fa-user"></i>
+       </span>
+       <span class="text">My Account</span>
+   </a>
+</div>
+<?php if($customerSession->isLoggedIn()): ?>
+    <div class="logout_cls"><a href="<?php echo $base_url .'customer/account/logout'; ?>">Logout</a></div>
+<?php endif; ?>
+<?php echo $this->getChildHtml("minicart"); ?>
+</div>
+</header>
+<link rel="preload" href="<?php echo $block->escapeUrl($block->getViewFileUrl('fonts/OpenSans-Regular.woff2')); ?>" as="font" type="font/woff2" crossorigin="" />
+<link rel="preload" href="<?php echo $block->escapeUrl($block->getViewFileUrl('fonts/meigee-icons.woff2')); ?>" as="font" type="font/woff2" crossorigin="" />
+
+<!--Script from admin header part start -->
+
+<meta name="google-site-verification" content="SfqOCaVKsjPf43sAJp4pojpuRR-aS5yWmxTTbSHNQ1I" />
+<!--<script type="text/javascript" src="//script.crazyegg.com/pages/scripts/0075/8214.js" async="async"></script>-->
+<script>
+require(['jquery', 'jquery/ui'], function($){ 
+!function(t){"use strict";t.fn.placeholderTypewriter=function(e){var n=t.extend({delay:50,pause:1e3,text:[]},e);function r(t,e){t.attr("placeholder",""),function t(e,r,u,a){var i=n.text[r],o=e.attr("placeholder");if(e.attr("placeholder",o+i[u]),u<i.length-1)return setTimeout(function(){t(e,r,u+1,a)},n.delay),!0;a()}(t,e,0,function(){setTimeout(function(){!function t(e,r){var u=e.attr("placeholder"),a=u.length;if(e.attr("placeholder",u.substr(0,a-1)),a>1)return setTimeout(function(){t(e,r)},n.delay),!0;r()}(t,function(){r(t,(e+1)%n.text.length)})},n.pause)})}return this.each(function(){r(t(this),0)})}}(jQuery);
+
+jQuery(document).ready(function() {
+    console.log("testtttttttttttttttt");
+    var placeholderText = [
+        "Can we help you Find what you want ????",
+        "Just type the product name ",
+        "Sure we have it ..."
+    ];
+    
+        jQuery("input[id^='search_']").placeholderTypewriter({text: placeholderText,pause:5000});
+    
+});
+ });
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-57829801-1">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-57829801-1');
+</script>
+<!--Script from admin header part end -->
+<style>
+@media only screen and (min-width: 1024px) {
+    .page-wrapper .page-header .minicart-wrapper .text {
+        display: inline-block;
+        position: relative;
+        width: auto;
+        height: auto;
+        margin-left: 10px;
+        white-space: nowrap;
+    }
+    .page-wrapper .page-header .minicart-wrapper .text {
+        margin-left: 14px;
+    }
+}
+@media only screen and (max-width: 767px) {
+.block.block-search.type-2 .form.minisearch .field.search input{
+    opacity:0
+}
+.block.block-search.type-2 .form.minisearch.active .field.search input{
+    opacity:1;
+}
+.catalog-product-view .product.media {
+    max-width: 100%;
+    width: 100% !IMPORTANT;!I;!;
+}
+
+.column.additional .product-info-main {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+    }
+    .column.additional {
+        display: block;
+        width: 100%;
+    }
+    .catalog-product-view #maincontent .columns {
+        padding: 0;
+    }
+}
+
+
+
+.search-wrapper .block-search .control {
+    border-top: 0;
+    margin: 0;
+    padding: 0;
+}
+body .page-footer a {
+    color: inherit;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+.column.additional {
+    display: block;
+    width: 100%;
+}
+
+.catalog-product-view #maincontent .columns {
+    padding: 0;
+}
+.column.additional .product.media {
+    width: 50%;
+    float:left;
+}
+.column.additional .product-info-main {
+    width: 50%;
+    padding:0;
+    float:left;
+}
+
+.product.attribute.description .col-xs-12.col-sm-4.col-md-4.col-lg-4.right-col {
+    width: 25%;
+}
+}
+.minicart-wrapper .block-minicart:before,.minicart-wrapper .block-minicart:after {
+    content: none;
+}
+.page-header .minicart-wrapper .block-minicart {
+    -webkit-transition: opacity .3s ease-out, top .3s ease-out;
+    -moz-transition: opacity .3s ease-out, top .3s ease-out;
+    -ms-transition: opacity .3s ease-out, top .3s ease-out;
+    -o-transition: opacity .3s ease-out, top .3s ease-out;
+    transition: opacity .3s ease-out, top .3s ease-out;
+}
+.page-header .minicart-wrapper.active .block-minicart {
+    opacity:1;
+}
+.page-header .minicart-wrapper .block-minicart{
+    opacity:0;
+}
+.page-header .minicart-wrapper .block-minicart .subtitle.empty:before {
+    content: "\e902";
+    font-family: 'meigee-icons';
+    font-style: normal;
+    font-weight: 400;
+    display: block;
+    vertical-align: middle;
+    float: none;
+    margin: 0 0 20px;
+    color: rgba(0, 0, 0, .2);
+    font-size: 52px;
+    position: relative;
+    line-height: 1;
+}
+.page-header .minicart-wrapper .block-minicart .subtitle.empty {
+    line-height: 30px;
+    font-family: 'Cormorant Garamond', serif;
+    text-align: center;
+    font-weight: 400;
+    margin: 0 auto;
+    max-width: 300px;
+    font-size: 18px;
+    color:rgba(0,0,0,.8);
+}
+@media only screen and (min-width: 768px) {
+    .page-header .minicart-wrapper .block-minicart .subtitle.empty {
+        padding: 30px;
+        font-size: 24px;
+    }
+}
+.tmls-widget .block-title h2:after{
+    content:none;
+}
+@media only screen and (max-width: 800px) {
+    .block.block-title.open + .block-content .label.active:before{
+    display: inline-block;
+    content: '\e90f';
+    font-family: 'meigee-icons';
+    font-size: 16px;
+    top: 55px;
+    position: relative;
+    right: 25px;
+}
+    .block.block-title + .block.block-content{
+    top:-100px
+}
+.block.block-title.open + .block.block-content {
+    width: 100vw;
+    left: 0;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    min-height: 65px;
+    background-color: #fff;
+    transition: top .3s ease-out;
+}
+.nav-open body .page-header .logo-wrapper .nav-toggle:before{
+            content: '\e90f';
+            color: #000;
+            font-family: 'meigee-icons';
+            color: inherit;
+            font-size: 25px;
+            line-height: inherit;
+            position: relative;
+            left: 0;
+            top: 6px;
+}
+html.nav-before-open.nav-open .sections.nav-sections{
+    top:100px;
+}
+.nav-sections .mean-nav ul li .collapse:before{
+    content: '\e901';
+        font-family: 'meigee-icons';
+        font-size: 12px;
+        display: inline-block;
+        vertical-align: middle;
+    color:inherit;
+}
+.nav-sections .mean-nav ul li .level-top span {
+    line-height: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 10px 0;
+    position: relative;
+    font-weight: 400;
+}
+.sections .nav-sections-item-content > .navigation{
+    background: #fff;
+}
+.nav-sections .mean-nav ul li .expand:before{
+    content: '\e901';
+    transform: rotate(-90deg);
+}
+}
+@media only screen and (max-width: 639px) {
+    .buttons-wrapper .minicart-wrapper {
+        margin: 0px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .water-water-feature-home .box-width-content div#home-categories .column{
+        flex: 32%;
+    }
+    /* .row.next_to_slider .col-sm-6{
+        width: 46%;
+    } */
+    .page-footer .footer .full-width.homefull .container.above_footer{
+        box-sizing: border-box;
+        width: 100%;
+    }
+    .page-footer .footer .full-width.homefull{
+        box-sizing: border-box;
+
+    }
+    .page-header-inner.container {
+    display: grid;
+    -ms-grid-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "logo site-search site-options";
+}
+    .page-header .page-header-inner .logo-wrapper {
+        grid-area: logo;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 1;
+        -ms-grid-row: 1;
+        -ms-grid-row-span: 1;
+        width: auto;
+    }
+    .page-header .page-header-inner .search-wrapper {
+        grid-area: site-search;
+        -ms-grid-column: 2;
+        -ms-grid-column-span: 1;
+        -ms-grid-row: 1;
+        -ms-grid-row-span: 1;
+        width: auto;
+    }
+    .page-header .page-header-inner .buttons-wrapper {
+        grid-area: site-options;
+        -ms-grid-column: 3;
+        -ms-grid-column-span: 1;
+        -ms-grid-row: 1;
+        -ms-grid-row-span: 1;
+        width: auto;
+    }
+    .page-header .block-search {
+    display: block;
+    float: none;
+    min-width: 42px;
+    margin: 0;
+    padding: 0;
+    height: 42px;
+    position: absolute;
+    top: -17px;
+    right: 32px;
+    text-align: right;
+}
+
+.buttons-wrapper {
+    column-gap: 20px;
+}
+}
+</style>
+<script>
+require(['jquery', 'jquery/ui'], function($) {
+    jQuery(document).ready(function($) {
+        const form = document.querySelector('.form.minisearch');
+
+        if (form) {
+            const observer = new MutationObserver(function() {
+                if ($(form).hasClass('active')) {
+                    $('.block.block-title').addClass('open');
+                } else {
+                    $('.block.block-title').removeClass('open');
+                }
+            });
+
+            observer.observe(form, {
+                attributes: true,
+                attributeFilter: ['class']
+            });
+        }
+    });
+});
+</script>

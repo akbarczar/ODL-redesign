@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+		<referenceBlock name="page.main.title">
+		   <action method="setPageTitle">
+			  <argument translate="true" name="title" xsi:type="string">My Basket</argument>
+		   </action>
+		   <block class="Magento\Framework\View\Element\Template" name="custom.file" template="Magento_Theme::qty.phtml" />
+		</referenceBlock>
+        <referenceContainer name="checkout.cart.container" >
+            <container name="meigee.cart.main.col" htmlClass="cart-main-col" htmlTag="div" before="cart.summary">
+            </container>
+        </referenceContainer>
+
+        <referenceContainer name="cart.summary" htmlClass="cart-summary">
+            <container name="meigee.cart.summary.totals" htmlClass="totals-wrapper" htmlTag="div" after="-">
+                <container name="meigee.cart.summary.inner" htmlClass="totals-inner" htmlTag="div" after="-">
+                    <block class="Magento\Cms\Block\Block" name="sirena.payments.wrapper" after="-">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">sirena_payments_cart_block</argument>
+                        </arguments>
+                    </block>
+                </container>
+            </container>
+        </referenceContainer>
+
+        <!-- <referenceBlock name="checkout.cart.summary.title" remove="true" /> -->
+        <referenceBlock name="breadcrumbs" remove="true" />
+
+        <!-- <referenceBlock name="checkout.cart.crosssell">
+            <arguments>
+                <argument name="theme_config_php" xsi:type="object">Meigee\Sirena\ViewModel\ThemeConfigPhp</argument>
+            </arguments>
+        </referenceBlock> -->
+
+        <move element="header.cart" destination="header.container" before="-"/>
+        <move element="checkout.cart.form.before" destination="meigee.cart.main.col" before="-"/>
+        <move element="checkout.cart.form" destination="meigee.cart.main.col" after="checkout.cart.form.before"/>
+        <move element="checkout.cart.widget" destination="meigee.cart.main.col" after="checkout.cart.form"/>
+        <move element="checkout.cart.crosssell" destination="meigee.cart.main.col" before="cart.summary" />
+        <move element="checkout.cart.shipping" destination="cart.summary" after="meigee.cart.summary.totals" />
+        <move element="checkout.cart.totals.container" destination="meigee.cart.summary.inner" before="-"/>
+        <move element="checkout.cart.coupon" destination="meigee.cart.summary.inner" after="checkout.cart.totals.container"/>
+        <!--<move element="checkout.cart.coupon" destination="meigee.cart.summary.inner" after="checkout.cart.totals.container" />-->
+		<!-- <referenceBlock name="checkout.cart.coupon" remove="true" /> -->
+        <move element="checkout.cart.methods.bottom" destination="meigee.cart.summary.inner" after="checkout.cart.coupon" />
+
+    </body>
+</page>

@@ -1,0 +1,271 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Template for displaying products list widget
+ *
+ * @var $block \Meigee\Sirena\Block\ProductWidget\Product\ProductsListExtended
+ */
+?>
+<?php if ($exist = ($block->getProductCollection() && $block->getProductCollection()->getSize())) {
+    $type = 'widget-product-auto-grid';
+
+    $mode = 'grid';
+
+    $image = 'new_products_content_widget_grid';
+    $title = $block->getTitle() ? __( $block->getTitle() ) : '';
+    $items = $block->getProductCollection()->getItems();
+
+    //$templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
+    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+
+    $widget_id = $block->getData( 'widget_id' );
+
+    $_helper = $this->helper( 'Magento\Catalog\Helper\Output' );
+
+    $showName = $block->getOptionVal( 'product_name' );
+    $showPrice = $block->getOptionVal( 'product_price' );
+    $showStock = $block->getOptionVal( 'stock_status_grid_auto' );
+    $showDesc = $block->getOptionVal( 'desc_grid_auto' );
+    $showTimer = $block->getOptionVal( 'timer_grid' ); // TODO: add countdown to widget products
+    $showCart = $block->getOptionVal( 'add_to_cart' );
+    $showWishlist = $block->getOptionVal( 'wishlist' );
+    $showCompare = $block->getOptionVal( 'compare' );
+    $showReviews = $block->getOptionVal( 'rating_stars_grid_auto' );
+
+    /* Additional Theme options */
+    if ($block->getOptionVal( 'products_per_row' ) < 3) {
+        $image = 'new_products_content_widget_grid_large';
+    }
+    $lightboxStatus = $block->getPhpConfigLigtbox();
+    $showLightbox = $block->getPhpConfigLigtboxHome();
+    $showQuickview = $block->getPhpConfigQuickview();
+    $isRTL = $block->getPhpConfigIsRtl();
+    $labelsType = $block->getPhpConfigLabelsType();
+    $customImageHoverStatus = $block->getPhpConfigCustomHover();
+
+    $products_wrapper_class = 'products-'.$mode.' '.$mode.' '.$labelsType;
+
+    if ( $customImageHoverStatus ) {
+        if ( $block->getPhpConfigCustomHoverType() ) {
+            $products_wrapper_class .= ' hover-scale';
+        } else {
+            $products_wrapper_class .= ' hover-simple';
+        }
+    }
+} ?>
+
+<?php if ($exist): ?>
+    <div class="block widget block-products-list meigee-widget <?php echo $block->escapeHtmlAttr($mode); ?>">
+        <?php if ($title):?>
+            <div class="block-title">
+                <strong><?php echo $block->escapeHtml($title); ?></strong>
+            </div>
+        <?php endif ?>
+        <div class="block-content">
+            <?php /* @escapeNotVerified */ echo '<!-- ' . $image . '-->' ?>
+            <div class="<?php echo $block->escapeHtmlAttr($products_wrapper_class); ?>">
+                <ol class="product-items row <?= $block->escapeHtmlAttr($type) ?>">
+                    <?php $iterator = 1; ?>
+                    <?php foreach ($items as $_item): ?>
+
+                        <?php /* Additional classes for product images */
+                        $product_inner_wrapper_class = 'product-item-info';
+                        $productImage = $block->getImage($_item, $image, array('data-hover-image'=>null));
+                        $images = $_item->getMediaGalleryImages();
+                        $swiperDots = false;
+
+                        if ( !$_item->isAvailable() ) {
+                            $product_inner_wrapper_class .= ' sold-out';
+                        }
+                        if ( !$customImageHoverStatus && ($images->count() > 1) ) {
+                            $product_inner_wrapper_class .= ' with-carousel';
+                        }
+                        if ($images->count() <=4) {
+                            $swiperDots = 'true';
+                        }
+                        ?>
+
+                        <?php if ($iterator++ != 1) { ?></li><?php } ?>
+                        <li class="product-item <?= /* @noEscape */ $block->getAutoGridProductItemMediaCss() ?>">
+
+                        <div class="<?php echo $block->escapeHtmlAttr($product_inner_wrapper_class); ?>">
+
+                            <?php if($showName) { ?>
+                                <strong class="product-item-name">
+                                    <a title="<?= $block->escapeHtml($_item->getName()) ?>"
+                                       href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>"
+                                       class="product-item-link">
+                                        <?= $block->escapeHtml($_item->getName()) ?>
+                                    </a>
+                                </strong>
+                            <?php } ?>
+
+                            <?php if ($showReviews) {
+                                echo $block->getReviewsSummaryHtml($_item, $templateType);
+                            } ?>
+
+                            <?php if ($showDesc):?>
+                                <div class="product-item-description box-read-more"
+                                     data-collapse-open="true"
+                                     data-text-read-more="<?= $block->escapeHtml(__('Read More')) ?>"
+                                     data-text-collapse="<?= $block->escapeHtml(__('Less')) ?>"
+                                     data-max-length="150"
+                                     data-show-ellipsis="true" data-mage-init='{ "Meigee_Sirena/js/theme_read_more": {} }'>
+                                    <?= /* @escapeNotVerified */ $_helper->productAttribute($_item, $_item->getShortDescription(), 'short_description') ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php echo ($showPrice ? $block->getProductPriceHtml($_item, $type) : ''); ?>
+
+                            <?php if($showStock) { ?>
+                                <?php if ($_item->getIsSalable()): ?>
+                                    <div class="stock available"><span><?= $block->escapeHtml(__('In stock')) ?></span></div>
+                                <?php else: ?>
+                                    <div class="stock unavailable"><span><?= $block->escapeHtml(__('Out of stock')) ?></span></div>
+                                <?php endif; ?>
+                            <?php } ?>
+
+                            <?php if ($showCompare || $showWishlist || $showCart) { ?>
+                                <div class="product-action-wrapper">
+                                    <?php if ($showCart): ?>
+                                        <?php if ($_item->isSaleable()): ?>
+                                            <?php if (!$_item->getTypeInstance()->isPossibleBuyFromList($_item)): ?>
+                                                <button class="action tocart primary btn-cart" data-mage-init='{"redirectUrl":{"url":"<?= $block->escapeUrl($block->getAddToCartUrl($_item)) ?>"}}' type="button" title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>">
+                                                    <i class="meigee-icon-cart"></i><span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+                                                </button>
+                                            <?php else: ?>
+                                                <?php
+                                                $postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
+                                                $postData = $postDataHelper->getPostData($block->getAddToCartUrl($_item), ['product' => $_item->getEntityId()])
+                                                ?>
+                                                <button class="action tocart primary btn-cart" data-post='<?= /* @noEscape */ $postData ?>' type="button" title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>">
+                                                    <i class="meigee-icon-cart"></i><span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+                                                </button>
+                                            <?php endif; ?>
+                                        <?php else: ?>
+                                            <button class="btn btn-cart" onclick="window.location.href='<?= $block->escapeUrl($block->getProductUrl($_item)) ?>'">
+                                                <i class="meigee-icon-read-more"></i><span><?= $block->escapeHtml(__('View product')) ?></span>
+                                            </button>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+
+                                    <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && $showWishlist): ?>
+                                        <a href="#"
+                                           data-post='<?= /* @noEscape */ $block->getAddToWishlistParams($_item) ?>' class="action towishlist" data-action="add-to-wishlist" title="<?= $block->escapeHtmlAttr(__('Add to Wish List')) ?>">
+                                            <span><?= $block->escapeHtml(__('Add to Wish List')) ?></span>
+                                        </a>
+                                    <?php endif; ?>
+
+                                    <?php if ($block->getAddToCompareUrl() && $showCompare): ?>
+                                        <?php $compareHelper = $this->helper('Magento\Catalog\Helper\Product\Compare');?>
+                                        <a href="#" class="action tocompare" data-post='<?php /* @noEscape */ echo $compareHelper->getPostDataParams($_item);?>' title="<?php echo $block->escapeHtmlAttr(__('Add to Compare')); ?>">
+                                            <i class="meigee-icon-compare"></i><span><?= $block->escapeHtml(__('Add to Compare')) ?></span>
+                                        </a>
+                                    <?php endif; ?>
+                                </div>
+                            <?php } else { ?>
+                                <div class="link-to-product">
+                                    <a title="<?= $block->escapeHtmlAttr($_item->getName()) ?>"
+                                       href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>"
+                                       class="action more"><?= $block->escapeHtml(__('Shop Now')) ?></a>
+                                </div>
+                            <?php } ?>
+
+                            <div class="image-wrapper">
+                                <?php if ( !$customImageHoverStatus ) {
+                                    if ($images->count() > 1) { ?>
+                                        <div class="swiper-container" data-swiper-dots="<?= $block->escapeHtmlAttr($swiperDots) ?>">
+                                            <div class="more-views swiper-wrapper">
+                                                <?php foreach ($images as $gallery_image) { ?>
+                                                    <a href="<?php echo $block->escapeUrl($_item->getProductUrl()); ?>" class="product photo swiper-slide">
+                                                        <?php $imgHelper = $this->helper('Magento\Catalog\Helper\Image')->init($_item, $image)->setImageFile($gallery_image['file']);
+                                                        $imgUrl = $imgHelper->getUrl();
+                                                        $imgWidth = $imgHelper->getWidth();
+                                                        $imgHeight = $imgHelper->getHeight();
+                                                        $imgAlt = $imgHelper->getLabel();
+                                                        $imgSwatchRenderClass = '';
+                                                        if ($_item->getSmallImage() === $gallery_image['file']) {
+                                                            $imgSwatchRenderClass = ' product-image-photo';
+                                                        }
+                                                        ?>
+                                                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class="photo product lazyload<?= $block->escapeHtmlAttr($imgSwatchRenderClass) ?>"
+                                                             data-src="<?= $block->escapeUrl($imgUrl) ?>"
+                                                             width="<?= $block->escapeHtmlAttr($imgWidth) ?>"
+                                                             height="<?= $block->escapeHtmlAttr($imgHeight) ?>"
+                                                             alt="<?= $block->escapeHtmlAttr($imgAlt) ?>" />
+                                                    </a>
+                                                <?php } ?>
+                                            </div>
+                                            <?php if ($swiperDots){ echo '<div class="swiper-pagination"></div>'; } ?>
+                                            <div class="swiper-button-prev"></div>
+                                            <div class="swiper-button-next"></div>
+                                        </div>
+                                    <?php } else { ?>
+                                        <a href="<?= $block->escapeUrl($_item->getProductUrl()); ?>" class="product photo product-item-photo">
+                                            <?= $productImage->toHtml() ?>
+                                        </a>
+                                    <?php } ?>
+                                <?php } else {
+                                    $hoverImage = $_item->getHoverImage();
+                                    if ($hoverImage) {
+                                        $hoverImageUrl = $this->helper('Magento\Catalog\Helper\Image')
+                                            ->init($_item, $image)
+                                            ->setImageFile($hoverImage)
+                                            ->getUrl();
+                                        $productImage = $block->getImage($_item, $image, array('data-hover-image'=>$hoverImageUrl));
+                                    } ?>
+                                    <a href="<?php echo $block->escapeUrl($_item->getProductUrl()); ?>" class="product photo product-item-photo" tabindex="-1">
+                                        <?php echo $productImage->toHtml(); ?>
+                                    </a>
+                                <?php } ?>
+                                <?php if (!$_item->isAvailable()): ?>
+                                    <div class="sold-out-label">
+                                        <span><?php echo $block->escapeHtml(__('Sold out')); ?></span>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+
+                            <!--Product Labels-->
+                            <?php if($block->getProductNew($_item)): ?>
+                                <span class="product-labels label-new"><?= $block->escapeHtml(__('Label new')) ?></span>
+                            <?php endif; ?>
+                            <?php if ($block->getProductOnlyLeft($_item)): ?>
+                                <span class="product-labels label-sale availability-only">
+                                    <i class="meigee-icon-arrow-left"></i><?= $block->getProductOnlyLeft($_item); ?>
+                                    <strong><?= $block->escapeHtml(__('Left')) ?></strong>
+                                </span>
+                            <?php endif; ?>
+                            <?php if ($block->getProductSalePercent($_item)):
+                                echo sprintf(__('<span class="product-labels label-sale percentage">%s off</span>'), $block->getProductSalePercent($_item).'%');
+                            endif; ?>
+                            <?php if ($block->getProductSale($_item)): ?>
+                                <span class="product-labels label-sale"><?= $block->escapeHtml(__('Label sale')) ?></span>
+                            <?php endif; ?>
+
+                            <?php //TODO: add product timer
+                            // echo $this->getLayout()->createBlock("Magento\Framework\View\Element\Template")->setTemplate("Meigee_Sirena::product_timer.phtml")->setProduct($_item)->toHtml(); ?>
+
+                        </div>
+                        <?php echo($iterator == count($items)+1) ? '</li>' : '' ?>
+                    <?php endforeach ?>
+                </ol>
+            </div>
+            <?php echo $block->getPagerHtml() ?>
+        </div>
+    </div>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "Meigee_Sirena/js/theme_listing_helper": {}
+            }
+        }
+    </script>
+<?php endif; ?>

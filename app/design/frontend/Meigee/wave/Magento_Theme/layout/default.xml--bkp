@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Remove default header container -->
+        <referenceContainer name="header.container" remove="true"/>
+        <!-- <referenceContainer name="page.header" remove="true"/> -->
+          <referenceContainer name="page.top">
+            <block class="Magento\Framework\View\Element\Template" name="custom.page.header" template="Magento_Theme::html/customheader.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="page.wrapper">
+            <container name="custom.footer.container" as="custom.footer.container" label="Custom Footer Container" htmlTag="footer" htmlClass="page-footer">
+            <container name="custom.footer.container.two" as="custom.footer.container.two" label="Footer Container" htmlTag="div" htmlClass="footer">
+                <block class="Magento\Cms\Block\Block" name="custom.footer">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">sirena_footer</argument>
+                    </arguments>
+                </block>
+                 <block class="Magento\Cms\Block\Block" name="custom.copyright">
+                    <arguments>
+                         <argument name="block_id" xsi:type="string">sirena_copyright</argument>
+                    </arguments>
+                 </block>
+                </container>
+            </container>
+        </referenceContainer>
+          <move element="catalog.topnav" destination="custom.page.header"/>
+         <!-- <move element="header.nav" destination="custom.page.header"/>  -->
+        <move element="logo" destination="custom.page.header"/>
+      <move element="top.search" destination="custom.page.header"/>
+      <move element="minicart" destination="custom.page.header"/>
+      <!-- <move element="catalog.topnav" destination="custom.page.header"/> -->
+<referenceContainer name="footer" remove="true"/>
+<referenceContainer name="footer-container" remove="true"/>
+<referenceContainer name="before.body.end" remove="true"/>
+      <referenceBlock name="advanced-search-link" remove="true"/>
+      <!-- <move element="nav.sections" destination="custom.page.header" after="-"/> -->
+    </body>
+</page>

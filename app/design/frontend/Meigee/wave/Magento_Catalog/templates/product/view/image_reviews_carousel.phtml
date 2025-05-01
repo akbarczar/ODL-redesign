@@ -1,0 +1,20 @@
+<?php
+	echo $this->getLayout()
+		->createBlock('Magento\Cms\Block\Block')
+		->setBlockId('image_reviews_carousel')
+		->toHtml();
+?>
+<script type="text/x-magento-init">
+    {
+        ".reviewul": {
+            "Meigee_Sirena/js/theme_carousel":{
+                "loop":true,
+                "navigation":true,
+                "autoplay":true
+            }
+        }
+    }
+</script>
+<style>
+.page-wrapper #reviewslider .swiper-slide img {display: block;width: 98%;height: auto;margin: 0 auto;}
+</style>

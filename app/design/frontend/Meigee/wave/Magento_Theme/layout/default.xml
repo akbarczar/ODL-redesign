@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+			  <referenceBlock name="top.links" remove="true" />
+			  <referenceBlock name="header.panel.wrapper" remove="true" />
+              <referenceBlock name="advanced-search-link" remove="true"/>
+			  <!-- <referenceBlock name="top.search" remove="true" /> -->
+              <!-- Remove default footer -->
+        <referenceContainer name="footer" remove="true" />
+
+        <!-- Add new footer container -->
+        <referenceContainer name="header-wrapper">
+            <block class="Czargroup\ThemeConfig\Block\Header" name="linkboxes"  template="Magento_Theme::customheader.phtml" after="top.search"/>
+        </referenceContainer>
+        <referenceContainer name="page.wrapper">
+            <container name="custom.footer.container" as="custom.footer.container" label="Custom Footer Container" htmlTag="footer" htmlClass="page-footer">
+            <container name="custom.footer.container.two" as="custom.footer.container.two" label="Footer Container" htmlTag="div" htmlClass="footer">
+                <block class="Magento\Cms\Block\Block" name="custom.footer">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">sirena_footer</argument>
+                    </arguments>
+                </block>
+                 <block class="Magento\Cms\Block\Block" name="custom.copyright">
+                    <arguments>
+                         <argument name="block_id" xsi:type="string">sirena_copyright</argument>
+                    </arguments>
+                 </block>
+                </container>
+            </container>
+        </referenceContainer>
+         <move element="logo" destination="linkboxes"/>
+      <move element="top.search" destination="linkboxes"/>
+      <move element="minicart" destination="linkboxes"/>
+      
+    </body>
+</page>
