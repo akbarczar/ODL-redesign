@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+	<referenceContainer name="checkout.header.wrapper" htmlClass="header content checkout-header">
+		 <container name="meigee.checkout.cart.link" as="back-to-cart" label="Back to Cart" htmlTag="div" htmlClass="back-to-cart" htmlId="tocart-checkout" before="meigee.checkout.header.left">
+			<block class="Magento\Framework\View\Element\Template" name="custom.file" template="Magento_Theme::custom.phtml" /><!-- This is just an example -->
+		</container>
+		<container name="meigee.checkout.header.left" htmlClass="left-block" htmlTag="div" before="-">
+			<block class="Magento\Theme\Block\Html\Header\Logo" name="logo.checkout">
+				<arguments>
+					<argument name="logo_file" xsi:type="string">images/logo.png</argument>
+					<argument name="logo_img_width" xsi:type="number">110</argument>
+					<argument name="logo_img_height" xsi:type="number">20</argument>
+				</arguments>
+			</block>
+		</container>
+		<container name="meigee.checkout.header.right" htmlClass="hidden-xs right-block" htmlTag="div" after="meigee.checkout.header.left">
+			<block class="Magento\Cms\Block\Block" name="sirena.checkout.header.custom.block" before="-">
+				<arguments>
+					<argument name="block_id" xsi:type="string">sirena_checkout_header_custom_block</argument>
+				</arguments>
+			</block>
+		</container>
+	</referenceContainer>
+	<referenceContainer name="page.wrapper">
+	<referenceBlock name="page.main.title">
+   <action method="setPageTitle">
+	  <argument translate="true" name="title" xsi:type="string">Secure Checkout</argument>
+   </action>
+</referenceBlock>
+		<referenceBlock name="logo" remove="true" />
+		<referenceBlock name="meigee.header" remove="true" />
+	</referenceContainer>
+</layout>
