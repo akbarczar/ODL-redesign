@@ -69,6 +69,7 @@
         80px
       );
     grid-template-rows: repeat(10, [row] auto);
+    width: 100%;
   }
   
   body.catalog-category-view
@@ -190,11 +191,11 @@
   
   @media only screen and (min-width: 768px) {
     .page-layout-2columns-left .sidebar-main {
-      width: 22%;
+      width: 22% !important;
     }
   
     .page-layout-2columns-left .column.main {
-      width: 75%;
+      width: 75% !important;
     }
   }
   /* category page end  */
