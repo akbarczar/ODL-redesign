@@ -2263,6 +2263,47 @@ header.page-header .header.content {
   border: none;
   padding: 5px;
 }
+.catalog-product-view .product.info.detailed iframe[title="YouTube video player"] {
+  max-width: 100%;
+}
+.weltpixel_quickview-catalog_product-view .column.additional {
+  box-sizing: border-box;
+}
+
+.weltpixel_quickview-catalog_product-view .column.additional div {
+  box-sizing: border-box;
+}
+
+.weltpixel_quickview-catalog_product-view .tmls-widget,.weltpixel_quickview-catalog_product-view footer.page-footer {
+  display: none;
+}
+.weltpixel_quickview-catalog_product-view .product-options-bottom {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  column-gap: 20px;
+}
+.weltpixel_quickview-catalog_product-view .product-options-bottom .box-tocart {
+  width: 50% !important;
+  margin: 0;
+}
+
+.weltpixel_quickview-catalog_product-view .product-info-main .product-add-form form .box-tocart .actions, .page-layout-1column .product-info-main .product-add-form form .box-tocart .actions {
+  width: 100%;
+}
+
+.weltpixel_quickview-catalog_product-view  .product-add-form form .box-gotoproduct {
+  width: 50%;
+}
+
+.weltpixel_quickview-catalog_product-view  .product-add-form form .box-gotoproduct #product-gotoproduct-button,.weltpixel_quickview-catalog_product-view  .product-info-main .product-add-form form .box-tocart .actions #product-addtocart-button>span {
+  font-size: 12px;
+  font-weight: 400;
+  line-height:15px;
+}
+body.weltpixel_quickview-catalog_product-view .product-info-main .product-add-form form .box-tocart .actions .action.tocart {
+  background-color: #000 !important;
+}
 
 #layered-filter-block .filter-options-item .filter-options-content a:before {
   content: '';
@@ -2371,6 +2412,105 @@ header.page-header .header.content {
 }
 .onestepcheckout-index-index footer.page-footer {
   display: none;
+}
+.catalog-product-view .product.info.detailed iframe[title="YouTube video player"] {
+  max-width: 100%;
+}
+.bottom-toolbar .pages,.bottom-toolbar .field.limiter {
+  display: block;
+}
+.bottom-toolbar .toolbar.toolbar-products {
+  display: block;
+  width: 100%;
+}
+.bottom-toolbar .pages {
+  float: left;
+  display: block;
+}
+.bottom-toolbar .field.limiter {
+  float: right;
+}
+.pages .items li.item .page, .pages .items li.item .action {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  min-height: auto;
+  color: rgba(0, 0, 0, .6);
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+  display: block;
+  border-radius: 50%;
+  text-align: center;
+  margin: 0;
+  box-shadow: none;
+  padding: 0;
+  -webkit-transition: color .3s ease-out, background-color .3s ease-out;
+  -moz-transition: color .3s ease-out, background-color .3s ease-out;
+  -ms-transition: color .3s ease-out, background-color .3s ease-out;
+  -o-transition: color .3s ease-out, background-color .3s ease-out;
+  transition: color .3s ease-out, background-color .3s ease-out;
+}
+.pages .items li.item.current .page {
+  color: #fff;
+}
+.pages .items li.item {
+  display: inline-block;
+  float: none;
+  margin: 0 6px 0 0;
+  position: relative;
+  font-size: 12px;
+  line-height: normal;
+}
+.pages .action.next:before {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  line-height: inherit;
+  color: #7d7d7d;
+  content: '\e901';
+  font-family: 'meigee-icons';
+  margin: 0;
+  vertical-align: top;
+  display: inline-block;
+  font-weight: 400;
+  overflow: hidden;
+  speak: none;
+  text-align: center;
+}
+.pages .items li.item .page:before, .pages .items li.item .action:before {
+  font-size: 12px;
+  color: inherit;
+}
+.bottom-toolbar .toolbar .limiter select {
+  padding: 0 20px 0 10px;
+  margin: 0 10px;
+}
+.bottom-toolbar select, .bottom-toolbar .toolbar select {
+  height: 44px;
+  line-height: 44px;
+  padding: 0 20px;
+  background-color: rgba(0, 0, 0, .04);
+  border-radius: 0;
+  box-shadow: none;
+  cursor: pointer;
+  background-size: 8px;
+  background-position: calc(100% - 7px) center;
+  background-repeat: no-repeat;
+  margin: 0;
+  background-image: url(data:image/svg+xml;charset=utf8,%3Csvg width='9' height='9' viewBox='0 0 9 9' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Ctitle%3Emeigee-drop%3C/title%3E%3Cdesc%3ECreated using Figma%3C/desc%3E%3Cg id='Canvas' transform='translate(393 11)'%3E%3Cg id='icons'%3E%3Cg id='meigee-drop'%3E%3Cuse xlink:href='%23path0_stroke' transform='translate(-392 -8)'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3Cdefs%3E%3Cpath id='path0_stroke' d='M 3.5 3.5L 3.14645 3.85355L 3.5 4.20711L 3.85355 3.85355L 3.5 3.5ZM -0.353553 0.353553L 3.14645 3.85355L 3.85355 3.14645L 0.353553 -0.353553L -0.353553 0.353553ZM 3.85355 3.85355L 7.35355 0.353553L 6.64645 -0.353553L 3.14645 3.14645L 3.85355 3.85355Z'/%3E%3C/defs%3E%3C/svg%3E);
+  background-clip: border-box;
+  font-size: 12px;
+  color: rgba(0, 0, 0, .6);
+  text-indent: unset;
+  -webkit-transition: background-color .3s ease-out, color .3s ease-out, border-color .3s ease-out;
+  -moz-transition: background-color .3s ease-out, color .3s ease-out, border-color .3s ease-out;
+  -ms-transition: background-color .3s ease-out, color .3s ease-out, border-color .3s ease-out;
+  -o-transition: background-color .3s ease-out, color .3s ease-out, border-color .3s ease-out;
+  transition: background-color .3s ease-out, color .3s ease-out, border-color .3s ease-out;
+}
+input[type=text], input[type=password], input[type=url], input[type=tel], input[type=search], input[type=number], input[type=datetime], input[type=email], textarea, select, .toolbar select {
+  border-radius: 4px;
 }
 
 .checkout-cart-index select,.checkout-index-index .checkout-cart-index select,
