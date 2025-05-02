@@ -1,0 +1,52 @@
+<?php $buttonTitle = __('Go To Product');?>
+<div class="box-gotoproduct testtting">
+    <div class="fieldset">
+        <div class="actions">
+            <a target="_parent" href="<?php /* @escapeNotVerified */ echo $this->getProduct()->getProductUrl() ?>" title="<?php /* @escapeNotVerified */ echo $buttonTitle ?>" class="action primary" id="product-gotoproduct-button">
+                <span><?php /* @escapeNotVerified */ echo $buttonTitle ?></span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+   
+.weltpixel_quickview-catalog_product-view .column.additional {
+  box-sizing: border-box;
+}
+
+.weltpixel_quickview-catalog_product-view .column.additional div {
+  box-sizing: border-box;
+}
+
+.weltpixel_quickview-catalog_product-view .tmls-widget,.weltpixel_quickview-catalog_product-view footer.page-footer {
+  display: none;
+}
+.weltpixel_quickview-catalog_product-view .product-options-bottom {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  column-gap: 20px;
+}
+.weltpixel_quickview-catalog_product-view .product-options-bottom .box-tocart {
+  width: 50% !important;
+  margin: 0;
+}
+
+.weltpixel_quickview-catalog_product-view .product-info-main .product-add-form form .box-tocart .actions, .page-layout-1column .product-info-main .product-add-form form .box-tocart .actions {
+  width: 100%;
+}
+
+.weltpixel_quickview-catalog_product-view  .product-add-form form .box-gotoproduct {
+  width: 50%;
+}
+
+.weltpixel_quickview-catalog_product-view  .product-add-form form .box-gotoproduct #product-gotoproduct-button,.weltpixel_quickview-catalog_product-view  .product-info-main .product-add-form form .box-tocart .actions #product-addtocart-button>span {
+  font-size: 12px;
+  font-weight: 400;
+  line-height:15px;
+}
+body.weltpixel_quickview-catalog_product-view .product-info-main .product-add-form form .box-tocart .actions .action.tocart {
+  background-color: #000 !important;
+}
+    </style>
