@@ -2258,6 +2258,121 @@ header.page-header .header.content {
   box-sizing: border-box;
 }
 /* view cart responsive end  */
+#layered-filter-block .filter-options-item .filter-options-content .item {
+  margin: 0;
+  border: none;
+  padding: 5px;
+}
+
+#layered-filter-block .filter-options-item .filter-options-content a:before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid #cdcdcd;
+  -webkit-box-shadow: inset 0 0 0 2px #fff;
+  box-shadow: inset 0 0 0 2px #fff;
+  background-color: #fff;
+  margin: 0 8px 0 0;
+  position: relative;
+  top: 2px;
+  -webkit-transition: background-color .3s ease-out;
+  -moz-transition: background-color .3s ease-out;
+  -ms-transition: background-color .3s ease-out;
+  -o-transition: background-color .3s ease-out;
+  transition: background-color .3s ease-out;
+}
+#layered-filter-block .filter-options-item .filter-options-content .item:hover {
+  margin: 0;
+  border: none;
+  border-radius: 10px;
+}
+.filter-options-content .count {
+  color: inherit;
+  font-weight: 400;
+  padding: 0;
+  font-size: 11px;
+}
+#layered-filter-block-current .filter-current .block-subtitle, #layered-filter-block .filter-current .block-subtitle {
+  display: none;
+}
+#layered-filter-block-current .filter-actions .btn.btn-default.filter-clear, #layered-filter-block .filter-actions .btn.btn-default.filter-clear, #layered-filter-block-current .filter-actions .action.clear.filter-clear, #layered-filter-block .filter-actions .action.clear.filter-clear {
+  background-color: #f44336;
+  border-color: #f44336;
+  color: #fff;
+  text-decoration: none;
+  min-height: 44px;
+  padding: 0;
+  line-height: 44px;
+  width: 44px;
+  position: relative;
+  display: inline-block;
+  -webkit-transition: background-color .3s ease-out, color .3s ease-out, border-color .3s ease-out;
+  -moz-transition: background-color .3s ease-out, color .3s ease-out, border-color .3s ease-out;
+  -ms-transition: background-color .3s ease-out, color .3s ease-out, border-color .3s ease-out;
+  -o-transition: background-color .3s ease-out, color .3s ease-out, border-color .3s ease-out;
+  transition: background-color .3s ease-out, color .3s ease-out, border-color .3s ease-out;
+}
+#layered-filter-block-current .filter-actions .btn.btn-default.filter-clear:before, #layered-filter-block .filter-actions .btn.btn-default.filter-clear:before, #layered-filter-block-current .filter-actions .action.clear.filter-clear:before, #layered-filter-block .filter-actions .action.clear.filter-clear:before {
+  display: block;
+  content: '\e91a';
+  position: absolute;
+  font-family: "meigee-icons";
+  font-size: 15px;
+  width: 44px;
+  text-align: center;
+  left: 0;
+  top: 0;
+  height: 44px;
+}
+#layered-filter-block-current .filter-actions .btn.btn-default.filter-clear span, #layered-filter-block .filter-actions .btn.btn-default.filter-clear span, #layered-filter-block-current .filter-actions .action.clear.filter-clear span, #layered-filter-block .filter-actions .action.clear.filter-clear span {
+  display: none;
+}
+#layered-filter-block-current .filter-current .items li, #layered-filter-block .filter-current .items li {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, .1);
+  line-height: 42px;
+  padding: 0 15px 0 15px;
+  font-size: 12px;
+  margin: 0 10px 10px 0;
+  display: block;
+  float: left;
+}
+#layered-filter-block-current .filter-current .items li span.filter-label, #layered-filter-block .filter-current .items li span.filter-label {
+  display: none;
+}
+.abs-remove-button-for-blocks>span, .sidebar .product-items .action.delete>span, .sidebar .block-compare .action.delete>span, .table-comparison .cell.remove .action.delete>span, .block-compare .action.delete>span, .filter-current .action.remove>span {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+#layered-filter-block-current .filter-current .items li a.remove:before, #layered-filter-block .filter-current .items li a.remove:before {
+  color: inherit;
+  display: inline-block;
+  font-family: "meigee-icons";
+  content: '\e90f';
+  padding: 0px 10px;
+}
+#layered-filter-block-current .filter-current .items li a.remove:before, #layered-filter-block .filter-current .items li a.remove:before {
+  top: auto;
+}
+.filter-current {
+  display: block;
+  padding: 0px 15px;
+}
+.billing-address-form .fieldset>.field:not(.choice)>.label {
+  text-align: left;
+}
+.onestepcheckout-index-index footer.page-footer {
+  display: none;
+}
+
 .checkout-cart-index select,.checkout-index-index .checkout-cart-index select,
   .checkout-cart-index .toolbar select,.checkout-index-index .toolbar select,
   .checkout-cart-index input[type="text"],.checkout-index-index input[type="text"],
@@ -2272,7 +2387,6 @@ header.page-header .header.content {
     height: 44px;
     line-height: 44px;
     padding: 0 20px;
-    border: 1px solid rgba(0, 0, 0, 0.04);
     background-color: rgba(0, 0, 0, 0.04);
     border-radius: 0;
     box-shadow: none;
