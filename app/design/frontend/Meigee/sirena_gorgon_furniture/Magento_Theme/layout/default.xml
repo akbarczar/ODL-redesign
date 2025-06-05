@@ -7,6 +7,9 @@
 -->
 <page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
+         <referenceContainer name="after.body.start">
+            <block class="Magento\Framework\View\Element\Template" name="google_tag_manager_noscript" template="Magento_Theme::gtm-noscript.phtml" />
+        </referenceContainer>
 			  <referenceBlock name="top.links" remove="true" />
 			  <referenceBlock name="header.panel.wrapper" remove="true" />
               <referenceBlock name="advanced-search-link" remove="true"/>
@@ -41,5 +44,9 @@
         </container>
     </container>
 </referenceContainer> -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59B9NVF"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
     </body>
 </page>

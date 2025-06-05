@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+		 
+    <columns name="sales_order_columns">
+	    <settings>
+            <editorConfig>
+                <param name="enabled" xsi:type="boolean">true</param>
+                <param name="selectProvider" xsi:type="string">sales_order_grid.sales_order_grid.sales_order_columns.ids</param>
+                <param name="indexField" xsi:type="string">entity_id</param>
+				<param name="clientConfig" xsi:type="array">
+                    <item name="saveUrl" path="orderitem/action/inlineedit" xsi:type="url"/>
+                    <item name="validateBeforeSave" xsi:type="boolean">false</item>
+                </param>
+            </editorConfig>
+			<childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                <item name="provider" xsi:type="string">sales_order_grid.sales_order_grid.sales_order_columns_editor</item>
+                  <item name="target" xsi:type="string">startEdit</item>
+                  <item name="params" xsi:type="array">
+                      <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                      <item name="1" xsi:type="boolean">true</item>
+                  </item>
+                </param>
+            </childDefaults>
+        </settings>
+		<selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">entity_id</item>
+                    <item name="sortOrder" xsi:type="number">0</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+        <column name="custom_field" class="V4U\SalesGrid\Ui\Component\Listing\Column\HtmlLink">
+		    <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">				   
+				    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                    <!-- <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item> -->
+                    <!-- <item name="dataType" xsi:type="string">text</item> -->
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">PO Number</item>
+					<item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                            <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                            <!--<item name="validate-zero-or-greater" xsi:type="boolean">true</item>-->
+                        </item>
+                    </item>					
+                </item>
+            </argument>
+            <settings>
+                <filter>text</filter>
+                <editor>
+                    <editorType>text</editorType>
+                </editor>
+                <dataType>text</dataType>
+                <label translate="true">PO Number</label>
+            </settings>
+        </column>
+    </columns>
+</listing>
+	

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+		 
+    <columns name="sales_order_columns">
+	    <settings>
+            <editorConfig>
+                <param name="indexField" xsi:type="string">entity_id</param>
+                <param name="enabled" xsi:type="boolean">true</param>
+                <param name="selectProvider" xsi:type="string">${ $.columnsProvider }.ids</param>
+            </editorConfig>
+        </settings>
+				
+        <actionsColumn name="custom_field" class="V4U\SalesGrid\Ui\Component\Listing\Column\HtmlLink">
+		    <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+				   
+				    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item> 
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">PO Number</item>
+					<item name="editor" xsi:type="array">
+						<item name="editorType" xsi:type="string">text</item>
+						<item name="validation" xsi:type="array">
+							<item name="required-entry" xsi:type="boolean">false</item>
+						</item>
+					</item>
+					
+                </item>
+            </argument>
+			
+			
+        </actionsColumn>
+    </columns>
+	<listingToolbar name="listing_top">
+			<massaction name="listing_massaction">
+				<action name="sendconfirmation">
+					<settings>
+						<confirm>
+							<message translate="true">Are you sure to Insert PO Number to selected Orders?</message>
+							<title translate="true">PO Number</title>
+						</confirm>
+						<url path="modulename/index/massSendConfirmation"/> <!-- your custom controller to handle request -->
+						<type>sendconfirmation</type>
+						<label translate="true">Enter PO Number</label>
+					</settings>
+				</action>
+			</massaction>
+		</listingToolbar>
+	</listing>
+	

@@ -118,12 +118,13 @@ class AddDataToOrdersGrid
         $itemsTableSelectGrouped->from(
             $orderItemsTableName,
             [
-                'ordered_qty' => new \Zend_Db_Expr('SUM(qty_ordered)'),
+                'ordered_qty' => new \Zend_Db_Expr('COALESCE(SUM(qty_ordered), 0)'),
                 'order_id'    => 'order_id'
             ]
         );
 
-        $itemsTableSelectGrouped->group('order_id');
+        $itemsTableSelectGrouped->where('parent_item_id IS NULL')
+                               ->group('order_id');
 
         $collection->getSelect()
                    ->joinLeft(

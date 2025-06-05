@@ -1,0 +1,96 @@
+<div id="filterSidebar" class="filter-sidebar" style="display: none;">
+    <div class="sidebar sidebar-main">
+        <?= $block->getChildHtml() ?>
+    </div>
+</div>
+
+<script type="text/javascript">
+require(['jquery'], function($) {
+    function bindToggle() {
+        $(document).off('click', '#toggleFilterSidebar'); // Prevent duplicate bindings
+        $(document).on('click', '#toggleFilterSidebar', function () {
+            const $sidebar = $('#filterSidebar');
+            const $button = $('#toggleFilterSidebar span');
+
+            // Toggle the active class
+            $sidebar.toggleClass('active');
+
+            // Change the button text based on active class
+            if ($sidebar.hasClass('active')) {
+                $button.text('Close'); // Change text to Close when active
+            } else {
+                $button.text('Open'); // Change text back to Filters when inactive
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        bindToggle();
+    });
+
+    // Rebind after AJAX update (e.g., after applying filters)
+    $(document).ajaxComplete(function () {
+        bindToggle();
+    });
+     // Rebind and remove active class after AJAX completes (e.g., after applying a filter)
+    $(document).ajaxComplete(function () {
+        bindToggle();
+        $('#filterSidebar').removeClass('active');
+        $('#toggleFilterSidebar span').text('Filters'); // Reset button text as well
+    });
+});
+</script>
+
+
+
+<style>
+@media (min-width: 1025px) {
+    #filterSidebar,
+    button.action.toggle-filters {
+        display: none !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    #filterSidebar {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 9999;
+        overflow-y: auto;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    #filterSidebar.active {
+        transform: translateX(0);
+    }
+
+    button.action.toggle-filters {
+        position: fixed;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        padding: 10px;
+        background: #000;
+        color: #fff;
+        border: none;
+        z-index: 10000;
+        cursor: pointer;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+    }
+    #filterSidebar {
+    display: none !important;
+}
+
+#filterSidebar.active {
+    display: block !important;
+}
+}
+</style>

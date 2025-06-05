@@ -27,6 +27,7 @@
         "ghoster/module-outofstockatlast": "^1.1",
         "hgati/change-attribute-set": "dev-master",
         "klarna/m2-klarna": "^3.1",
+        "litespeed/module-litemage": "^2.2",
         "magefan/module-blog": "^2.12",
         "magento/composer-dependency-version-audit-plugin": "~0.1",
         "magento/composer-root-update-plugin": "^2.0.4",

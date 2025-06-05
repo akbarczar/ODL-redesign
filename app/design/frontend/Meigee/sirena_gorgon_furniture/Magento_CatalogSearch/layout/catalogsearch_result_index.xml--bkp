@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      layout="2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <body>
+        <!-- Add the toggle button -->
+        <referenceContainer name="page.wrapper">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="toggle.filter.button"
+                   template="Magento_CatalogSearch::filter-toggle.phtml"
+                   before="main"/>
+        </referenceContainer>
+
+        <!-- Add your custom wrapper to main content -->
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="custom.filter.sidebar"
+                   template="Magento_CatalogSearch::filter-wrapper.phtml"
+                   before="search.result"/>
+        </referenceContainer>
+
+        <!-- Move the filters block into your wrapper -->
+        <move element="catalog.leftnav" destination="custom.filter.sidebar"/>
+    </body>
+</page>

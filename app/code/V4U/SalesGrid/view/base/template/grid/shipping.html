@@ -1,0 +1,33 @@
+<!-- ko if: $row().can_ship || $row().track_exist  -->
+<div class="aoaction-cell admin__field">
+   
+    
+    <div class="aoaction-cell-row admin__field-control" data-bind="css: {'amasty-oaction-hidden': (!$row().current_carrier && !default_carrier)}">
+        <!-- ko if: !$row().current_tracking  -->
+        <div class="title " data-bind="css: {'_required required': default_carrier}">
+                <span class="admin__field-label">
+                    <span data-bind="i18n: 'PO Number'"></span>:
+                </span>
+        </div>
+        <!-- /ko -->
+        <!-- ko if: $row().current_tracking  -->
+        <div data-bind="i18n: 'PO Number:'"></div>
+        <label data-bind="i18n: $row().current_tracking"></label>
+        <!-- /ko -->
+        <!-- ko if: !$row().current_tracking  -->
+        <input type="text" class="admin__control-text po-tracking" name="po-tracking">
+        <!-- /ko -->
+    </div>
+</div>
+<!-- /ko -->
+<!-- ko if: !$row().track_exist && !$row().is_canceled -->
+<!-- ko if: $row().has_shipments -->
+<div class="title" data-bind="i18n: 'Shipment is already created.'"></div>
+<!-- /ko -->
+<!-- ko if: !$row().has_shipments && !$row().can_ship -->
+<div class="title" data-bind="i18n: 'The Order can not be transferred to the Shipment.'"></div>
+<!-- /ko -->
+<!-- /ko -->
+<!-- ko if: $row().is_canceled  -->
+<div class="title" data-bind="i18n: 'Order is canceled.'"></div>
+<!-- /ko -->

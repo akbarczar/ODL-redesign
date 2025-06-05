@@ -78,3 +78,8 @@ atlassian*
 
 # Ignore all .gz files
 *.gz
+# Ignore wav_visitors logs
+pub/wav_visitors_*.log
+
+# Ignore odl_visitors logs
+pub/odl_visitors_*.log

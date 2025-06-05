@@ -9,16 +9,16 @@
        //->createBlock("Magento\Framework\View\Element\Template")
        //->setTemplate("Magento_Search::form.mini.phtml")
       // ->toHtml(); 
-      $mediaUrl = $this->getUrl('pub/media/');
+      $mediaUrl = $this->getUrl('/media/');
       ?>
       
     <div class="header_rating_image_new">
         <span class="text">Customer Satisfaction</span>
-        <img width="115" height="24" src="<?php echo $mediaUrl . 'header/Star_rating_4.5_of_5.png'; ?>" alt="Customer Satisfaction" />
+        <img width="115" height="24" src="/media/header/Star_rating_4.5_of_5.png" alt="Customer Satisfaction" />
         </div>
         <div class="search-wrapper" id="second-div">
-            <img class="header-delevery-icon"height="40" width="150"src="<?php echo $mediaUrl . 'amasty/webp/header/free-del_png.webp'; ?>" alt="Free Delivery" />
-            <img class="header-experience-icon" height="40" width="100" src="<?php echo $mediaUrl . 'amasty/webp/header/25-years-a_png.webp'; ?>" alt="25 years" />
+            <img class="header-delevery-icon"height="40" width="150" src="/media/amasty/webp/header/free-del_png.webp" alt="Free Delivery" />
+            <img class="header-experience-icon" height="40" width="100" src="/media/amasty/webp/header/25-years-a_png.webp" alt="25 years" />
     </div>
     </div> 
 
@@ -48,3 +48,17 @@
 }
 </script>
 
+<style>
+    .column.main .testimonials .tmls-widget h2.title {
+    width: auto;
+}
+.category-description [data-content-type=row][data-appearance=contained] {
+    max-width: 100%;
+}
+@media only screen and (max-width: 767px) {
+
+.checkout-index-index .fieldset>.field:not(.choice)>.control {
+    width: auto !important;
+}
+}
+</style>

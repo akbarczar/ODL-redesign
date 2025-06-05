@@ -121,6 +121,7 @@ if (isset($filesData['name']) && !empty($filesData['name'])) {
 		//$toemail = $this->scopeConfig->getValue(\Magento\Contact\Controller\Index\Post::XML_PATH_EMAIL_RECIPIENT, ScopeInterface::SCOPE_STORE);
 		$toemail = "akbar@czargroup.net";
 		$toemail = "support@outdoorlivinguk.co.uk";
+		$saleemail = "sales@outdoorlvinguk.co.uk";
 		 /* $fromEmail = $this->scopeConfig->getValue(\Magento\Contact\Controller\Index\Post::XML_PATH_EMAIL_SENDER, ScopeInterface::SCOPE_STORE); */
 		//$fromEmail = $this->scopeConfig->getValue('trans_email/ident_general/email', ScopeInterface::SCOPE_STORE);
 		$fromEmail = 'sales@outdoorlivinguk.co.uk';
@@ -173,6 +174,7 @@ $logger->info("fromName:" .$fromName);
                 ->setTemplateVars($templateVars)
                 ->setFrom($from)
                 ->addTo($toemail)
+                ->addCc($saleemail)
 				->setReplyTo($replyToEmail, $replyToName)
 				->addAttachment(file_get_contents($filePath[0]), $fileName[0],$filetype[0])
 				->addAttachment(file_get_contents($filePath[1]), $fileName[1],$filetype[1])
@@ -187,6 +189,7 @@ $logger->info("fromName:" .$fromName);
                 ->setTemplateVars($templateVars)
                 ->setFrom($from)
                 ->addTo($toemail)
+                ->addCc($saleemail)
 				->setReplyTo($replyToEmail, $replyToName)
 				->addAttachment(file_get_contents($filePath[0]), $fileName[0],$filetype[0])
 				->addAttachment(file_get_contents($filePath[1]), $fileName[1],$filetype[1])
@@ -200,6 +203,7 @@ $logger->info("fromName:" .$fromName);
                 ->setTemplateVars($templateVars)
                 ->setFrom($from)
                 ->addTo($toemail)
+                ->addCc($saleemail)
 				->setReplyTo($replyToEmail, $replyToName)
 				->addAttachment(file_get_contents($filePath[0]), $fileName[0],$filetype[0])
 				->addAttachment(file_get_contents($filePath[1]), $fileName[1],$filetype[1])
@@ -212,6 +216,7 @@ $logger->info("fromName:" .$fromName);
                 ->setTemplateVars($templateVars)
                 ->setFrom($from)
                 ->addTo($toemail)
+                ->addCc($saleemail)
 				->setReplyTo($replyToEmail, $replyToName)
 				->addAttachment(file_get_contents($filePath[0]), $fileName[0],$filetype[0])
 				->getTransport();
@@ -223,6 +228,7 @@ $logger->info("fromName:" .$fromName);
                 ->setTemplateVars($templateVars)
                 ->setFrom($from)
                 ->addTo($toemail)
+                ->addCc($saleemail)
 				->setReplyTo($replyToEmail, $replyToName)
 				->getTransport();
 				$transport->sendMessage();

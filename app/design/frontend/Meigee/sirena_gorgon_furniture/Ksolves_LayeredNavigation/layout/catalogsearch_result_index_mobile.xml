@@ -1,0 +1,22 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <body>
+        <referenceContainer name="page.wrapper">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="ks.filter.toggle.button"
+                   template="Magento_CatalogSearch::filter-toggle.phtml"
+                   before="main"/>
+        </referenceContainer>
+
+        <referenceContainer name="sidebar.main">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="custom.filter.sidebar"
+                   template="Magento_CatalogSearch::filter-wrapper.phtml"
+                   before="search.result"/>
+        </referenceContainer>
+
+        <move element="catalogsearch.leftnav" destination="custom.filter.sidebar"/>
+
+    </body>
+</page>
